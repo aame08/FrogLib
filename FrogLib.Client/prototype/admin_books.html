@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    main {
+      margin-top: 70px;
+      padding: 20px;
+      background-color: whitesmoke;
+      border-radius: 5px;
+    }
+
+    h1 {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .search-filter {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      justify-content: space-between;
+    }
+
+    .search-filter input,
+    .search-filter select {
+      padding: 10px;
+      border: 1px solid lightgrey;
+      border-radius: 5px;
+      font-size: 14px;
+      width: 100%;
+      height: auto;
+    }
+
+    .search-filter button {
+      padding: 10px 20px;
+      background-color: forestgreen;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .search-filter button:hover {
+      background-color: darkgreen;
+    }
+
+    .book-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .book-table th,
+    .book-table td {
+      border: 1px solid forestgreen;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .book-table th {
+      background-color: forestgreen;
+      color: white;
+    }
+
+    .book-table tr:hover {
+      background-color: white;
+    }
+
+    .action-button {
+      padding: 5px 10px;
+      background-color: forestgreen;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .action-button:hover {
+      background-color: darkgreen;
+    }
+
+    .add-book {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 10px;
+    }
+
+    .add-book button {
+      padding: 10px 20px;
+      background-color: forestgreen;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .add-book button a,
+    .action-button a {
+      color: white;
+      font-size: 14px;
+    }
+    .add-book button:hover {
+      background-color: darkgreen;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button">
+          <a href="admin_users.html">Пользователи</a>
+        </button>
+        <button class="nav-button"><a href="admin_books.html">Книги</a></button>
+      </div>
+      <div class="account">
+        <button class="button-account">
+          <a href="admin_account.html"
+            ><img
+              style="height: 30px; width: 30px"
+              src="resources/photo-user.jpeg"
+              alt=""
+          /></a>
+        </button>
+        <button class="nav-button">
+          <a href="index.html">Выход</a>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <h1>Управление книгами</h1>
+
+      <div class="search-filter">
+        <input type="text" placeholder="Поиск книги по названию" />
+        <select>
+          <option value="all">Все категории</option>
+          <option value="fiction">Художественная литература</option>
+          <option value="non-fiction">Научная литература</option>
+          <option value="mystery">Детективы</option>
+          <option value="fantasy">Фэнтези</option>
+        </select>
+        <button>Применить</button>
+      </div>
+
+      <div class="add-book">
+        <button><a href="add_book.html">Добавить книгу</a></button>
+      </div>
+
+      <table class="book-table">
+        <thead>
+          <tr>
+            <th>ISBN-10</th>
+            <th>ISBN-13</th>
+            <th>Название</th>
+            <th>Автор(ы)</th>
+            <th>Категория</th>
+            <th>Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>5046296810</td>
+            <td>9785046296815</td>
+            <td>Благословение небожителей. Том 1</td>
+            <td>Мосян Тунсю</td>
+            <td>Художественная литература</td>
+            <td style="text-align: center">
+              <button class="action-button">
+                <a href="edit_book.html">Редактировать</a>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>5046296810</td>
+            <td>9785046296815</td>
+            <td>Благословение небожителей. Том 1</td>
+            <td>Мосян Тунсю</td>
+            <td>Художественная литература</td>
+            <td style="text-align: center">
+              <button class="action-button">
+                <a href="edit_book.html">Редактировать</a>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>

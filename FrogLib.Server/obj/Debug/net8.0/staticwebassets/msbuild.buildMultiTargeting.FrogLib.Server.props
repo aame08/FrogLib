@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\FrogLib.Server.props" />
+</Project>

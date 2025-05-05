@@ -1,0 +1,235 @@
+Благословение небожителей:
+=== Данные из Google Books API ===
+Информация о книге:
+Поле: title, Значение: Благословение небожителей. Том 1
+Поле: authors, Значение: [
+  "Мосян Тунсю"
+]
+Поле: publisher, Значение: Litres
+Поле: publishedDate, Значение: 2024-04-17
+Поле: description, Значение: В незапамятные времена Се Лянь был наследным принцем государства Сяньлэ. Судьба одарила его всем: прекрасным ликом, чистыми помыслами и бесконечной любовью своих подданных. И если уж кому-то было предначертано стать божеством, то именно его высочеству.Однако удержаться на Небесах оказалось для него не так просто. Се Лянь возносился дважды и дважды был изгнан на землю. И вот спустя восемьсот лет скитаний его высочество вновь возвращается в небесные чертоги. Получив первое задание в роли божества, он сталкивается с таинственным и невероятно могущественным демоном...В формате PDF A4 сохранён издательский дизайн.
+Поле: industryIdentifiers, Значение: [
+  {
+    "type": "ISBN_13",
+    "identifier": "9785046296815"
+  },
+  {
+    "type": "ISBN_10",
+    "identifier": "5046296810"
+  }
+]
+Поле: readingModes, Значение: {
+  "text": true,
+  "image": true
+}
+Поле: pageCount, Значение: 468
+Поле: printType, Значение: BOOK
+Поле: categories, Значение: [
+  "Fiction"
+]
+Поле: maturityRating, Значение: NOT_MATURE
+Поле: allowAnonLogging, Значение: True
+Поле: contentVersion, Значение: 1.10.14.0.preview.3
+Поле: panelizationSummary, Значение: {
+  "containsEpubBubbles": false,
+  "containsImageBubbles": false
+}
+Поле: imageLinks, Значение:
+  Оригинал: http://books.google.com/books/content?id=P_sCEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api
+  Увеличенное: https://books.google.com:443/books/content?id=P_sCEQAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api
+Поле: language, Значение: ru
+Поле: previewLink, Значение: http://books.google.ru/books?id=P_sCEQAAQBAJ&pg=PP1&dq=%D0%91%D0%BB%D0%B0%D0%B3%D0%BE%D1%81%D0%BB%D0%BE%D0%B2%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BD%D0%B5%D0%B1%D0%BE%D0%B6%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9.+%D0%A2%D0%BE%D0%BC+1&hl=&cd=1&source=gbs_api
+Поле: infoLink, Значение: https://play.google.com/store/books/details?id=P_sCEQAAQBAJ&source=gbs_api
+Поле: canonicalVolumeLink, Значение: https://play.google.com/store/books/details?id=P_sCEQAAQBAJ
+
+=== Данные из Open Library API ===
+Поле: author_key, Значение: [
+  "OL9811679A"
+]
+Поле: author_name, Значение: [
+  "Mo Xiang Tong Xiu"
+]
+Поле: cover_edition_key, Значение: OL51153270M
+Поле: cover_i, Значение: 14587273
+Поле: ebook_access, Значение: no_ebook
+Поле: ebook_count_i, Значение: 0
+Поле: edition_count, Значение: 1
+Поле: edition_key, Значение: [
+  "OL51153270M"
+]
+Поле: first_publish_year, Значение: 2022
+Поле: has_fulltext, Значение: False
+Поле: isbn, Значение: [
+  "5041282463",
+  "9785041282462"
+]
+Поле: key, Значение: /works/OL37892831W
+Поле: last_modified_i, Значение: 1708411511
+Поле: public_scan_b, Значение: False
+Поле: publish_date, Значение: [
+  "2022"
+]
+Поле: publish_year, Значение: [
+  2022
+]
+Поле: publisher, Значение: [
+  "Komilfo"
+]
+Поле: seed, Значение: [
+  "/books/OL51153270M",
+  "/works/OL37892831W",
+  "/authors/OL9811679A"
+]
+Поле: title, Значение: Благословение небожителей. Том 1
+Поле: title_suggest, Значение: Благословение небожителей. Том 1
+Поле: title_sort, Значение: Благословение небожителей. Том 1
+Поле: type, Значение: work
+Поле: publisher_facet, Значение: [
+  "Komilfo"
+]
+Поле: _version_, Значение: 1795916337406541824
+Поле: author_facet, Значение: [
+  "OL9811679A Mo Xiang Tong Xiu"
+]
+
+Агент времени:
+=== Данные из Open Library API ===
+Поле: cover_edition_key, Значение: OL51153276M
+URL изображения: https://covers.openlibrary.org/b/id/14587287-L.jpg
+Поле: ebook_access, Значение: no_ebook
+Поле: ebook_count_i, Значение: 0
+Поле: edition_count, Значение: 1
+Поле: edition_key, Значение: [
+  "OL51153276M"
+]
+Поле: first_publish_year, Значение: 2023
+Поле: has_fulltext, Значение: False
+Поле: isbn, Значение: [
+  "9785041918477",
+  "5041918473"
+]
+Поле: key, Значение: /works/OL37892837W
+Поле: language, Значение: [
+  "rus"
+]
+Поле: last_modified_i, Значение: 1708414331
+Поле: number_of_pages_median, Значение: 212
+Поле: public_scan_b, Значение: False
+Поле: publish_date, Значение: [
+  "2023"
+]
+Поле: publish_place, Значение: [
+  "Russia"
+]
+Поле: publish_year, Значение: [
+  2023
+]
+Поле: publisher, Значение: [
+  "Komilfo"
+]
+Поле: seed, Значение: [
+  "/books/OL51153276M",
+  "/works/OL37892837W"
+]
+Поле: title, Значение: Link Click. Агент времени. Том 1
+Поле: title_suggest, Значение: Link Click. Агент времени. Том 1
+Поле: title_sort, Значение: Link Click. Агент времени. Том 1
+Поле: type, Значение: work
+Поле: publisher_facet, Значение: [
+  "Komilfo"
+]
+Поле: _version_, Значение: 1795916337408638978
+
+Лисья нора:
+=== Данные из Google Books API ===
+Информация о книге:
+Поле: title, Значение: Лисья нора
+Поле: authors, Значение: [
+  "Нора Сакавич"
+]
+Поле: publisher, Значение: Litres
+Поле: publishedDate, Значение: 2022-10-06
+Поле: description, Значение: Сенсационная трилогия писательницы Норы Сакавич <Все ради игры> была впервые опубликована в интернете и молниеносно покорила читателей во всем мире. <Лисья нора> повествует о команде <Лисов> - игроков экси (вымышленный спорт), которые, будучи отбросами в жизни, пытаются подняться со дна турнирной таблицы и выиграть чемпионат страны. Главный герой, Нил Джостен, скрывается от своего темного прошлого, однако, став частью команды, вынужден сражаться не только с соперниками, но и с новоиспеченными товарищами, каждый из которых хранит свои секреты.
+Поле: industryIdentifiers, Значение: [
+  {
+    "type": "ISBN_13",
+    "identifier": "9785045029728"
+  },
+  {
+    "type": "ISBN_10",
+    "identifier": "504502972X"
+  }
+]
+Поле: readingModes, Значение: {
+  "text": true,
+  "image": true
+}
+Поле: pageCount, Значение: 301
+Поле: printType, Значение: BOOK
+Поле: categories, Значение: [
+  "Fiction"
+]
+Поле: maturityRating, Значение: NOT_MATURE
+Поле: allowAnonLogging, Значение: True
+Поле: contentVersion, Значение: 1.11.12.0.preview.3
+Поле: panelizationSummary, Значение: {
+  "containsEpubBubbles": false,
+  "containsImageBubbles": false
+}
+Поле: imageLinks, Значение:
+  Оригинал: http://books.google.com/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api
+  Увеличенное: https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api
+Поле: language, Значение: ru
+Поле: previewLink, Значение: http://books.google.ru/books?id=kMW_EAAAQBAJ&pg=PT9&dq=%D0%9B%D0%B8%D1%81%D1%8C%D1%8F+%D0%BD%D0%BE%D1%80%D0%B0&hl=&cd=1&source=gbs_api
+Поле: infoLink, Значение: https://play.google.com/store/books/details?id=kMW_EAAAQBAJ&source=gbs_api
+Поле: canonicalVolumeLink, Значение: https://play.google.com/store/books/details?id=kMW_EAAAQBAJ
+
+=== Данные из Open Library API ===
+Книга не найдена в Open Library.
+
+Путь домохозяина:
+=== Данные из Google Books API ===
+Информация о книге:
+Поле: title, Значение: Путь домохозяина. Том 1
+Поле: authors, Значение: [
+  "Косукэ Оно"
+]
+Поле: publisher, Значение: Litres
+Поле: publishedDate, Значение: 2023-03-26
+Поле: description, Значение: Бессмертный Тацу - якудза, оставивший после себя множество легенд в преступном мире. Одно его имя вселяло ужас не только в конкурентов, но даже в полицейских. Однажды он неожиданно завязывает с бандитской жизнью и выбирает новый путь... Путь домохозяина! Сможет ли Тацу позабыть своё тёмное прошлое, стать хорошим семьянином и вести спокойную жизнь? Получится ли у него сменить уличные разборки на борьбу с готовкой и пылью? Так и было положено начало уютной и благородной комедии!
+Поле: industryIdentifiers, Значение: [
+  {
+    "type": "ISBN_13",
+    "identifier": "9785045373623"
+  },
+  {
+    "type": "ISBN_10",
+    "identifier": "5045373625"
+  }
+]
+Поле: readingModes, Значение: {
+  "text": false,
+  "image": true
+}
+Поле: pageCount, Значение: 165
+Поле: printType, Значение: BOOK
+Поле: categories, Значение: [
+  "Fiction"
+]
+Поле: maturityRating, Значение: NOT_MATURE
+Поле: allowAnonLogging, Значение: False
+Поле: contentVersion, Значение: 0.5.0.0.preview.1
+Поле: panelizationSummary, Значение: {
+  "containsEpubBubbles": false,
+  "containsImageBubbles": false
+}
+Поле: imageLinks, Значение:
+  Оригинал: http://books.google.com/books/content?id=xtm1EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api
+  Увеличенное: https://books.google.com:443/books/content?id=xtm1EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api
+Поле: language, Значение: ru
+Поле: previewLink, Значение: http://books.google.ru/books?id=xtm1EAAAQBAJ&pg=PA34&dq=%D0%9F%D1%83%D1%82%D1%8C+%D0%B4%D0%BE%D0%BC%D0%BE%D1%85%D0%BE%D0%B7%D1%8F%D0%B8%D0%BD%D0%B0.+%D0%A2%D0%BE%D0%BC+1&hl=&cd=1&source=gbs_api
+Поле: infoLink, Значение: https://play.google.com/store/books/details?id=xtm1EAAAQBAJ&source=gbs_api
+Поле: canonicalVolumeLink, Значение: https://play.google.com/store/books/details?id=xtm1EAAAQBAJ
+
+=== Данные из Open Library API ===
+Книга не найдена в Open Library.

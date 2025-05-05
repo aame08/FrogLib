@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    body {
+      margin-left: 25px;
+      margin-right: 25px;
+    }
+    .account-header {
+      display: flex;
+      flex-direction: column;
+      background-color: whitesmoke;
+      margin-top: 70px;
+      border-radius: 5px 0;
+      padding: 5px;
+      margin-top: 70px;
+      gap: 5px;
+    }
+    .upper-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .user-name {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .button-settings {
+      background: none;
+      border: none;
+      margin-top: 5px;
+      font-size: 16px;
+      display: flex;
+      text-wrap: wrap;
+    }
+    .button-settings a:hover {
+      font-weight: bold;
+    }
+
+    .lower-container {
+      display: flex;
+      background-color: whitesmoke;
+      border: 1px solid forestgreen;
+      border: none;
+      padding: 5px;
+      gap: 10px;
+      align-items: center;
+      border-top: 2px solid forestgreen;
+    }
+    .lower-container a:hover {
+      border-bottom: 2px solid forestgreen;
+    }
+
+    .view-container {
+      display: flex;
+      margin-top: 20px;
+    }
+
+    .calendar-container {
+      flex: 2;
+      background-color: whitesmoke;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid forestgreen;
+      margin-right: 20px;
+    }
+
+    .month-navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .month-navigation button {
+      border: none;
+      background: none;
+      font-size: 16px;
+    }
+    .month-navigation button:hover {
+      color: forestgreen;
+    }
+    #go-to-today {
+      display: block;
+      margin: 10px auto;
+      padding: 8px 12px;
+      background-color: forestgreen;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    #go-to-today:hover {
+      background-color: darkgreen;
+    }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+    .calendar .day {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ccc;
+      height: 50px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: white;
+    }
+    .calendar .day.booked {
+      background-color: forestgreen;
+      color: white;
+    }
+    .calendar .day:hover {
+      background-color: lightgray;
+    }
+
+    .book-list-container {
+      flex: 1;
+      background-color: whitesmoke;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid forestgreen;
+    }
+    #book-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #book-list li {
+      margin: 5px 0;
+    }
+    .book-link {
+      text-decoration: none;
+    }
+    .book-link:hover {
+      color: darkgreen;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="index.html">Главная</a></button>
+        <button class="nav-button"><a href="books.html">Книги</a></button>
+        <button class="nav-button">
+          <a href="collections.html">Подборки</a>
+        </button>
+        <button class="nav-button"><a href="reviews.html">Рецензии</a></button>
+      </div>
+      <div class="account">
+        <button class="button-account">
+          <a href="account.html"
+            ><img
+              style="height: 30px; width: 30px"
+              src="resources/photo-user.jpeg"
+              alt=""
+          /></a>
+        </button>
+        <button class="nav-button">
+          <a href="index.html">Выход</a>
+        </button>
+      </div>
+    </header>
+
+    <div class="account-header">
+      <div class="upper-container">
+        <div class="user-name">
+          <img
+            src="resources/photo-user.jpeg"
+            alt="photo-user"
+            style="object-fit: contain; height: 100px"
+          />
+          <div style="display: flex; flex-direction: column">
+            <div>amee</div>
+            <div>Дата регистрации: <span>08.12.2022</span></div>
+          </div>
+        </div>
+        <button class="button-settings">
+          <a href="settings.html">⛭Настройки</a>
+        </button>
+      </div>
+      <div class="lower-container">
+        <a href="account.html">Книги</a>
+        <a href="user-comments.html">Комментарии</a>
+        <a href="user-collections.html">Подборки</a>
+        <a href="user-reviews.html">Рецензии</a>
+        <div style="border-bottom: 2px solid forestgreen">Календарь</div>
+      </div>
+    </div>
+
+    <div class="view-container">
+      <div class="calendar-container">
+        <h2>Календарь прочитанных книг</h2>
+        <div class="month-navigation">
+          <button id="prev-month">&lt; Предыдущий</button>
+          <span id="current-month">Месяц</span>
+          <button id="next-month">Следующий &gt;</button>
+        </div>
+        <button id="go-to-today">Сегодня</button>
+        <div class="calendar"></div>
+      </div>
+      <div class="book-list-container">
+        <h3>Прочитанные книги</h3>
+        <ul id="book-list">
+          <li>Выберите дату, чтобы увидеть книги</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const calendarContainer = document.querySelector(".calendar");
+    const monthDisplay = document.getElementById("current-month");
+    const prevMonthBtn = document.getElementById("prev-month");
+    const nextMonthBtn = document.getElementById("next-month");
+    const goToTodayBtn = document.getElementById("go-to-today");
+    const bookList = document.getElementById("book-list");
+
+    let currentDate = new Date();
+    const today = new Date();
+
+    const booksByDate = {
+      "2024-11-12": ["Агент времени"],
+      "2024-11-26": ["Благословение небожителей"],
+    };
+
+    function renderCalendar(date) {
+      calendarContainer.innerHTML = "";
+      const year = date.getFullYear();
+      const month = date.getMonth();
+
+      monthDisplay.textContent = date.toLocaleString("ru", {
+        month: "long",
+        year: "numeric",
+      });
+
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const firstDayIndex = new Date(year, month, 1).getDay();
+      const lastDayIndex = new Date(year, month, daysInMonth).getDay();
+
+      for (let i = 0; i < (firstDayIndex || 7) - 1; i++) {
+        calendarContainer.innerHTML += '<div class="day empty"></div>';
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const formattedDate = `${year}-${String(month + 1).padStart(
+          2,
+          "0"
+        )}-${String(day).padStart(2, "0")}`;
+        const isBooked = booksByDate[formattedDate];
+        const isToday = formattedDate === today.toISOString().split("T")[0];
+        calendarContainer.innerHTML += `
+                    <div class="day ${isBooked ? "booked" : ""} ${
+          isToday ? "today" : ""
+        }" data-date="${formattedDate}">
+                        ${day}
+                    </div>
+                `;
+      }
+
+      for (let i = lastDayIndex; i < 6; i++) {
+        calendarContainer.innerHTML += '<div class="day empty"></div>';
+      }
+
+      document.querySelectorAll(".day.booked").forEach((day) => {
+        day.addEventListener("click", (e) => {
+          const date = e.target.dataset.date;
+          showBooksForDate(date);
+        });
+      });
+    }
+
+    function showBooksForDate(date) {
+      const books = booksByDate[date];
+      bookList.innerHTML = books
+        ? books
+            .map(
+              (book) =>
+                `<li><a href="book-info.html" class="book-link">${book}</a></li>`
+            )
+            .join("")
+        : "<li>Нет книг для этой даты</li>";
+    }
+
+    prevMonthBtn.addEventListener("click", () => {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      renderCalendar(currentDate);
+    });
+
+    nextMonthBtn.addEventListener("click", () => {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      renderCalendar(currentDate);
+    });
+
+    goToTodayBtn.addEventListener("click", () => {
+      currentDate = new Date(today);
+      renderCalendar(currentDate);
+
+      const todayDate = today.toISOString().split("T")[0];
+      showBooksForDate(todayDate);
+      document
+        .querySelector(`[data-date="${todayDate}"]`)
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    renderCalendar(currentDate);
+  });
+</script>

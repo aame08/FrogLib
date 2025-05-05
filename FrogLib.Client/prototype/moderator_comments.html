@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+    <style>
+      main {
+        margin-top: 70px;
+        padding: 20px;
+        background-color: whitesmoke;
+        border-radius: 5px;
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 24px;
+        text-align: center;
+      }
+      .main-container {
+        display: flex;
+        gap: 20px;
+      }
+
+      .list-section {
+        flex: 1;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+      .list-section h2 {
+        margin-top: 0;
+      }
+
+      .search-filter {
+        display: flex;
+        gap: 5px;
+        margin-bottom: 15px;
+      }
+      .search-filter input,
+      .search-filter select {
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+        font-size: 16px;
+        width: 100%;
+        height: auto;
+      }
+      .search-filter button {
+        background-color: forestgreen;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+      .search-filter button:hover {
+        background-color: darkgreen;
+      }
+
+      .list-item {
+        padding: 10px;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+      .list-item:hover {
+        background-color: whitesmoke;
+      }
+
+      .comment-section {
+        flex: 2;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+
+      .comment-section h2 {
+        margin-top: 0;
+      }
+
+      .comment {
+        padding: 10px;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      .comment-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+
+      .comment-author {
+        font-weight: bold;
+      }
+
+      .comment-date {
+        font-style: italic;
+        color: grey;
+      }
+      .replies {
+        margin-left: 20px;
+        border-left: 2px solid #ddd;
+        padding-left: 10px;
+        margin-top: 10px;
+      }
+      .reply {
+        margin-top: 10px;
+      }
+
+      .reply .comment-author {
+        font-weight: bold;
+      }
+      .comment-author {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .comment-actions {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+      }
+
+      .button {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+      }
+      .button.reject {
+        background-color: crimson;
+      }
+
+      .button.reject:hover {
+        background-color: darkred;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button">
+          <a href="moderator_reviews.html">Рецензии</a>
+        </button>
+        <button class="nav-button">
+          <a href="moderator_comments.html">Комментарии</a>
+        </button>
+        <button class="nav-button">
+          <a href="moderator_users.html">Пользователи</a>
+        </button>
+      </div>
+      <div class="account">
+        <button class="button-account">
+          <a href="moderator_account.html"
+            ><img
+              style="height: 30px; width: 30px"
+              src="resources/photo-user.jpeg"
+              alt=""
+          /></a>
+        </button>
+        <button class="nav-button">
+          <a href="index.html">Выход</a>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <h1>Модерация комментариев</h1>
+      <div class="main-container">
+        <div class="list-section">
+          <h2>Список рецензий/подборок</h2>
+          <div class="search-filter">
+            <input type="text" placeholder="Поиск по названию..." />
+            <select>
+              <option value="all" selected>Все</option>
+              <option value="reviews">Рецензии</option>
+              <option value="collections">Подборки</option>
+            </select>
+            <button>Применить</button>
+          </div>
+
+          <div class="list-item">
+            <span>Рецензия: Благословение небожителей</span>
+            <span>Мосян Тунсю</span>
+          </div>
+          <div class="list-item">
+            <span>Подборка: Лучшие книги 2024 года</span>
+            <span>Иван Иванов</span>
+          </div>
+          <div class="list-item">
+            <span>Рецензия: Властелин колец</span>
+            <span>Джон Толкин</span>
+          </div>
+        </div>
+
+        <div class="comment-section">
+          <h2>Комментарии</h2>
+
+          <div class="comment">
+            <div class="comment-header">
+              <span class="comment-author">Автор: amee</span>
+              <span class="comment-date">7:29 08.12.2022</span>
+            </div>
+            <div class="comment-text">
+              Эта рецензия просто потрясающая! Полностью согласен с автором.
+            </div>
+            <div class="comment-actions">
+              <button class="button reject">Удалить</button>
+            </div>
+
+            <div class="replies">
+              <div class="reply">
+                <div class="comment-header">
+                  <span class="comment-author">Ответ: amee</span>
+                  <span class="comment-date">7:29 08.12.2022</span>
+                </div>
+                <div class="comment-text">
+                  Я тоже согласен, особенно с выводами автора.
+                </div>
+                <div class="comment-actions">
+                  <button class="button reject">Удалить</button>
+                </div>
+              </div>
+              <div class="reply">
+                <div class="comment-header">
+                  <span class="comment-author">Ответ: amee</span>
+                  <span class="comment-date">7:29 08.12.2022</span>
+                </div>
+                <div class="comment-text">
+                  Не могу согласиться, книга мне совсем не понравилась.
+                </div>
+                <div class="comment-actions">
+                  <button class="button reject">Удалить</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

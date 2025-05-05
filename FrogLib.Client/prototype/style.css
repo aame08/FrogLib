@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css?family=Kanit");
+
+* {
+  font-family: "Kanit", sans-serif;
+}
+
+body {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+button {
+  cursor: pointer;
+}
+input[type="checkbox"]:checked {
+  accent-color: green;
+}
+select {
+  border-color: forestgreen;
+  height: 30px;
+  border-radius: 5px;
+}
+select:focus {
+  outline: none;
+}
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: whitesmoke;
+  z-index: 1000;
+  border-bottom: 2px solid forestgreen;
+}
+.name-site {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.name-site p {
+  color: forestgreen;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+.buttons {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  height: 45px;
+  align-items: center;
+}
+.nav-button {
+  border: none;
+  background: none;
+  font-size: 16px;
+  color: black;
+  padding: 10px 10px;
+}
+.nav-button:hover {
+  border-bottom: 2px solid forestgreen;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+.account {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.button-account {
+  background: none;
+  border: none;
+}
+
+/* Footer */
+footer {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 2px solid forestgreen;
+  background-color: whitesmoke;
+}

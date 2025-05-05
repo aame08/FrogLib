@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    main {
+      margin-top: 70px;
+      padding: 20px;
+      background-color: whitesmoke;
+      border-radius: 5px;
+    }
+
+    h1 {
+      font-size: 28px;
+      text-align: center;
+      text-decoration: underline;
+      text-decoration-color: forestgreen;
+      margin-bottom: 20px;
+    }
+
+    .review-container {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .review-container {
+      font-size: 18px;
+    }
+    .review-container span {
+      font-weight: bold;
+    }
+    .review-text {
+      white-space: pre-wrap;
+    }
+
+    .form-buttons {
+      margin-top: 25px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+    .button {
+      padding: 10px 20px;
+      background-color: forestgreen;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .button:hover {
+      background-color: darkgreen;
+    }
+    .button.cancel {
+      background-color: crimson;
+    }
+
+    .button.cancel:hover {
+      background-color: darkred;
+    }
+    .button.cancel a {
+      color: white;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button">
+          <a href="moderator_reviews.html">Рецензии</a>
+        </button>
+        <button class="nav-button">
+          <a href="moderator_comments.html">Комментарии</a>
+        </button>
+        <button class="nav-button">
+          <a href="moderator_users.html">Пользователи</a>
+        </button>
+      </div>
+      <div class="account">
+        <button class="button-account">
+          <a href="moderator_account.html"
+            ><img
+              style="height: 30px; width: 30px"
+              src="resources/photo-user.jpeg"
+              alt=""
+          /></a>
+        </button>
+        <button class="nav-button">
+          <a href="index.html">Выход</a>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <h1>Просмотр рецензии</h1>
+
+      <div class="review-container">
+        <p><span>Автор рецензии: </span>amee</p>
+        <p><span>Книга: </span>Благословение небожителей. Том 1</p>
+        <p><span>Заголовок рецензии: </span>Эпическое начало фэнтези-саги</p>
+        <span>Текст рецензии:</span>
+        <div class="review-text">
+          "Благословение небожителей. Том 1" — это захватывающее начало
+          эпической фэнтези-саги, которая погружает читателя в мир магии, интриг
+          и героизма. Автор мастерски создает богатый и детализированный мир,
+          где каждый персонаж имеет свою уникальную историю и мотивацию. Сюжет
+          книги вращается вокруг молодого героя по имени Элиан, который
+          обнаруживает в себе скрытые магические способности. Его путешествие
+          начинается с простого желания защитить свою семью и родную деревню, но
+          постепенно перерастает в эпическую битву за судьбу всего мира. По мере
+          развития сюжета, Элиан сталкивается с могущественными врагами,
+          загадочными союзниками и древними тайнами, которые раскрывают истинную
+          природу его силы. Одной из сильных сторон книги является глубокое
+          развитие персонажей. Каждый из них имеет свои уникальные черты,
+          слабости и сильные стороны, что делает их живыми и реалистичными.
+          Взаимоотношения между героями также проработаны с большой
+          тщательностью, что добавляет эмоциональной глубины повествованию.
+        </div>
+
+        <div class="form-buttons">
+          <button class="button" type="submit">Принять</button>
+          <button type="button" class="button cancel">
+            <a href="moderator_reviews.html">Отклонить</a>
+          </button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

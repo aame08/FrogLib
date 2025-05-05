@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    .create-banner {
+      display: flex;
+      background-color: whitesmoke;
+      margin-top: 70px;
+      border: 1px solid forestgreen;
+      border-radius: 5px;
+      padding: 5px;
+      max-width: 850px;
+      margin-left: auto;
+      margin-right: auto;
+      align-items: center;
+      gap: 10px;
+    }
+    .transparent-button {
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background: none;
+      font-weight: bold;
+    }
+    .transparent-button:hover {
+      text-decoration: underline;
+      text-decoration-color: forestgreen;
+    }
+
+    .view-collection {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .filter-container {
+      display: flex;
+      background-color: whitesmoke;
+      border-radius: 8px;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      gap: 5px;
+    }
+    .search-container {
+      display: flex;
+    }
+    .search-container input {
+      border: 2px solid forestgreen;
+      height: 25px;
+      border-radius: 0 0 0 5px;
+      width: 350px;
+    }
+    .search-container input:focus {
+      border: 2px solid green;
+      border-radius: 0 0 0 5px;
+      outline: none;
+    }
+    .search-container button {
+      background-color: forestgreen;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      border-radius: 0 5px 0 0;
+    }
+
+    .collections-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .collection-card {
+      background-color: whitesmoke;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 5px;
+      display: flex;
+      max-height: 250px;
+      gap: 5px;
+    }
+    .collection-card:hover {
+      border: 2px solid forestgreen;
+    }
+    .collection-card img {
+      object-fit: contain;
+      max-width: 250px;
+      max-height: 250px;
+      margin: 5px;
+    }
+    .text-container {
+      flex-grow: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .container-header {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px;
+    }
+    .collection-name {
+      font-size: 24px;
+      font-weight: bold;
+      background: none;
+      border: none;
+    }
+    .collection-name a:hover {
+      color: forestgreen;
+    }
+    .container-footer {
+      display: flex;
+      gap: 15px;
+    }
+    .info-collection {
+      display: flex;
+      align-items: center;
+    }
+    .info-collection img {
+      height: 25px;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="index.html">Главная</a></button>
+        <button class="nav-button"><a href="books.html">Книги</a></button>
+        <button class="nav-button">
+          <a href="collections.html">Подборки</a>
+        </button>
+        <button class="nav-button"><a href="reviews.html">Рецензии</a></button>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="login.html">Вход</a></button>
+        <button class="nav-button">
+          <a href="register.html">Регистрация</a>
+        </button>
+      </div>
+      <!-- <div class="account">
+            <button class="button-account">
+                <a href="account.html"><img style="height: 30px; width: 30px;" src="resources/photo-user.jpeg" alt=""></a>
+            </button>
+            <button class="nav-button">
+                <a href="index.html">Выход</a>
+            </button>
+        </div> -->
+    </header>
+
+    <div class="create-banner">
+      <div class="banner-text">
+        <h1>Твоя коллекция книг - твои правила</h1>
+        <p>
+          Составь уникальную подборку из любимых произведений и открывай новое
+          каждый день.
+        </p>
+      </div>
+      <button class="transparent-button">
+        <a href="collection.html">+ Создать подборку</a>
+      </button>
+    </div>
+
+    <div class="view-collection">
+      <div class="filter-container">
+        <div class="search-container">
+          <input type="text" placeholder="Поиск" />
+          <button>
+            <img src="resources/search-icon.png" alt="" />
+          </button>
+        </div>
+        <div class="sort-container">
+          <select name="sort" id="sort">
+            <option value="date" selected>По дате добавления</option>
+            <option value="popular">Самые популярные</option>
+            <option value="comments">Самые обсуждаемые</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="collections-container">
+        <div class="collection-card">
+          <img src="resources/image_collection.png" alt="Подборка 1" />
+          <div class="text-container">
+            <div class="container-header">
+              <div>amee</div>
+              <div>👁300</div>
+            </div>
+            <div class="container-content">
+              <div style="margin-left: 5px; color: grey">08.12.2022</div>
+              <button class="collection-name">
+                <a href="collection-info.html">Название подборки 1</a>
+              </button>
+              <div style="margin-left: 5px">52 книг</div>
+              <p style="margin-left: 5px; color: grey">Описание подборки</p>
+            </div>
+            <div class="container-footer">
+              <div class="info-collection">
+                <img src="resources/comment.png" alt="comment" />
+                <div>2</div>
+              </div>
+              <div class="info-collection">
+                <img src="resources/favorite.png" alt="rating" />
+                <div>228</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="collection-card">
+          <img src="resources/image_collection.png" alt="Подборка 1" />
+          <div class="text-container">
+            <div class="container-header">
+              <div>amee</div>
+              <div>👁300</div>
+            </div>
+            <div class="container-content">
+              <div style="margin-left: 5px; color: grey">08.12.2022</div>
+              <button class="collection-name">
+                <a href="collection-info.html">Название подборки 2</a>
+              </button>
+              <div style="margin-left: 5px">52 книг</div>
+              <p style="margin-left: 5px; color: grey">Описание подборки</p>
+            </div>
+            <div class="container-footer">
+              <div class="info-collection">
+                <img src="resources/comment.png" alt="comment" />
+                <div>2</div>
+              </div>
+              <div class="info-collection">
+                <img src="resources/favorite.png" alt="rating" />
+                <div>228</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="collection-card">
+          <img src="resources/image_collection.png" alt="Подборка 1" />
+          <div class="text-container">
+            <div class="container-header">
+              <div>amee</div>
+              <div>👁300</div>
+            </div>
+            <div class="container-content">
+              <div style="margin-left: 5px; color: grey">08.12.2022</div>
+              <button class="collection-name">
+                <a href="collection-info.html">Название подборки 3</a>
+              </button>
+              <div style="margin-left: 5px">52 книг</div>
+              <p style="margin-left: 5px; color: grey">Описание подборки</p>
+            </div>
+            <div class="container-footer">
+              <div class="info-collection">
+                <img src="resources/comment.png" alt="comment" />
+                <div>2</div>
+              </div>
+              <div class="info-collection">
+                <img src="resources/favorite.png" alt="rating" />
+                <div>228</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="collection-card">
+          <img src="resources/image_collection.png" alt="Подборка 1" />
+          <div class="text-container">
+            <div class="container-header">
+              <div>amee</div>
+              <div>👁300</div>
+            </div>
+            <div class="container-content">
+              <div style="margin-left: 5px; color: grey">08.12.2022</div>
+              <button class="collection-name">
+                <a href="collection-info.html">Название подборки 4</a>
+              </button>
+              <div style="margin-left: 5px">52 книг</div>
+              <p style="margin-left: 5px; color: grey">Описание подборки</p>
+            </div>
+            <div class="container-footer">
+              <div class="info-collection">
+                <img src="resources/comment.png" alt="comment" />
+                <div>2</div>
+              </div>
+              <div class="info-collection">
+                <img src="resources/favorite.png" alt="rating" />
+                <div>228</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div>© 2025 FrogLib.</div>
+    </footer>
+  </body>
+</html>

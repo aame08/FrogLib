@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    main {
+      margin-top: 70px;
+      padding: 20px;
+      background-color: whitesmoke;
+      border-radius: 5px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      text-align: center;
+      text-decoration: underline;
+      text-decoration-color: forestgreen;
+      margin-bottom: 20px;
+    }
+
+    section {
+      display: flex;
+      gap: 20px;
+    }
+
+    .search-section,
+    .form-section {
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      flex: 1;
+    }
+    .search-container {
+      display: flex;
+    }
+    .search-container input {
+      border-radius: 5px 0 0 5px;
+    }
+    .search-container button {
+      height: 40px;
+      border-radius: 0 5px 5px 0;
+    }
+    h2 {
+      font-size: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: calc(100% - 40px);
+      padding: 10px;
+      border: 1px solid whitesmoke;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      height: auto;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .button {
+      padding: 10px 20px;
+      background-color: forestgreen;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .button:hover {
+      background-color: darkgreen;
+    }
+    .form-buttons {
+      margin-top: 15px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+    .button.cancel {
+      background-color: crimson;
+    }
+
+    .button.cancel:hover {
+      background-color: darkred;
+    }
+    .button.cancel a {
+      color: white;
+    }
+    .search-results {
+      margin-top: 10px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .search-results div {
+      padding: 10px;
+      border: 1px solid whitesmoke;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .search-results button {
+      padding: 5px 10px;
+    }
+
+    .cover-selection {
+      display: flex;
+      gap: 20px;
+    }
+
+    .cover-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cover-option img {
+      width: 120px;
+      height: auto;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+    .author-list {
+      margin-top: 10px;
+    }
+
+    .author-list input {
+      width: calc(100% - 40px);
+      display: inline-block;
+    }
+
+    .add-author {
+      margin-top: 5px;
+      padding: 5px 10px;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button">
+          <a href="admin_users.html">Пользователи</a>
+        </button>
+        <button class="nav-button"><a href="admin_books.html">Книги</a></button>
+      </div>
+      <div class="account">
+        <button class="button-account">
+          <a href="admin_account.html"
+            ><img
+              style="height: 30px; width: 30px"
+              src="resources/photo-user.jpeg"
+              alt=""
+          /></a>
+        </button>
+        <button class="nav-button">
+          <a href="index.html">Выход</a>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <h1>Редактирование книги</h1>
+      <section>
+        <div class="form-section">
+          <h2>Детали книги</h2>
+          <label for="isbn-10">ISBN-10</label>
+          <input type="text" id="isbn-10" value="5046296810" />
+
+          <label for="isbn-13">ISBN-13</label>
+          <input type="text" id="isbn-13" value="9785046296815" />
+
+          <label for="title">Название книги:</label>
+          <input
+            type="text"
+            id="title"
+            value="Благословение небожителей. Том 1"
+          />
+
+          <label for="authors">Автор(ы):</label>
+          <div class="author-list">
+            <div class="author">
+              <label>Фамилия:</label>
+              <input type="text" value="Мосян" />
+
+              <label>Имя:</label>
+              <input type="text" value="Тунсю" />
+
+              <label>Отчество:</label>
+              <input type="text" placeholder="Введите отчество" />
+            </div>
+            <button type="button" class="button add-author">
+              Добавить автора
+            </button>
+          </div>
+
+          <label for="description">Описание:</label>
+          <textarea id="description">
+В незапамятные времена Се Лянь был наследным принцем государства Сяньлэ...</textarea
+          >
+
+          <label for="publisher">Издатель:</label>
+          <input type="text" id="publisher" value="Litres" />
+
+          <label for="published-date">Год издания:</label>
+          <input type="text" id="published-date" value="2024" />
+
+          <label for="count-pages">Количество страниц:</label>
+          <input type="number" id="count-pages" value="468" />
+
+          <label for="categories">Категория:</label>
+          <input type="text" id="categories" value="Fiction" />
+
+          <label for="age-rating">Наличие 18+ контента:</label>
+          <input type="text" id="age-rating" value="Нет" />
+
+          <label for="language">Язык книги:</label>
+          <input type="text" id="language" value="ru" />
+
+          <label>Обложка:</label>
+          <div class="cover-selection">
+            <label class="cover-option">
+              <input type="radio" name="cover" value="original" checked />
+              <img
+                src="https://books.google.com/books/content?id=P_sCEQAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+                alt="Оригинальная обложка"
+              />
+            </label>
+          </div>
+
+          <div class="form-buttons">
+            <button class="button" type="submit">Обновить</button>
+            <button type="button" class="button cancel">
+              <a href="admin_books.html">Отмена</a>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

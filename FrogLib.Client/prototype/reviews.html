@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    section {
+      margin-top: 70px;
+    }
+
+    .view-reviews {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .filter-container {
+      display: flex;
+      background-color: whitesmoke;
+      border-radius: 8px;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+    }
+
+    .reviews-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .review-card {
+      background-color: whitesmoke;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 5px;
+      display: flex;
+      max-height: 450px;
+      gap: 5px;
+    }
+    .review-card:hover {
+      border: 2px solid forestgreen;
+    }
+    .review-card img {
+      object-fit: contain;
+      max-width: 250px;
+      max-height: 250px;
+      margin: 5px;
+    }
+    .text-container {
+      flex-grow: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .container-header {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px;
+    }
+    .review-name {
+      font-size: 24px;
+      font-weight: bold;
+      background: none;
+      border: none;
+    }
+    .review-name a:hover {
+      color: forestgreen;
+    }
+    .container-footer {
+      display: flex;
+      gap: 15px;
+    }
+    .info-collection {
+      display: flex;
+      align-items: center;
+    }
+    .info-collection img {
+      height: 25px;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="index.html">Главная</a></button>
+        <button class="nav-button"><a href="books.html">Книги</a></button>
+        <button class="nav-button">
+          <a href="collections.html">Подборки</a>
+        </button>
+        <button class="nav-button"><a href="reviews.html">Рецензии</a></button>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="login.html">Вход</a></button>
+        <button class="nav-button">
+          <a href="register.html">Регистрация</a>
+        </button>
+      </div>
+      <!-- <div class="account">
+            <button class="button-account">
+                <a href="account.html"><img style="height: 30px; width: 30px;" src="resources/photo-user.jpeg" alt=""></a>
+            </button>
+            <button class="nav-button">
+                <a href="index.html">Выход</a>
+            </button>
+        </div> -->
+    </header>
+
+    <section>
+      <h2>Рецензии на книги</h2>
+      <p>
+        Чтение - это не только процесс, но и
+        <span
+          style="text-decoration: underline; text-decoration-color: forestgreen"
+          >глубокий анализ</span
+        >. На этой страницы собраны все рецензии на книги, прочитанные нашими
+        пользователями. Здесь читатели делятся своими уникальными мнениями,
+        конструктивными суждениями, логичными выводами и компетентными оценками
+        прочитанных произведений. Каждая рецензия основана на личном осмыслени
+        текста и авторских идей, что делает её особенно ценной и интересной для
+        других читателей.
+      </p>
+    </section>
+
+    <div class="view-reviews">
+      <div class="filter-container">
+        <select name="sort" id="sort">
+          <option value="date" selected>По дате добавления</option>
+          <option value="popular">По популярности</option>
+        </select>
+      </div>
+
+      <div class="reviews-container">
+        <div class="review-card">
+          <img
+            src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+            alt="Подборка 1"
+          />
+          <div class="text-container">
+            <div class="container-header">
+              <div>amee <span>написал(а) рецензию</span></div>
+              <div>👁300</div>
+            </div>
+            <div class="container-content">
+              <button class="review-name">
+                <a href="review-info.html">Название рецензии</a>
+              </button>
+              <div style="margin-left: 5px; color: grey">
+                Книги Эрика Берна «Игры, в которые играют люди» и «Люди, которые
+                играют в игры» — это настоящие классики психологической
+                литературы, которые многим помогают взглянуть на свою жизнь и
+                взаимоотношения с людьми с совершенно новой перспективы. Читая
+                эти книги, невозможно не почувствовать, как на глазах
+                раскрываются многие механизмы нашего поведения, которые ранее
+                были неосознаваемыми. Берн великолепно объясняет, как люди часто
+                играют роли, даже не замечая этого, и как эти игры влияют на
+                наши отношения и жизненные сценарии.
+              </div>
+            </div>
+            <div class="container-footer">
+              <div class="info-collection">
+                <img src="resources/heart.png" alt="rating" />
+                <div>228</div>
+              </div>
+              <div class="info-collection">
+                <img src="resources/comment.png" alt="comment" />
+                <div>2</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <img
+            src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+            alt="Подборка 1"
+          />
+          <div class="text-container">
+            <div class="container-header">
+              <div>amee <span>написал(а) рецензию</span></div>
+              <div>👁300</div>
+            </div>
+            <div class="container-content">
+              <button class="review-name">
+                <a href="review-info.html">Название рецензии</a>
+              </button>
+              <div style="margin-left: 5px; color: grey">
+                Книги Эрика Берна «Игры, в которые играют люди» и «Люди, которые
+                играют в игры» — это настоящие классики психологической
+                литературы, которые многим помогают взглянуть на свою жизнь и
+                взаимоотношения с людьми с совершенно новой перспективы. Читая
+                эти книги, невозможно не почувствовать, как на глазах
+                раскрываются многие механизмы нашего поведения, которые ранее
+                были неосознаваемыми. Берн великолепно объясняет, как люди часто
+                играют роли, даже не замечая этого, и как эти игры влияют на
+                наши отношения и жизненные сценарии.
+              </div>
+            </div>
+            <div class="container-footer">
+              <div class="info-collection">
+                <img src="resources/heart.png" alt="rating" />
+                <div>228</div>
+              </div>
+              <div class="info-collection">
+                <img src="resources/comment.png" alt="comment" />
+                <div>2</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <img
+            src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+            alt="Подборка 1"
+          />
+          <div class="text-container">
+            <div class="container-header">
+              <div>amee <span>написал(а) рецензию</span></div>
+              <div>👁300</div>
+            </div>
+            <div class="container-content">
+              <button class="review-name">
+                <a href="review-info.html">Название рецензии</a>
+              </button>
+              <div style="margin-left: 5px; color: grey">
+                Книги Эрика Берна «Игры, в которые играют люди» и «Люди, которые
+                играют в игры» — это настоящие классики психологической
+                литературы, которые многим помогают взглянуть на свою жизнь и
+                взаимоотношения с людьми с совершенно новой перспективы. Читая
+                эти книги, невозможно не почувствовать, как на глазах
+                раскрываются многие механизмы нашего поведения, которые ранее
+                были неосознаваемыми. Берн великолепно объясняет, как люди часто
+                играют роли, даже не замечая этого, и как эти игры влияют на
+                наши отношения и жизненные сценарии.
+              </div>
+            </div>
+            <div class="container-footer">
+              <div class="info-collection">
+                <img src="resources/heart.png" alt="rating" />
+                <div>228</div>
+              </div>
+              <div class="info-collection">
+                <img src="resources/comment.png" alt="comment" />
+                <div>2</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <img
+            src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+            alt="Подборка 1"
+          />
+          <div class="text-container">
+            <div class="container-header">
+              <div>amee <span>написал(а) рецензию</span></div>
+              <div>👁300</div>
+            </div>
+            <div class="container-content">
+              <button class="review-name">
+                <a href="review-info.html">Название рецензии</a>
+              </button>
+              <div style="margin-left: 5px; color: grey">
+                Книги Эрика Берна «Игры, в которые играют люди» и «Люди, которые
+                играют в игры» — это настоящие классики психологической
+                литературы, которые многим помогают взглянуть на свою жизнь и
+                взаимоотношения с людьми с совершенно новой перспективы. Читая
+                эти книги, невозможно не почувствовать, как на глазах
+                раскрываются многие механизмы нашего поведения, которые ранее
+                были неосознаваемыми. Берн великолепно объясняет, как люди часто
+                играют роли, даже не замечая этого, и как эти игры влияют на
+                наши отношения и жизненные сценарии.
+              </div>
+            </div>
+            <div class="container-footer">
+              <div class="info-collection">
+                <img src="resources/heart.png" alt="rating" />
+                <div>228</div>
+              </div>
+              <div class="info-collection">
+                <img src="resources/comment.png" alt="comment" />
+                <div>2</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div>© 2025 FrogLib.</div>
+    </footer>
+  </body>
+</html>

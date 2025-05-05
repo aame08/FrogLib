@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    .info-container {
+      margin-left: auto;
+      margin-right: auto;
+      width: 700px;
+      margin-top: 70px;
+      background-color: whitesmoke;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding: 15px;
+    }
+
+    .heading {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .photo-user {
+      display: flex;
+      flex-direction: column;
+    }
+    .current-photo {
+      background-image: url(resources/photo-user.jpeg);
+      height: 200px;
+      width: 200px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .button-delete {
+      height: 30px;
+      width: 30px;
+      border-radius: 10px;
+      font-size: 16px;
+      background-color: rgba(211, 211, 211, 0.6);
+      border: none;
+    }
+    .button-delete:hover {
+      background-color: rgba(220, 20, 60, 0.5);
+    }
+    .input-image::file-selector-button {
+      background: none;
+      border: 1px solid forestgreen;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    input {
+      border-color: whitesmoke;
+      border-radius: 5px;
+      height: 30px;
+      width: 100%;
+    }
+    input:focus {
+      border-color: forestgreen;
+      outline: none;
+    }
+
+    .password-user {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .password-recovery {
+      padding: 3px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid forestgreen;
+    }
+    .password-recovery a {
+      text-decoration: underline;
+      text-decoration-color: forestgreen;
+    }
+
+    .buttons-container {
+      display: flex;
+      align-self: center;
+      gap: 5px;
+    }
+    .buttons-container button {
+      font-size: 14px;
+      border: 1px solid forestgreen;
+      border-radius: 5px;
+      background: none;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="index.html">Главная</a></button>
+        <button class="nav-button"><a href="books.html">Книги</a></button>
+        <button class="nav-button">
+          <a href="collections.html">Подборки</a>
+        </button>
+        <button class="nav-button"><a href="reviews.html">Рецензии</a></button>
+      </div>
+      <div class="account">
+        <button class="button-account">
+          <a href="list-books.html"
+            ><img
+              style="height: 30px; width: 30px"
+              src="resources/favorite.png"
+              alt=""
+          /></a>
+        </button>
+        <button class="button-account">
+          <a href="account.html"
+            ><img
+              style="height: 30px; width: 30px"
+              src="resources/photo-user.jpeg"
+              alt=""
+          /></a>
+        </button>
+      </div>
+    </header>
+
+    <div class="info-container">
+      <div
+        style="
+          text-align: center;
+          font-weight: bold;
+          font-size: 24px;
+          text-decoration: underline;
+          text-decoration-color: forestgreen;
+        "
+      >
+        Настройки пользователя
+      </div>
+
+      <div class="photo-user">
+        <div class="heading">Изображения пользователя</div>
+        <div style="display: flex; gap: 20px">
+          <div class="current-photo">
+            <button class="button-delete">🗑</button>
+          </div>
+          <div class="new-photo">
+            <div>Новое изображение</div>
+            <input type="file" accept="image/*" class="input-image" />
+          </div>
+        </div>
+      </div>
+      <div class="name-user">
+        <div class="heading">Имя пользователя</div>
+        <input type="text" placeholder="amee" />
+      </div>
+      <div class="password-user">
+        <div class="heading">Смена пароля</div>
+        <div class="current-password">
+          <div>Текущий пароль</div>
+          <input type="password" placeholder="*****" />
+        </div>
+        <div class="new-password">
+          <div>Новый пароль</div>
+          <input type="password" placeholder="*****" />
+        </div>
+        <div class="new-password">
+          <div>Подтверждение нового пароля</div>
+          <input type="password" placeholder="*****" />
+        </div>
+        <div class="password-recovery">
+          Если вы не помните текущий пароль, то воспользуйтесь
+          <a href="password_recovery.html">сбросом пароля</a>.
+        </div>
+      </div>
+      <div class="email-user">
+        <div class="heading">Электронная почта</div>
+        <input type="email" placeholder="amee@gmail.com" />
+      </div>
+      <div class="buttons-container">
+        <button>Сохранить изменения</button>
+      </div>
+    </div>
+  </body>
+</html>

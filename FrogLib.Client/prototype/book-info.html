@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    main {
+      margin-top: 70px;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .book-container {
+      display: flex;
+      flex-direction: column;
+      background-color: whitesmoke;
+      border-radius: 5px;
+    }
+
+    .book-header {
+      background-color: forestgreen;
+      border-radius: 5px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+    }
+    .book-title {
+      font-size: 36px;
+      max-width: 50%;
+      align-self: flex-end;
+    }
+    .book-author {
+      max-width: 50%;
+      align-self: flex-end;
+    }
+    .buttons-group {
+      align-self: flex-end;
+      display: flex;
+      gap: 10px;
+    }
+    .buttons-group button {
+      font-size: 16px;
+      border-color: forestgreen;
+      border-radius: 5px;
+      background-color: whitesmoke;
+    }
+    .buttons-group button:hover {
+      font-weight: bold;
+    }
+
+    .book-info {
+      margin-top: 10px;
+      display: flex;
+      gap: 15px;
+    }
+    .book-cover {
+      flex: 0 0 300px;
+      background-color: whitesmoke;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .book-cover img {
+      object-fit: contain;
+      height: 350px;
+      margin-top: -160px;
+      z-index: 100;
+    }
+    .book-cover select {
+      border-color: forestgreen;
+      font-size: 16px;
+      border-radius: 5px;
+      width: 90%;
+      text-align: center;
+    }
+    .book-cover select:focus {
+      border-color: forestgreen;
+      outline: none;
+    }
+    .book-cover button {
+      font-size: 15px;
+      background: none;
+      border: 2px solid forestgreen;
+      border-radius: 5px;
+    }
+
+    .info-section {
+      margin-right: 10px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-color: white;
+      border-radius: 5px;
+      border: 2px solid rgba(34, 139, 34, 0.5);
+      padding: 3px;
+    }
+    .views-rating {
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+    }
+    .book-rating {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+    .book-details {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .statistics {
+      margin-top: 10px;
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .rating {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      border-radius: 8px;
+      padding: 10px;
+      max-width: 300px;
+    }
+    .bookmarks {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      border-radius: 8px;
+      padding: 10px;
+      max-width: 400px;
+    }
+    .statistics-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: -15px;
+    }
+    .bookmarks-header {
+      display: flex;
+      align-items: center;
+      margin-top: -15px;
+    }
+    .average-rating {
+      display: flex;
+      align-items: center;
+    }
+    .total-votes {
+      margin-left: 10px;
+      font-size: 14px;
+      color: grey;
+    }
+
+    .statistics-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .statistics-bar {
+      display: flex;
+      align-items: center;
+    }
+    .statistics-value {
+      margin-right: 10px;
+      font-size: 16px;
+    }
+    .bookmarks-value {
+      margin-right: 10px;
+      font-size: 16px;
+      width: 80px;
+    }
+    .bar-container {
+      width: 200px;
+      height: 10px;
+      background-color: whitesmoke;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-right: 10px;
+    }
+    .bar {
+      height: 100%;
+      background-color: forestgreen;
+      border-radius: 5px;
+    }
+    .percentage {
+      margin-right: 10px;
+      font-size: 14px;
+    }
+    .votes {
+      font-size: 14px;
+      color: grey;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="index.html">Главная</a></button>
+        <button class="nav-button"><a href="books.html">Книги</a></button>
+        <button class="nav-button">
+          <a href="collections.html">Подборки</a>
+        </button>
+        <button class="nav-button"><a href="reviews.html">Рецензии</a></button>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="login.html">Вход</a></button>
+        <button class="nav-button">
+          <a href="register.html">Регистрация</a>
+        </button>
+      </div>
+      <!-- <div class="account">
+            <button class="button-account">
+                <a href="account.html"><img style="height: 30px; width: 30px;" src="resources/photo-user.jpeg" alt=""></a>
+            </button>
+            <button class="nav-button">
+                <a href="index.html">Выход</a>
+            </button>
+        </div> -->
+    </header>
+
+    <main>
+      <div class="book-container">
+        <div class="book-header">
+          <h1 class="book-title">Благословение небожителей. Том 1</h1>
+          <div class="book-author">Мосян Тунсю</div>
+          <div class="buttons-group">
+            <button><a href="book-info.html">Информация</a></button>
+            <button><a href="book-reviews.html">Рецензии</a></button>
+            <button><a href="book-collections.html">Подборки</a></button>
+          </div>
+        </div>
+
+        <div class="book-info">
+          <div class="book-cover">
+            <img
+              src="https://books.google.com:443/books/content?id=P_sCEQAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="Обложка книги"
+            />
+            <select name="list-books" id="list-books">
+              <option value="" disabled selected>+ Добавить</option>
+              <option value="reading">Читаю</option>
+              <option value="in-plans">В планах</option>
+              <option value="abandoned">Брошено</option>
+              <option value="read-it">Прочитано</option>
+              <option value="favourite">Любимые</option>
+            </select>
+            <button>📃 <a href="review.html">написать рецензию</a></button>
+            <button>+ <a href="collection.html">создать подборку</a></button>
+          </div>
+          <div class="info-section">
+            <div class="views-rating">
+              <div class="book-rating">
+                <div>☆ <span>5.0</span></div>
+                <!-- <div>Моя оценка: <span>5</span></div> -->
+                <a href="user-evaluation.html">★ Оценить</a>
+              </div>
+              <div>👁 <span>300</span></div>
+            </div>
+            <div style="display: flex; flex-direction: column">
+              <div style="font-size: 22px; font-weight: bold">
+                Описание книги
+              </div>
+              <div class="book-description">
+                В незапамятные времена Се Лянь был наследным принцем государства
+                Сяньлэ. Судьба одарила его всем: прекрасным ликом, чистыми
+                помыслами и бесконечной любовью своих подданных. И если уж
+                кому-то было предначертано стать божеством, то именно его
+                высочеству.Однако удержаться на Небесах оказалось для него не
+                так просто. Се Лянь возносился дважды и дважды был изгнан на
+                землю. И вот спустя восемьсот лет скитаний его высочество вновь
+                возвращается в небесные чертоги. Получив первое задание в роли
+                божества, он сталкивается с таинственным и невероятно
+                могущественным демоном...
+              </div>
+            </div>
+            <div class="book-details">
+              <div style="font-size: 22px; font-weight: bold">
+                Информация об издании
+              </div>
+              <div>ISBN-10: <span>5046296810</span></div>
+              <div>ISBN-13: <span>9785046296815</span></div>
+              <div>Издатель: <span>Litres</span></div>
+              <div>Год издания: <span>2024</span></div>
+              <div>Категория: <span>Художественная литература</span></div>
+              <div>Количество страниц: <span>468</span></div>
+              <div>18+: <span>нет</span></div>
+              <div>Язык книги: <span>ru</span></div>
+            </div>
+            <div class="statistics">
+              <div class="rating">
+                <div class="statistics-header">
+                  <h4>Оценки пользователей</h4>
+                  <span class="average-rating">
+                    ☆ 9.38
+                    <span class="total-votes">14.9 K</span>
+                  </span>
+                </div>
+                <div class="statistics-bars">
+                  <div class="statistics-bar">
+                    <span class="statistics-value">5</span>
+                    <div class="bar-container">
+                      <div class="bar" style="width: 76.4%"></div>
+                    </div>
+                    <span class="percentage">76.4%</span>
+                    <span class="votes">11409</span>
+                  </div>
+                  <div class="statistics-bar">
+                    <span class="statistics-value">4</span>
+                    <div class="bar-container">
+                      <div class="bar" style="width: 76.4%"></div>
+                    </div>
+                    <span class="percentage">76.4%</span>
+                    <span class="votes">11409</span>
+                  </div>
+                  <div class="statistics-bar">
+                    <span class="statistics-value">3</span>
+                    <div class="bar-container">
+                      <div class="bar" style="width: 76.4%"></div>
+                    </div>
+                    <span class="percentage">76.4%</span>
+                    <span class="votes">11409</span>
+                  </div>
+                  <div class="statistics-bar">
+                    <span class="statistics-value">2</span>
+                    <div class="bar-container">
+                      <div class="bar" style="width: 76.4%"></div>
+                    </div>
+                    <span class="percentage">76.4%</span>
+                    <span class="votes">11409</span>
+                  </div>
+                  <div class="statistics-bar">
+                    <span class="statistics-value">1</span>
+                    <div class="bar-container">
+                      <div class="bar" style="width: 76.4%"></div>
+                    </div>
+                    <span class="percentage">76.4%</span>
+                    <span class="votes">11409</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bookmarks">
+                <div class="bookmarks-header">
+                  <h4>В списках у <span>181237</span> <span>человек</span></h4>
+                </div>
+                <div class="statistics-bars">
+                  <div class="statistics-bar">
+                    <span class="bookmarks-value">Читаю</span>
+                    <div class="bar-container">
+                      <div class="bar" style="width: 76.4%"></div>
+                    </div>
+                    <span class="percentage">76.4%</span>
+                    <span class="votes">11409</span>
+                  </div>
+                  <div class="statistics-bar">
+                    <span class="bookmarks-value">В планах</span>
+                    <div class="bar-container">
+                      <div class="bar" style="width: 76.4%"></div>
+                    </div>
+                    <span class="percentage">76.4%</span>
+                    <span class="votes">11409</span>
+                  </div>
+                  <div class="statistics-bar">
+                    <span class="bookmarks-value">Брошено</span>
+                    <div class="bar-container">
+                      <div class="bar" style="width: 76.4%"></div>
+                    </div>
+                    <span class="percentage">76.4%</span>
+                    <span class="votes">11409</span>
+                  </div>
+                  <div class="statistics-bar">
+                    <span class="bookmarks-value">Прочитано</span>
+                    <div class="bar-container">
+                      <div class="bar" style="width: 76.4%"></div>
+                    </div>
+                    <span class="percentage">76.4%</span>
+                    <span class="votes">11409</span>
+                  </div>
+                  <div class="statistics-bar">
+                    <span class="bookmarks-value">Любимые</span>
+                    <div class="bar-container">
+                      <div class="bar" style="width: 76.4%"></div>
+                    </div>
+                    <span class="percentage">76.4%</span>
+                    <span class="votes">11409</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div>© 2025 FrogLib.</div>
+    </footer>
+  </body>
+</html>

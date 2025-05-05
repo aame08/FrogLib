@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    section {
+      display: flex;
+      flex-direction: column;
+      margin-top: 50px;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .transparent-button {
+      font-size: 12px;
+      border: none;
+      border-radius: 5px;
+      background-color: forestgreen;
+    }
+    .transparent-button:hover {
+      background-color: forestgreen;
+      opacity: 0.5;
+    }
+
+    .books-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .nav-buttons {
+      background: none;
+      border-radius: 50%;
+      border: none;
+      width: 30px;
+      height: 30px;
+    }
+    .nav-buttons:hover {
+      border: 2px solid forestgreen;
+    }
+    .prev-button {
+      left: 10px;
+    }
+    .next-button {
+      right: 10px;
+    }
+    .books-slider {
+      display: flex;
+      overflow: hidden;
+      padding: 5px;
+      gap: 10px;
+      width: 100%;
+    }
+    .book-card {
+      background-color: whitesmoke;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+    }
+    .book-card img {
+      height: 200px;
+      object-fit: contain;
+    }
+    .book-card:hover {
+      border: 1px solid forestgreen;
+    }
+    .raiting {
+      width: 80px;
+      height: 25px;
+      background-color: forestgreen;
+      color: whitesmoke;
+      text-align: center;
+    }
+    .button-name {
+      background: none;
+      border: none;
+      margin-top: 5px;
+      font-size: 16px;
+      display: flex;
+      text-wrap: wrap;
+    }
+    .button-name a:hover {
+      font-weight: bold;
+    }
+
+    .view-books {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+    }
+    .filter-container {
+      display: flex;
+      background-color: whitesmoke;
+      border-radius: 8px;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      gap: 15px;
+    }
+    .search-container {
+      display: flex;
+    }
+    .search-container input {
+      border: 2px solid forestgreen;
+      height: 25px;
+      border-radius: 0 0 0 5px;
+      width: 250px;
+    }
+    .search-container input:focus {
+      border: 2px solid green;
+      border-radius: 0 0 0 5px;
+      outline: none;
+    }
+    .search-container button {
+      background-color: forestgreen;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      border-radius: 0 5px 0 0;
+    }
+
+    .view-container {
+      display: flex;
+      gap: 20px;
+    }
+
+    fieldset {
+      flex: 0 0 300px;
+      background-color: whitesmoke;
+      border: 2px solid forestgreen;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .categories {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .books-section {
+      flex-grow: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .card-book {
+      flex: 1 1 calc(25% - 10px);
+      box-sizing: border-box;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      max-width: 300px;
+    }
+
+    .card-book img {
+      height: 325px;
+      object-fit: contain;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="index.html">Главная</a></button>
+        <button class="nav-button"><a href="books.html">Книги</a></button>
+        <button class="nav-button">
+          <a href="collections.html">Подборки</a>
+        </button>
+        <button class="nav-button"><a href="reviews.html">Рецензии</a></button>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="login.html">Вход</a></button>
+        <button class="nav-button">
+          <a href="register.html">Регистрация</a>
+        </button>
+      </div>
+      <!-- <div class="account">
+            <button class="button-account">
+                <a href="account.html"><img style="height: 30px; width: 30px;" src="resources/photo-user.jpeg" alt=""></a>
+            </button>
+            <button class="nav-button">
+                <a href="index.html">Выход</a>
+            </button>
+        </div> -->
+    </header>
+
+    <section>
+      <div class="section-title">
+        <h2>Персональные рекомендации</h2>
+      </div>
+      <div class="books-container">
+        <!-- <div style="font-size: 18px;">Получите <span style="text-decoration: underline; text-decoration-color: forestgreen;">персонализированные рекомендации</span>, авторизовавшись или добавив книги в раздел «Прочитано». Это поможет нам лучше понять ваши интересы и предложить книги, которые точно вам понравятся!</div> -->
+        <button class="nav-buttons prev-button">←</button>
+        <div class="books-slider">
+          <div class="book-card">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://covers.openlibrary.org/b/id/14587287-L.jpg"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Агент времени</a>
+            </button>
+          </div>
+          <div class="book-card">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://books.google.com:443/books/content?id=P_sCEQAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Благословение небожителей</a>
+            </button>
+          </div>
+          <div class="book-card">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Лисья нора</a>
+            </button>
+          </div>
+          <div class="book-card">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://books.google.com:443/books/content?id=xtm1EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Путь домохозяина</a>
+            </button>
+          </div>
+        </div>
+        <button class="nav-buttons next-button">→</button>
+      </div>
+    </section>
+
+    <div class="view-books">
+      <div class="filter-container">
+        <div class="search-container">
+          <input type="text" placeholder="Поиск книг" />
+          <button>
+            <img src="resources/search-icon.png" alt="" />
+          </button>
+        </div>
+        <div class="rating-container">
+          <input type="checkbox" name="rating" id="rating" checked />
+          <label for="rating">Отображать 18+</label>
+        </div>
+        <div class="sort-container">
+          <select name="sort" id="sort">
+            <option value="popular" selected>По популярности</option>
+            <option value="news">По новизне</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="view-container">
+        <fieldset>
+          <legend style="font-size: 18px; font-weight: bold">
+            Категории книг
+          </legend>
+          <div class="categories">
+            <label>
+              <input type="checkbox" name="" id="" />Художественная литература
+            </label>
+            <label>
+              <input type="checkbox" name="" id="" />Детская литература
+            </label>
+            <label>
+              <input type="checkbox" name="" id="" />Кулькутура и искусство
+            </label>
+            <label>
+              <input type="checkbox" name="" id="" />Научная литература
+            </label>
+            <label> <input type="checkbox" name="" id="" />История </label>
+            <label> <input type="checkbox" name="" id="" />Бизнес </label>
+            <label>
+              <input type="checkbox" name="" id="" />Прикладная литература
+            </label>
+            <label>
+              <input type="checkbox" name="" id="" />Документальная литература
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="books-section">
+          <div class="card-book">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://covers.openlibrary.org/b/id/14587287-L.jpg"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Агент времени</a>
+            </button>
+          </div>
+          <div class="card-book">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://covers.openlibrary.org/b/id/14587287-L.jpg"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Агент времени</a>
+            </button>
+          </div>
+          <div class="card-book">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://covers.openlibrary.org/b/id/14587287-L.jpg"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Агент времени</a>
+            </button>
+          </div>
+          <div class="card-book">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://covers.openlibrary.org/b/id/14587287-L.jpg"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Агент времени</a>
+            </button>
+          </div>
+          <div class="card-book">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://covers.openlibrary.org/b/id/14587287-L.jpg"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Агент времени</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div>© 2025 FrogLib.</div>
+    </footer>
+  </body>
+</html>
