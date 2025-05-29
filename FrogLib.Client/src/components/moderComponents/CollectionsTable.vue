@@ -22,7 +22,14 @@ const handleView = (collection) => {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="collection in collections" :key="collection.idCollection">
+      <tr
+        v-for="collection in collections"
+        :key="collection.idCollection"
+        :class="{
+          'violation-row':
+            collection.statusCollection === 'Обнаружено нарушение',
+        }"
+      >
         <td>{{ collection.idCollection }}</td>
         <td>{{ collection.author.name }}</td>
         <td>{{ collection.titleCollection }}</td>

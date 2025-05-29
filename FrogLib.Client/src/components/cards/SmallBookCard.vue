@@ -11,7 +11,7 @@ const props = defineProps({
   <RouterLink :to="`/books/${id}`" class="book-card">
     <div class="rating">☆ {{ averageRating.toFixed(1) }}</div>
     <img :src="imageURL" :alt="title" class="book-image" />
-    <div class="book-title">{{ title }}</div>
+    <!-- <div class="book-title">{{ title }}</div> -->
   </RouterLink>
 </template>
 
@@ -21,7 +21,7 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   width: 23%;
-  min-height: 300px;
+  height: fit-content;
   padding: 5px;
   background-color: white;
   border-radius: 8px;
@@ -34,7 +34,6 @@ const props = defineProps({
 
 .book-card img {
   height: 250px;
-  margin-bottom: 10px;
 }
 
 .book-title {

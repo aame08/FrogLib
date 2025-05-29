@@ -19,12 +19,16 @@ const handleClick = () => {
         approved: collection.statusCollection === 'Одобрено',
         rejected: collection.statusCollection === 'Отказано',
         pending: collection.statusCollection === 'На рассмотрении',
+        violation: collection.statusCollection === 'Обнаружено нарушение',
       }"
     >
       <span v-if="collection.statusCollection === 'Одобрено'">✓</span>
       <span v-else-if="collection.statusCollection === 'Отказано'">×</span>
       <span v-else-if="collection.statusCollection === 'На рассмотрении'"
         >🕐</span
+      >
+      <span v-else-if="collection.statusCollection === 'Обнаружено нарушение'"
+        >⚠</span
       >
       {{ collection.statusCollection }}
     </div>
@@ -79,6 +83,10 @@ const handleClick = () => {
 
 .pending {
   background-color: grey;
+}
+
+.violation {
+  background-color: gold;
 }
 
 .images-container {

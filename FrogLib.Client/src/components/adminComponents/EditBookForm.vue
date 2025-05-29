@@ -17,6 +17,8 @@ const authors = ref(
     patronymicAuthor: a.patronymicAuthor || '',
   }))
 );
+const message = ref('');
+const errors = ref({});
 
 const addAuthor = () => {
   authors.value.push({
@@ -33,6 +35,8 @@ const removeAuthor = (index) => {
 };
 
 const submitEdit = async () => {
+  errors.value = {};
+
   if (!localBook.value) {
     return;
   }
@@ -64,7 +68,26 @@ const submitEdit = async () => {
     emit('refresh-data');
     props.closeForm();
   } catch (error) {
-    console.error('Ошибка при редактировании книги:', error);
+    if (error.response && error.response.status === 400) {
+      if (error.response.data && error.response.data.errors) {
+        const apiErrors = error.response.data.errors;
+
+        errors.value = {
+          Publisher: apiErrors.Publisher?.[0],
+          Category: apiErrors.Category?.[0],
+          Authors: apiErrors.Authors?.[0],
+          TitleBook: apiErrors.TitleBook?.[0],
+          Description: apiErrors.Description?.[0],
+          YearPublication: apiErrors.YearPublication?.[0],
+          PageCount: apiErrors.PageCount?.[0],
+          LanguageBook: apiErrors.LanguageBook?.[0],
+        };
+      } else {
+        message.value = 'Ошибка при редактировании книги';
+      }
+    } else {
+      message.value = 'Ошибка при редактировании книги.';
+    }
   }
 };
 </script>
@@ -74,25 +97,54 @@ const submitEdit = async () => {
     <h1>Редактирование книги</h1>
     <div class="section">
       <div class="form-section">
+        <div v-if="message" class="message">{{ message }}</div>
         <label>Обложка:</label>
         <img :src="localBook.imageUrl" :alt="localBook.title" />
         <label>ISBN-10:</label>
-        <input type="number" v-model="localBook.isbn10" />
+        <input type="number" v-model="localBook.isbn10" readonly />
         <label>ISBN-13:</label>
-        <input type="number" v-model="localBook.isbn13" />
+        <input type="number" v-model="localBook.isbn13" readonly />
         <label>Издатель:</label>
-        <input type="text" v-model="localBook.publisherName" />
+        <input
+          type="text"
+          v-model="localBook.publisherName"
+          :class="{ 'input-error': errors.Publisher }"
+        />
+        <div v-if="errors.Publisher" class="error-message">
+          {{ errors.Publisher }}
+        </div>
         <label>Категория:</label>
-        <input type="text" :value="localBook.categoryName" />
+        <input
+          type="text"
+          :value="localBook.categoryName"
+          :class="{ 'input-error': errors.Category }"
+        />
+        <div v-if="errors.Category" class="error-message">
+          {{ errors.Category }}
+        </div>
         <label>Название книги:</label>
-        <input type="text" v-model="localBook.titleBook" />
+        <input
+          type="text"
+          v-model="localBook.titleBook"
+          :class="{ 'input-error': errors.TitleBook }"
+        />
+        <div v-if="errors.TitleBook" class="error-message">
+          {{ errors.TitleBook }}
+        </div>
         <label>Описание:</label>
-        <textarea v-model="localBook.descriptionBook"></textarea>
+        <textarea
+          v-model="localBook.descriptionBook"
+          :class="{ 'input-error': errors.Description }"
+        ></textarea>
+        <div v-if="errors.Description" class="error-message">
+          {{ errors.Description }}
+        </div>
         <label>Автор(ы):</label>
         <div
           class="author-list"
           v-for="(author, index) in authors"
           :key="index"
+          :class="{ 'input-error': errors.Authors }"
         >
           <div class="author">
             <div>
@@ -120,15 +172,41 @@ const submitEdit = async () => {
             Добавить автора
           </button>
         </div>
+        <div v-if="errors.Authors" class="error-message">
+          {{ errors.Authors }}
+        </div>
         <label>Год издания:</label>
-        <input type="number" v-model="localBook.yearPublication" />
+        <input
+          type="number"
+          v-model="localBook.yearPublication"
+          :class="{ 'input-error': errors.YearPublication }"
+        />
+        <div v-if="errors.YearPublication" class="error-message">
+          {{ errors.YearPublication }}
+        </div>
         <label>Количество страниц:</label>
-        <input type="number" v-model="localBook.pageCount" />
+        <input
+          type="number"
+          v-model="localBook.pageCount"
+          :class="{ 'input-error': errors.PageCount }"
+        />
+        <div v-if="errors.PageCount" class="error-message">
+          {{ errors.PageCount }}
+        </div>
         <label>Язык книги:</label>
-        <input type="text" v-model="localBook.languageBook" />
+        <input
+          type="text"
+          v-model="localBook.languageBook"
+          :class="{ 'input-error': errors.LanguageBook }"
+        />
+        <div v-if="errors.LanguageBook" class="error-message">
+          {{ errors.LanguageBook }}
+        </div>
         <label>Статус:</label>
         <select v-model="localBook.statusBook">
-          <option value="">Без статуса</option>
+          <option value="" :selected="localBook.statusBook == ''">
+            Без статуса
+          </option>
           <option value="Новинка">Новинка</option>
           <option value="Бестселлер">Бестселлер</option>
         </select>
@@ -248,5 +326,19 @@ img {
 .button.cancel:hover,
 .remove-author:hover {
   background-color: darkred;
+}
+
+.error-message {
+  color: crimson;
+  font-size: 14px;
+}
+
+.input-error {
+  border: 2px solid darkred;
+}
+
+.message {
+  color: grey;
+  text-align: center;
 }
 </style>

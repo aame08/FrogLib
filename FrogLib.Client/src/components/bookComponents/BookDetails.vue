@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
 import { useStore } from 'vuex';
-import { useRoute } from 'vue-router';
 import userActivityService from '@/services/userActivityService';
 
 import BookRatingModal from '../modals/BookRatingModal.vue';
@@ -20,8 +19,9 @@ const props = defineProps({
   countView: { type: Number, required: true },
 });
 
+const emit = defineEmits(['refresh-book-data']);
+
 const store = useStore();
-const route = useRoute();
 const isAuthenticated = computed(() => store.getters['auth/isAuthenticated']);
 const user = computed(() => store.getters['auth/user']);
 const idUser = computed(() => user.value?.idUser || null);
@@ -58,6 +58,7 @@ const handleRatingSubmit = async (newRating) => {
     );
     userRating.value = newRating;
     console.log('Рейтинг обновлен:', newRating);
+    emit('refresh-book-data')
   } catch (error) {
     console.error('Ошибка при обновлении рейтинга:', error);
   }
@@ -68,6 +69,7 @@ const handleRatingDelete = async () => {
     await userActivityService.deleteBookRating(idUser.value, props.id);
     userRating.value = 0;
     console.log('Рейтинг удален.');
+    emit('refresh-book-data')
   } catch (error) {
     console.error('Ошибка при удалении рейтинга:', error);
   }
@@ -87,7 +89,6 @@ watch(isAuthenticated, (newValue) => {
     @close="closeModal"
     @submit="handleRatingSubmit"
     @delete="handleRatingDelete"
-    @refresh-book-data="$emit('refresh-book-data')"
   />
 
   <div class="views-rating">

@@ -57,6 +57,7 @@ namespace FrogLib.Server.Services
                 AuthorURL = comment.IdUserNavigation.ProfileImageUrl,
                 Date = comment.DateComment,
                 Content = comment.TextComment,
+                Status = comment.StatusComment,
                 IsReply = comment.ParentCommentId != null,
                 Replies = allComments
                     .Where(r => r.ParentCommentId == comment.IdComment)

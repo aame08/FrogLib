@@ -26,14 +26,12 @@ const resetRating = () => {
 const submitRating = () => {
   if (isRatingChanged.value) {
     emit('submit', selectedRating.value);
-    emit('refresh-book-data');
   }
   emit('close');
 };
 
 const deleteRating = () => {
   emit('delete');
-  emit('refresh-book-data');
   emit('close');
 };
 

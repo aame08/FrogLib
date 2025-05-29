@@ -1,5 +1,6 @@
 ﻿using FrogLib.Server.DTOs;
 using FrogLib.Server.Models;
+using FrogLib.Server.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -308,11 +309,13 @@ namespace FrogLib.Server.Controllers
 
         [Authorize(Roles = "Пользователь")]
         [HttpPost("add-new-comment/{idUser}/{idEntity}/{typeEntity}/{textComment}")]
-        public async Task<ActionResult> NewCommentAsync(int idUser, int idEntity, string typeEntity, string textComment)
+        public async Task<ActionResult> NewCommentAsync(int idUser, int idEntity, string typeEntity, string textComment, [FromServices] ContentModerationService moderationService)
         {
             try
             {
                 if (idUser <= 0 || idEntity <= 0 || string.IsNullOrEmpty(typeEntity) || string.IsNullOrEmpty(textComment)) { return Conflict("Данных не хватает"); }
+
+                var status = moderationService.ContainsForbiddenWords(textComment) ? "Обнаружено нарушение" : "Новое";
 
                 var newComment = new Comment
                 {
@@ -322,7 +325,8 @@ namespace FrogLib.Server.Controllers
                     TypeEntity = typeEntity,
                     TextComment = textComment,
                     DateComment = DateOnly.FromDateTime(DateTime.Now),
-                    ParentCommentId = null
+                    ParentCommentId = null,
+                    StatusComment = status
                 };
 
                 _context.Comments.Add(newComment);
@@ -335,11 +339,13 @@ namespace FrogLib.Server.Controllers
 
         [Authorize(Roles = "Пользователь")]
         [HttpPost("add-reply-comment/{idUser}/{idEntity}/{typeEntity}/{textComment}/{parentId}")]
-        public async Task<ActionResult> ReplyCommentAsync(int idUser, int idEntity, string typeEntity, string textComment, int parentId)
+        public async Task<ActionResult> ReplyCommentAsync(int idUser, int idEntity, string typeEntity, string textComment, int parentId, [FromServices] ContentModerationService moderationService)
         {
             try
             {
                 if (idUser <= 0 || idEntity <= 0 || parentId <= 0 || string.IsNullOrEmpty(typeEntity) || string.IsNullOrEmpty(textComment)) { return Conflict("Данных не хватает"); }
+
+                var status = moderationService.ContainsForbiddenWords(textComment) ? "Обнаружено нарушение" : "Новое";
 
                 var newReplyComment = new Comment
                 {
@@ -349,7 +355,8 @@ namespace FrogLib.Server.Controllers
                     TypeEntity = typeEntity,
                     TextComment = textComment,
                     DateComment = DateOnly.FromDateTime(DateTime.Now),
-                    ParentCommentId = parentId
+                    ParentCommentId = parentId,
+                    StatusComment = status
                 };
 
                 _context.Comments.Add(newReplyComment);
@@ -362,7 +369,7 @@ namespace FrogLib.Server.Controllers
 
         [Authorize(Roles = "Пользователь")]
         [HttpPost("add-review")]
-        public async Task<ActionResult> AddReviewAsync([FromBody] ReviewRequest request)
+        public async Task<ActionResult> AddReviewAsync([FromBody] ReviewRequest request, [FromServices] ContentModerationService moderationService)
         {
             try
             {
@@ -386,6 +393,12 @@ namespace FrogLib.Server.Controllers
                     _context.Bookratings.Add(newBookRating);
                 }
 
+                var status = "На рассмотрении";
+                if (moderationService.ContainsForbiddenWords(request.TitleReview) || moderationService.ContainsForbiddenWords(request.TextReview))
+                {
+                    status = "Обнаружено нарушение";
+                }
+
                 var newReview = new Review
                 {
                     IdReview = _context.Reviews.Any() ? _context.Reviews.Max(r => r.IdReview) + 1 : 1,
@@ -394,7 +407,7 @@ namespace FrogLib.Server.Controllers
                     TitleReview = request.TitleReview,
                     TextReview = request.TextReview,
                     CreatedDate = DateOnly.FromDateTime(DateTime.Now),
-                    StatusReview = "На рассмотрении"
+                    StatusReview = status
                 };
 
                 _context.Reviews.Add(newReview);
@@ -408,7 +421,7 @@ namespace FrogLib.Server.Controllers
 
         [Authorize(Roles = "Пользователь")]
         [HttpPut("edit-review")]
-        public async Task<ActionResult> EditReviewAsync(int idReview, [FromBody] ReviewRequest request)
+        public async Task<ActionResult> EditReviewAsync(int idReview, [FromBody] ReviewRequest request, [FromServices] ContentModerationService moderationService)
         {
             try
             {
@@ -436,9 +449,15 @@ namespace FrogLib.Server.Controllers
                     _context.Bookratings.Add(newBookRating);
                 }
 
+                var status = "На рассмотрении";
+                if (moderationService.ContainsForbiddenWords(request.TitleReview) || moderationService.ContainsForbiddenWords(request.TextReview))
+                {
+                    status = "Обнаружено нарушение";
+                }
+
                 existingReview.TitleReview = request.TitleReview;
                 existingReview.TextReview = request.TextReview;
-                existingReview.StatusReview = "На рассмотрении";
+                existingReview.StatusReview = status;
 
                 await _context.SaveChangesAsync();
 
@@ -449,7 +468,7 @@ namespace FrogLib.Server.Controllers
 
         [Authorize(Roles = "Пользователь, Администратор")]
         [HttpPost("add-collection")]
-        public async Task<ActionResult> AddCollectionAsync([FromBody] CollectionRequest request)
+        public async Task<ActionResult> AddCollectionAsync([FromBody] CollectionRequest request, [FromServices] ContentModerationService moderationService)
         {
             try
             {
@@ -458,6 +477,10 @@ namespace FrogLib.Server.Controllers
                 var user = await _context.Users.FindAsync(request.IdUser);
 
                 if (user.NameRole == "Администратор") { statusCollection = "Одобрено"; }
+                else if (moderationService.ContainsForbiddenWords(request.TitleCollection) || moderationService.ContainsForbiddenWords(request.DescriptionCollection))
+                {
+                    statusCollection = "Обнаружено нарушение";
+                }
 
                 var books = await _context.Books
                     .Where(b => request.IdBooks.Contains(b.IdBook))
@@ -487,7 +510,7 @@ namespace FrogLib.Server.Controllers
 
         [Authorize(Roles = "Пользователь, Администратор")]
         [HttpPut("edit-collection/{idCollection}")]
-        public async Task<ActionResult> EditCollectionAsync(int idCollection, [FromBody] CollectionRequest request)
+        public async Task<ActionResult> EditCollectionAsync(int idCollection, [FromBody] CollectionRequest request, [FromServices] ContentModerationService moderationService)
         {
             try
             {
@@ -496,10 +519,16 @@ namespace FrogLib.Server.Controllers
                 var user = await _context.Users.FindAsync(request.IdUser);
 
                 if (user.NameRole == "Администратор") { statusCollection = "Одобрено"; }
+                else if (moderationService.ContainsForbiddenWords(request.TitleCollection) || moderationService.ContainsForbiddenWords(request.DescriptionCollection))
+                {
+                    statusCollection = "Обнаружено нарушение";
+                }
 
                 var existingCollection = await _context.Collections
                     .Include(b => b.IdBooks)
                     .FirstOrDefaultAsync(c => c.IdCollection == idCollection);
+
+                if (existingCollection == null) { return NotFound("Подборка не найдена."); }
 
                 existingCollection.TitleCollection = request.TitleCollection;
                 existingCollection.DescriptionCollection = request.DescriptionCollection;
@@ -647,15 +676,18 @@ namespace FrogLib.Server.Controllers
 
         [Authorize(Roles = "Пользователь")]
         [HttpPut("update-comment/{idUser}/{idComment}/{textComment}")]
-        public async Task<ActionResult> UpdateCommentAsync(int idUser, int idComment, string textComment)
+        public async Task<ActionResult> UpdateCommentAsync(int idUser, int idComment, string textComment, [FromServices] ContentModerationService moderationService)
         {
             try
             {
                 var comment = await _context.Comments
                     .FirstOrDefaultAsync(c => c.IdComment == idComment && c.IdUser == idUser);
 
+                var status = moderationService.ContainsForbiddenWords(textComment) ? "Обнаружено нарушение" : "Новое";
+
                 comment.TextComment = textComment;
                 comment.DateComment = DateOnly.FromDateTime(DateTime.Now);
+                comment.StatusComment = status;
 
                 await _context.SaveChangesAsync();
 
@@ -728,7 +760,7 @@ namespace FrogLib.Server.Controllers
                 var calendar = await _context.Userbooks
                     .Where(ub => ub.IdUser == idUser)
                     .Include(ub => ub.IdBookNavigation)
-                    .Include(ub=> ub.IdListTypeNavigation)
+                    .Include(ub => ub.IdListTypeNavigation)
                     .Select(ub => new
                     {
                         IDBook = ub.IdBook,

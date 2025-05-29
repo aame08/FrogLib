@@ -66,4 +66,16 @@ export default {
   adminDeleteEmployee(idUser) {
     return apiClient.put(`/delete-employee/${idUser}`);
   },
+  getForbiddenWords() {
+    return apiClient.get('/forbidden-words').then((response) => response.data);
+  },
+  addForbiddenWord(word) {
+    return apiClient.post(`/add-forbidden-word/${word}`);
+  },
+  updateForbiddenWord(index, newValue) {
+    return apiClient.put(`/update-forbidden-word/${index}/${newValue}`);
+  },
+  deleteForbiddenWord(index) {
+    return apiClient.delete(`/delete-forbidden-word/${index}`);
+  },
 };

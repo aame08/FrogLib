@@ -19,6 +19,7 @@ const props = defineProps({
       :authorURL="comment.authorURL"
       :date="comment.date"
       :content="comment.content"
+      :status="comment.status"
       :isReply="comment.isReply"
       :replies="comment.replies"
       @refresh-data="$emit('refresh-data')"

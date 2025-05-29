@@ -71,7 +71,7 @@ const login = async () => {
 
     email.value = '';
     password.value = '';
-    message.value = '';
+    // message.value = '';
 
     if (userRole === 'Пользователь') {
       const idUser = response.data.user.idUser;

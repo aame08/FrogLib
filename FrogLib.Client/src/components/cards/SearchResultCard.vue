@@ -27,7 +27,11 @@ const handleSelect = () => {
         Год издания: <span>{{ yearPublication }}</span>
       </div>
     </div>
-    <button class="button" type="button" @click="handleSelect">Выбрать</button>
+    <div class="button-container">
+      <button class="button" type="button" @click="handleSelect">
+        Выбрать
+      </button>
+    </div>
   </div>
 </template>
 
@@ -65,7 +69,12 @@ button {
   padding: 5px 10px;
 }
 
+.button-container {
+  margin-left: auto;
+}
+
 .button {
+  text-align: end;
   padding: 10px 20px;
   color: white;
   background-color: forestgreen;

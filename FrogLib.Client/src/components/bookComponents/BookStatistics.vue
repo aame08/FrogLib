@@ -7,6 +7,8 @@ const props = defineProps({
   userBookmarks: { type: Array, required: true },
 });
 
+const emit = defineEmits(['refresh-book-data']);
+
 const pluralizeUsers = (count) => {
   if (count === 1) {
     return ' пользователя';

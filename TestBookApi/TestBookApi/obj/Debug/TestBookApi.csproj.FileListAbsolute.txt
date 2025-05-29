@@ -1,0 +1,11 @@
+C:\Users\Я\source\repos\TestBookApi\TestBookApi\bin\Debug\TestBookApi.exe.config
+C:\Users\Я\source\repos\TestBookApi\TestBookApi\bin\Debug\TestBookApi.exe
+C:\Users\Я\source\repos\TestBookApi\TestBookApi\bin\Debug\TestBookApi.pdb
+C:\Users\Я\source\repos\TestBookApi\TestBookApi\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Я\source\repos\TestBookApi\TestBookApi\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Я\source\repos\TestBookApi\TestBookApi\obj\Debug\TestBookApi.csproj.AssemblyReference.cache
+C:\Users\Я\source\repos\TestBookApi\TestBookApi\obj\Debug\TestBookApi.csproj.CoreCompileInputs.cache
+C:\Users\Я\source\repos\TestBookApi\TestBookApi\obj\Debug\TestBook.4F122F88.Up2Date
+C:\Users\Я\source\repos\TestBookApi\TestBookApi\obj\Debug\TestBookApi.exe
+C:\Users\Я\source\repos\TestBookApi\TestBookApi\obj\Debug\TestBookApi.pdb
+C:\Users\Я\source\repos\TestBookApi\TestBookApi\obj\Debug\TestBookApi.exe.config

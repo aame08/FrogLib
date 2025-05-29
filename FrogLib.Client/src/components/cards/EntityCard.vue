@@ -17,19 +17,20 @@ const handleSelect = () => {
     :class="{ selected: isSelected }"
     @click="handleSelect"
   >
-    <span class="entity-info">
+    <span>
       <strong>{{ props.entity.typeEntity }}: </strong>
       <span>{{ props.entity.entityName }}</span></span
     >
-    <span>Количество комментариев: {{ props.entity.commentCount }}</span>
+    <span>Всего комментариев: {{ props.entity.totalCommentCount }}</span>
+    <span>Непроверенных комментариев: {{ props.entity.newCommentCount }}</span>
   </button>
 </template>
 
 <style scoped>
 .list-item {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -40,10 +41,6 @@ const handleSelect = () => {
 
 .list-item:hover {
   background-color: whitesmoke;
-}
-
-.entity-info {
-  text-align: start;
 }
 
 .list-item.selected {

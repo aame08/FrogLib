@@ -3,7 +3,7 @@ import auth from './auth';
 
 const store = createStore({
   modules: {
-    auth, // Регистрируем модуль auth
+    auth,
   },
 });
 

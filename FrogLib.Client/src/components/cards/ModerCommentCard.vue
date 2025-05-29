@@ -1,7 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { useStore } from 'vuex';
-import { useRoute } from 'vue-router';
+import { ref, computed, watch } from 'vue';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 import moderService from '@/services/moderService';
@@ -24,6 +22,42 @@ const categories = [
 const showViolationsForm = ref(false);
 const categoryViolation = ref('Спам');
 const textViolation = ref('');
+const forbiddenWords = ref([]);
+const message = ref('');
+
+const getForbiddenWords = async () => {
+  try {
+    const response = await moderService.getForbiddenWords();
+    forbiddenWords.value = Array.from(response);
+  } catch (error) {
+    console.error('Ошибка при загрузке запрещенных слов:', error);
+  }
+};
+getForbiddenWords();
+
+const highlightForbiddenWords = (text) => {
+  if (!text || !forbiddenWords.value.length) return text;
+
+  let result = text;
+
+  forbiddenWords.value.forEach((word) => {
+    const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(
+      `(^|\\s|[.,!?;:()\\[\\]{}"'])(${escapedWord})(?=$|\\s|[.,!?;:()\\[\\]{}"'])`,
+      'gi'
+    );
+    result = result.replace(
+      regex,
+      (match, p1, p2) => `${p1}<span class="forbidden-word">${p2}</span>`
+    );
+  });
+
+  return result;
+};
+
+const highlightedText = computed(() => {
+  return highlightForbiddenWords(props.comment.content);
+});
 
 const formattedDate = () => {
   return dayjs(props.comment.date).isValid()
@@ -31,8 +65,25 @@ const formattedDate = () => {
     : 'Неверный формат даты';
 };
 
+const updateStatusComment = async () => {
+  try {
+    await moderService.updateStatusComment(props.comment.id);
+    console.log('Комментарий проверен.');
+    emit('refresh-data');
+  } catch (error) {
+    console.error('Ошибка при изменении статуса комментария:', error);
+  }
+};
+
 const submitViolation = async () => {
   try {
+    message.value = '';
+
+    if (textViolation.value === '') {
+      message.value = 'Описание нарушения не может быть пустым.';
+      return;
+    }
+
     const violationData = {
       idUser: props.comment.authorId,
       categoryViolation: categoryViolation.value,
@@ -46,10 +97,27 @@ const submitViolation = async () => {
     console.error('Ошибка при отправке нарушения:', error);
   }
 };
+
+watch(showViolationsForm, (newVal) => {
+  if (!newVal) {
+    message.value = '';
+    textViolation.value = '';
+    categoryViolation.value = 'Спам';
+  }
+});
 </script>
 
 <template>
-  <div :class="['comment', { 'reply-comment': props.comment.isReply }]">
+  <div
+    :class="[
+      'comment',
+      {
+        'reply-comment': props.comment.isReply,
+        'new-comment': props.comment.status === 'Новое',
+        'violation-comment': props.comment.status === 'Обнаружено нарушение',
+      },
+    ]"
+  >
     <div class="comment-header">
       <strong
         >Автор:
@@ -57,10 +125,20 @@ const submitViolation = async () => {
       >
       <span class="comment-date">{{ formattedDate() }}</span>
     </div>
-    <div class="comment-text">{{ props.comment.content }}</div>
+    <div class="comment-text" v-html="highlightedText"></div>
     <div class="comment-actions" v-if="!showViolationsForm">
       <button class="button-reject" @click="showViolationsForm = true">
         Удалить с нарушением
+      </button>
+      <button
+        class="button"
+        v-if="
+          props.comment.status === 'Новое' ||
+          props.comment.status === 'Обнаружено нарушение'
+        "
+        @click="updateStatusComment"
+      >
+        Просмотрено
       </button>
     </div>
     <div class="violations-container" v-else>
@@ -78,7 +156,9 @@ const submitViolation = async () => {
           </select></label
         >
         <label
-          >Описание нарушения: <textarea v-model="textViolation"></textarea>
+          >Описание нарушения:
+          <div v-if="message" class="message">{{ message }}</div>
+          <textarea v-model="textViolation"></textarea>
         </label>
       </div>
       <div class="violations-buttons">
@@ -112,6 +192,16 @@ const submitViolation = async () => {
 
 .reply-comment {
   margin-top: 10px;
+}
+
+.new-comment {
+  border: 1px solid forestgreen;
+  border-radius: 5px;
+}
+
+.violation-comment {
+  border: 1px solid crimson;
+  border-radius: 5px;
 }
 
 .comment-header {
@@ -199,5 +289,10 @@ const submitViolation = async () => {
   display: flex;
   justify-content: center;
   gap: 5px;
+}
+
+.message {
+  color: grey;
+  text-align: center;
 }
 </style>

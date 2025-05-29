@@ -8,6 +8,7 @@
         public string AuthorURL { get; set; }
         public DateOnly Date { get; set; }
         public string Content { get; set; }
+        public string Status { get; set; }
         public bool IsReply { get; set; }
         public List<CommentDTO> Replies { get; set; }
     }

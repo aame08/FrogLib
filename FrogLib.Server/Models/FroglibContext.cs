@@ -211,7 +211,7 @@ public partial class FroglibContext : DbContext
                 .HasColumnName("description_collection");
             entity.Property(e => e.IdUser).HasColumnName("id_user");
             entity.Property(e => e.StatusCollection)
-                .HasColumnType("enum('На рассмотрении','Одобрено','Отказано')")
+                .HasColumnType("enum('На рассмотрении','Обнаружено нарушение','Одобрено','Отказано')")
                 .HasColumnName("status_collection");
             entity.Property(e => e.TitleCollection)
                 .HasMaxLength(255)
@@ -260,6 +260,9 @@ public partial class FroglibContext : DbContext
             entity.Property(e => e.IdEntity).HasColumnName("id_entity");
             entity.Property(e => e.IdUser).HasColumnName("id_user");
             entity.Property(e => e.ParentCommentId).HasColumnName("parent_comment_id");
+            entity.Property(e => e.StatusComment)
+                .HasColumnType("enum('Обнаружено нарушение','Новое','Просмотрено')")
+                .HasColumnName("status_comment");
             entity.Property(e => e.TextComment)
                 .HasColumnType("text")
                 .HasColumnName("text_comment");
@@ -367,7 +370,7 @@ public partial class FroglibContext : DbContext
             entity.Property(e => e.IdBook).HasColumnName("id_book");
             entity.Property(e => e.IdUser).HasColumnName("id_user");
             entity.Property(e => e.StatusReview)
-                .HasColumnType("enum('На рассмотрении','Одобрено','Отказано')")
+                .HasColumnType("enum('На рассмотрении','Обнаружено нарушение','Одобрено','Отказано')")
                 .HasColumnName("status_review");
             entity.Property(e => e.TextReview)
                 .HasColumnType("text")

@@ -100,6 +100,18 @@ tr:hover {
   background-color: white;
 }
 
+.violation-row td {
+  border: 1px solid crimson;
+}
+
+.lot-violations td {
+  border: 1px solid crimson;
+}
+
+.average-violations td {
+  border: 1px solid orange;
+}
+
 td .action-button {
   padding: 5px 10px;
   background-color: forestgreen;
@@ -124,4 +136,8 @@ td .action-button.delete {
 
 td .action-button.delete:hover {
   background-color: darkred;
+}
+
+.forbidden-word {
+  color: crimson;
 }

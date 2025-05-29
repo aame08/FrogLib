@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import moderService from '@/services/moderService';
 
 const props = defineProps({
@@ -21,6 +21,47 @@ const localReview = ref({ ...props.selectedReview });
 const showViolationsForm = ref(false);
 const categoryViolation = ref('Спам');
 const textViolation = ref('');
+const forbiddenWords = ref([]);
+const message = ref('');
+
+const getForbiddenWords = async () => {
+  try {
+    const response = await moderService.getForbiddenWords();
+    forbiddenWords.value = Array.from(response);
+  } catch (error) {
+    console.error('Ошибка при загрузке запрещенных слов:', error);
+  }
+};
+getForbiddenWords();
+
+const highlightForbiddenWords = (text) => {
+  if (!text || !forbiddenWords.value.length) return text;
+
+  let result = text;
+
+  forbiddenWords.value.forEach((word) => {
+    const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(
+      `(^|\\s|[.,!?;:()\\[\\]{}"'])(${escapedWord})(?=$|\\s|[.,!?;:()\\[\\]{}"'])`,
+      'gi'
+    );
+    result = result.replace(
+      regex,
+      (match, p1, p2) => `${p1}<span class="forbidden-word">${p2}</span>`
+    );
+  });
+
+  console.log('Подсвеченный текст:', result);
+  return result;
+};
+
+const highlightedText = computed(() => {
+  return highlightForbiddenWords(localReview.value.textReview);
+});
+
+const highlightedTitle = computed(() => {
+  return highlightForbiddenWords(localReview.value.titleReview);
+});
 
 const updateReviewStatus = async (status) => {
   try {
@@ -35,6 +76,13 @@ const updateReviewStatus = async (status) => {
 
 const submitViolation = async () => {
   try {
+    message.value = '';
+
+    if (textViolation.value === '') {
+      message.value = 'Описание нарушения не может быть пустым.';
+      return;
+    }
+
     const violationData = {
       idUser: localReview.value.author.id,
       categoryViolation: categoryViolation.value,
@@ -53,6 +101,14 @@ const submitViolation = async () => {
     console.error('Ошибка при отправке нарушения:', error);
   }
 };
+
+watch(showViolationsForm, (newVal) => {
+  if (!newVal) {
+    message.value = '';
+    textViolation.value = '';
+    categoryViolation.value = 'Спам';
+  }
+});
 </script>
 
 <template>
@@ -70,11 +126,11 @@ const submitViolation = async () => {
       </div>
       <div class="inner-container">
         <p>Заголовок:</p>
-        <span>{{ localReview.titleReview }}</span>
+        <div v-html="highlightedTitle"></div>
       </div>
       <div class="inner-container">
         <p>Текст:</p>
-        <span v-html="localReview.textReview"></span>
+        <div v-html="highlightedText"></div>
       </div>
       <div class="inner-container">
         <p>Оценка пользователя:</p>
@@ -107,7 +163,9 @@ const submitViolation = async () => {
             </select></label
           >
           <label
-            >Описание нарушения: <textarea v-model="textViolation"></textarea>
+            >Описание нарушения:
+            <div v-if="message" class="message">{{ message }}</div>
+            <textarea v-model="textViolation"></textarea>
           </label>
         </div>
         <div class="violations-buttons">
@@ -216,5 +274,10 @@ span {
   display: flex;
   justify-content: center;
   gap: 5px;
+}
+
+.message {
+  color: grey;
+  text-align: center;
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 import booksService from '@/services/booksService';
 import collectionsService from '@/services/collectionsService';
@@ -19,20 +19,24 @@ const bestsellers = ref([]);
 const popularBooks = ref([]);
 const popularReviews = ref([]);
 const popularCollections = ref([]);
+const lastUpdateTime = ref(false);
+const updateInterval = 30 * 60 * 1000;
 
 const store = useStore();
 const user = computed(() => store.getters['auth/user']);
 const userId = computed(() => user.value?.idUser || null);
 
-const getRecommendations = async () => {
+const getRecommendations = async (force = false) => {
+  if (!userId.value) return;
+
   try {
     const response = await booksService.getRecommendations(userId.value);
     recommendBooks.value = response;
+    lastUpdateTime.value = new Date();
   } catch (error) {
     console.error('Ошибка при получении рекомендаций:', error);
   }
 };
-getRecommendations();
 
 const getNewBooks = async () => {
   try {
@@ -84,13 +88,27 @@ const getPopularCollections = async () => {
 };
 getPopularCollections();
 
+let updateTimer = null;
+
+onMounted(() => {
+  getRecommendations();
+  updateTimer = setInterval(getRecommendations, updateInterval);
+});
+
+onUnmounted(() => {
+  if (updateTimer) clearInterval(updateTimer);
+});
+
 watch(
   userId,
   (newId) => {
     if (newId) {
       getRecommendations();
+      if (updateTimer) clearInterval(updateTimer);
+      updateTimer = setInterval(getRecommendations, updateInterval);
     } else {
       recommendBooks.value = [];
+      if (updateTimer) clearInterval(updateTimer);
     }
   },
   { immediate: true }

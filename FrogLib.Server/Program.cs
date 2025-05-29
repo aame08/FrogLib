@@ -53,6 +53,7 @@ internal class Program
             });
         builder.Services.AddAuthorization();
         builder.Services.AddSingleton<JwtProvider>();
+        builder.Services.AddSingleton<ContentModerationService>();
 
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

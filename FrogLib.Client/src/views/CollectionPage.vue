@@ -56,7 +56,7 @@ const closeCollectionForm = () => {
       />
       <CollectionBooks :books="collection.books" />
       <CollectionFooter
-      :userId="collection.userId"
+        :userId="collection.userId"
         :countView="collection.countView"
         :rating="collection.rating"
         :countLiked="collection.countLiked"

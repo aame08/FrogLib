@@ -20,8 +20,9 @@ const store = useStore();
 const user = computed(() => store.getters['auth/user']);
 
 const formattedDate = computed(() => {
-  return dayjs(user?.registrationDate).isValid()
-    ? dayjs(user?.registrationDate).format('DD.MM.YYYY')
+  const registrationDate = user.value?.registrationDate;
+  return dayjs(registrationDate).isValid()
+    ? dayjs(registrationDate).format('DD.MM.YYYY')
     : 'Неверный формат даты';
 });
 

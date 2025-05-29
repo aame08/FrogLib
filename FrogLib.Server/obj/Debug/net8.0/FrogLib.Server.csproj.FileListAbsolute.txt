@@ -102,12 +102,6 @@ C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\scopedcss\bundl
 C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\staticwebassets\msbuild.FrogLib.Server.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\staticwebassets\msbuild.FrogLib.Server.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\staticwebassets\msbuild.build.FrogLib.Server.props
-C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.FrogLib.Server.props
-C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.FrogLib.Server.props
-C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\FrogLib..F7D0E64C.Up2Date
 C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\FrogLib.Server.dll
@@ -125,3 +119,5 @@ C:\Users\Я\source\repos\FrogLib\FrogLib.Server\bin\Debug\net8.0\Microsoft.Ident
 C:\Users\Я\source\repos\FrogLib\FrogLib.Server\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Я\source\repos\FrogLib\FrogLib.Server\bin\Debug\net8.0\FrogLib.Server.staticwebassets.runtime.json
 C:\Users\Я\source\repos\FrogLib\FrogLib.Server\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\FrogLib.Server.sourcelink.json
+C:\Users\Я\source\repos\FrogLib\FrogLib.Server\obj\Debug\net8.0\staticwebassets.build.json.cache

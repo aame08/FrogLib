@@ -166,12 +166,12 @@ namespace FrogLib.Server.Controllers
             catch (Exception ex) { return HandleException(ex); }
         }
 
-        [Authorize]
-        [HttpGet("verify-token")]
-        public ActionResult VerifyToken()
-        {
-            return Ok("Токен валидный.");
-        }
+        //[Authorize]
+        //[HttpGet("verify-token")]
+        //public ActionResult VerifyToken()
+        //{
+        //    return Ok("Токен валидный.");
+        //}
 
         public class RefreshTokenRequest
         {
@@ -226,18 +226,18 @@ namespace FrogLib.Server.Controllers
                 if (!string.IsNullOrEmpty(model.NewPassword))
                 {
                     if (string.IsNullOrEmpty(model.OldPassword))
-                        ModelState.AddModelError("OldPassword", "Требуется текущий пароль");
+                        ModelState.AddModelError("OldPassword", "Требуется текущий пароль.");
                     else if (!BCrypt.Net.BCrypt.Verify(model.OldPassword, user.PasswordHash))
-                        ModelState.AddModelError("OldPassword", "Неверный текущий пароль");
+                        ModelState.AddModelError("OldPassword", "Неверный текущий пароль.");
 
                     if (model.NewPassword != model.ConfirmPassword)
-                        ModelState.AddModelError("ConfirmPassword", "Пароли не совпадают");
+                        ModelState.AddModelError("ConfirmPassword", "Пароли не совпадают.");
                 }
 
                 if (!string.IsNullOrEmpty(model.LoginUser) && model.LoginUser != user.LoginUser)
                 {
                     if (await _context.Users.AnyAsync(u => u.LoginUser == model.LoginUser))
-                        ModelState.AddModelError("LoginUser", "Почта уже используется");
+                        ModelState.AddModelError("LoginUser", "Почта уже используется.");
                 }
 
                 if (model.DeleteImage == "true" && model.ProfileImageUrl != null)

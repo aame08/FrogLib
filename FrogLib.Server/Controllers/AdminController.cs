@@ -5,15 +5,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using System.Globalization;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 
 namespace FrogLib.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminController(FroglibContext context) : BaseController
+    public class AdminController(FroglibContext context, IWebHostEnvironment env) : BaseController
     {
         private readonly FroglibContext _context = context;
+        private readonly IWebHostEnvironment _env = env;
 
         [Authorize(Roles = "Администратор")]
         [HttpGet("admin/all-books")]
@@ -76,7 +79,7 @@ namespace FrogLib.Server.Controllers
                         {
                             var result = new List<BookSearchResult>();
 
-                            foreach (var item in items.Take(5))
+                            foreach (var item in items)
                             {
                                 var volumeInfo = item["volumeInfo"];
                                 if (volumeInfo == null) { continue; }
@@ -135,6 +138,65 @@ namespace FrogLib.Server.Controllers
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(book.Isbn10) || _context.Books.Any(b => b.Isbn10 == book.Isbn10))
+                {
+                    ModelState.AddModelError("ISBN10", "Книга с данным ISBN-10 уже добавлена в систему.");
+                }
+
+                if (string.IsNullOrWhiteSpace(book.Isbn13) || _context.Books.Any(b => b.Isbn10 == book.Isbn13))
+                {
+                    ModelState.AddModelError("ISBN13", "Книга с данным ISBN-13 уже добавлена в систему.");
+                }
+
+                if (string.IsNullOrWhiteSpace(book.PublisherName))
+                {
+                    ModelState.AddModelError("Publisher", "Издатель не может быть пустым.");
+                }
+
+                if (string.IsNullOrWhiteSpace(book.CategoryName))
+                {
+                    ModelState.AddModelError("Category", "Категория не может быть пустой.");
+                }
+
+                if (book.Authors.Count == 0)
+                {
+                    ModelState.AddModelError("Authors", "У книги должен быть хотя бы один автор.");
+                }
+
+                if (string.IsNullOrWhiteSpace(book.TitleBook))
+                {
+                    ModelState.AddModelError("TitleBook", "Название не может быть пустым.");
+                }
+
+                if (string.IsNullOrWhiteSpace(book.DescriptionBook))
+                {
+                    ModelState.AddModelError("DescriptionBook", "Описание не может быть пустым.");
+                }
+
+                if (book.YearPublication <= 0)
+                {
+                    ModelState.AddModelError("YearPublication", "Год издания не может быть пустым.");
+                }
+
+                if (book.PageCount <= 0)
+                {
+                    ModelState.AddModelError("PageCount", "Количество страниц не может быть пустым.");
+                }
+
+                if (string.IsNullOrWhiteSpace(book.LanguageBook))
+                {
+                    ModelState.AddModelError("LanguageBook", "Язык книги не может быть пустым.");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    var errors = ModelState.ToDictionary(
+                        kvp => kvp.Key,
+                        kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+                    );
+                    return BadRequest(new { errors });
+                }
+
                 var publisher = await GetOrCreatePublisherAsync(book.PublisherName);
 
                 var category = await GetOrCreateCategoryAsync(book.CategoryName);
@@ -186,8 +248,55 @@ namespace FrogLib.Server.Controllers
 
                 if (existingBook == null) { return NotFound("Книга не найдена."); }
 
-                existingBook.Isbn10 = book.Isbn10;
-                existingBook.Isbn13 = book.Isbn13;
+                if (string.IsNullOrWhiteSpace(book.PublisherName))
+                {
+                    ModelState.AddModelError("Publisher", "Издатель не может быть пустым.");
+                }
+
+                if (string.IsNullOrWhiteSpace(book.CategoryName))
+                {
+                    ModelState.AddModelError("Category", "Категория не может быть пустой.");
+                }
+
+                if (book.Authors.Count == 0)
+                {
+                    ModelState.AddModelError("Authors", "У книги должен быть хотя бы один автор.");
+                }
+
+                if (string.IsNullOrWhiteSpace(book.TitleBook))
+                {
+                    ModelState.AddModelError("TitleBook", "Название не может быть пустым.");
+                }
+
+                if (string.IsNullOrWhiteSpace(book.DescriptionBook))
+                {
+                    ModelState.AddModelError("Description", "Описание не может быть пустым.");
+                }
+
+                if (book.YearPublication <= 0)
+                {
+                    ModelState.AddModelError("YearPublication", "Год издания не может быть пустым.");
+                }
+
+                if (book.PageCount <= 0)
+                {
+                    ModelState.AddModelError("PageCount", "Количество страниц не может быть пустым.");
+                }
+
+                if (string.IsNullOrWhiteSpace(book.LanguageBook))
+                {
+                    ModelState.AddModelError("LanguageBook", "Язык книги не может быть пустым.");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    var errors = ModelState.ToDictionary(
+                        kvp => kvp.Key,
+                        kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+                    );
+                    return BadRequest(new { errors });
+                }
+
                 existingBook.TitleBook = book.TitleBook;
                 existingBook.DescriptionBook = book.DescriptionBook;
                 existingBook.YearPublication = book.YearPublication;
@@ -483,6 +592,76 @@ namespace FrogLib.Server.Controllers
             catch (Exception ex) { return HandleException(ex); }
         }
 
+        [Authorize(Roles = "Администратор")]
+        [HttpGet("admin/forbidden-words")]
+        public async Task<ActionResult<List<string>>> GetForbiddenWordsAsync()
+        {
+            try
+            {
+                var folbiddenWords = await LoadForbiddenWordsAsync();
+                return Ok(folbiddenWords);
+            }
+            catch (Exception ex) { return HandleException(ex); }
+        }
+
+        [Authorize(Roles = "Администратор")]
+        [HttpPost("admin/add-forbidden-word/{newWord}")]
+        public async Task<ActionResult> AddForbiddenWordAsync(string newWord)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(newWord)) { return BadRequest("Слово не может быть пустым."); }
+
+                var words = await LoadForbiddenWordsAsync();
+                if (words.Contains(newWord)) { return Conflict("Такое слово уже существует."); }
+
+                words.Add(newWord.Trim());
+                await SaveForbiddenWordsAsync(words);
+
+                return Ok("Новое запрещённое слово добавлено.");
+
+            }
+            catch (Exception ex) { return HandleException(ex); }
+        }
+
+        [Authorize(Roles = "Администратор")]
+        [HttpPut("admin/update-forbidden-word/{index}/{newValue}")]
+        public async Task<ActionResult> UpdateForbiddenWordAsync(int index, string newValue)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(newValue)) { return BadRequest("Слово не может быть пустым."); }
+
+                var words = await LoadForbiddenWordsAsync();
+
+                if (index < 0 || index >= words.Count) { return NotFound("Слово с указанным индексом не найдено."); }
+
+                words[index] = newValue.Trim();
+                await SaveForbiddenWordsAsync(words);
+
+                return Ok("Слово изменено.");
+            }
+            catch (Exception ex) { return HandleException(ex); }
+        }
+
+        [Authorize(Roles = "Администратор")]
+        [HttpDelete("admin/delete-forbidden-word/{index}")]
+        public async Task<ActionResult> DeleteForbiddenWordAsync(int index)
+        {
+            try
+            {
+                var words = await LoadForbiddenWordsAsync();
+
+                if (index < 0 || index >= words.Count) { return NotFound("Слово с указанным индексом не найдено."); }
+
+                words.RemoveAt(index);
+                await SaveForbiddenWordsAsync(words);
+
+                return Ok("Слово удалено.");
+            }
+            catch (Exception ex) { return HandleException(ex); }
+        }
+
         private static string GetHighQualityImageUrl(string imageUrl, int zoomLevel = 3)
         {
             if (string.IsNullOrEmpty(imageUrl)) return null;
@@ -546,6 +725,7 @@ namespace FrogLib.Server.Controllers
             ["Drama"] = "Драматургия",
             ["Juvenile"] = "Детская литература",
             ["Young Adult Fiction"] = "Подростковая литература",
+            ["Humor"] = "Юмор",
 
             // Составные категории
             ["Business & Economics"] = "Бизнес и экономика",
@@ -650,5 +830,30 @@ namespace FrogLib.Server.Controllers
             }
         }
 
+        private string GetFilePath()
+        {
+            return Path.Combine(_env.WebRootPath, "Resources", "forbidden-words.json");
+        }
+
+        private async Task<List<string>> LoadForbiddenWordsAsync()
+        {
+            var filePath = GetFilePath();
+            if (!System.IO.File.Exists(filePath)) { return new List<string>(); }
+
+            var json = await System.IO.File.ReadAllTextAsync(filePath);
+            return JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
+        }
+
+        private async Task SaveForbiddenWordsAsync(List<string> words)
+        {
+            var options = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                WriteIndented = true
+            };
+
+            var json = JsonSerializer.Serialize(words, options);
+            await System.IO.File.WriteAllTextAsync(GetFilePath(), json);
+        }
     }
 }

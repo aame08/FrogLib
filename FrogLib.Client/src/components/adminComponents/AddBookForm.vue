@@ -13,6 +13,8 @@ const emit = defineEmits(['refresh-data']);
 const selectedBook = ref(null);
 const authors = ref([{ lastName: '', firstName: '', middleName: '' }]);
 const statusBook = ref('');
+const message = ref('');
+const errors = ref({});
 
 const handleBookSelect = (book) => {
   selectedBook.value = book;
@@ -42,6 +44,7 @@ const removeAuthor = (index) => {
 };
 
 const submitBook = async () => {
+  errors.value = {};
   if (!selectedBook.value) {
     return;
   }
@@ -72,7 +75,28 @@ const submitBook = async () => {
     emit('refresh-data');
     props.closeForm();
   } catch (error) {
-    console.log('Ошибка при добавлении книги:', error);
+    if (error.response && error.response.status === 400) {
+      if (error.response.data && error.response.data.errors) {
+        const apiErrors = error.response.data.errors;
+
+        errors.value = {
+          ISBN10: apiErrors.ISBN10?.[0],
+          ISBN13: apiErrors.ISBN13?.[0],
+          Publisher: apiErrors.Publisher?.[0],
+          Category: apiErrors.Category?.[0],
+          Authors: apiErrors.Authors?.[0],
+          TitleBook: apiErrors.TitleBook?.[0],
+          Description: apiErrors.Description?.[0],
+          YearPublication: apiErrors.YearPublication?.[0],
+          PageCount: apiErrors.PageCount?.[0],
+          LanguageBook: apiErrors.LanguageBook?.[0],
+        };
+      } else {
+        message.value = 'Ошибка при добавлении книги';
+      }
+    } else {
+      message.value = 'Ошибка при добавлении книги.';
+    }
   }
 };
 </script>
@@ -85,25 +109,68 @@ const submitBook = async () => {
       <div class="form-section">
         <h2>Детали книги</h2>
         <template v-if="selectedBook">
+          <div v-if="message" class="message">{{ message }}</div>
           <label>Обложка:</label>
           <img :src="selectedBook.imageUrl" :alt="selectedBook.title" />
           <label>ISBN-10:</label>
-          <input type="number" v-model="selectedBook.isbn10" />
+          <input
+            type="number"
+            v-model="selectedBook.isbn10"
+            :class="{ 'input-error': errors.ISBN10 }"
+          />
+          <div v-if="errors.ISBN10" class="error-message">
+            {{ errors.ISBN10 }}
+          </div>
           <label>ISBN-13:</label>
-          <input type="number" v-model="selectedBook.isbn13" />
+          <input
+            type="number"
+            v-model="selectedBook.isbn13"
+            :class="{ 'input-error': errors.ISBN13 }"
+          />
+          <div v-if="errors.ISBN13" class="error-message">
+            {{ errors.ISBN13 }}
+          </div>
           <label>Издатель:</label>
-          <input type="text" v-model="selectedBook.publisher" />
+          <input
+            type="text"
+            v-model="selectedBook.publisher"
+            :class="{ 'input-error': errors.Publisher }"
+          />
+          <div v-if="errors.Publisher" class="error-message">
+            {{ errors.Publisher }}
+          </div>
           <label>Категория:</label>
-          <input type="text" :value="selectedBook.categories.join(', ')" />
+          <input
+            type="text"
+            :value="selectedBook.categories.join(', ')"
+            :class="{ 'input-error': errors.Category }"
+          />
+          <div v-if="errors.Category" class="error-message">
+            {{ errors.Category }}
+          </div>
           <label>Название книги:</label>
-          <input type="text" v-model="selectedBook.title" />
+          <input
+            type="text"
+            v-model="selectedBook.title"
+            :class="{ 'input-error': errors.TitleBook }"
+          />
+          <div v-if="errors.TitleBook" class="error-message">
+            {{ errors.TitleBook }}
+          </div>
           <label>Описание:</label>
-          <textarea v-model="selectedBook.description"></textarea>
+          <textarea
+            v-model="selectedBook.description"
+            :class="{ 'input-error': errors.Description }"
+          ></textarea>
+          <div v-if="errors.Description" class="error-message">
+            {{ errors.Description }}
+          </div>
           <label>Автор(ы):</label>
           <div
             class="author-list"
             v-for="(author, index) in authors"
             :key="index"
+            :class="{ 'input-error': errors.Authors }"
           >
             <div class="author">
               <div>
@@ -131,12 +198,36 @@ const submitBook = async () => {
               Добавить автора
             </button>
           </div>
+          <div v-if="errors.Authors" class="error-message">
+            {{ errors.Authors }}
+          </div>
           <label>Год издания:</label>
-          <input type="number" v-model="selectedBook.yearPublication" />
+          <input
+            type="number"
+            v-model="selectedBook.yearPublication"
+            :class="{ 'input-error': errors.YearPublication }"
+          />
+          <div v-if="errors.YearPublication" class="error-message">
+            {{ errors.YearPublication }}
+          </div>
           <label>Количество страниц:</label>
-          <input type="number" v-model="selectedBook.pageCount" />
+          <input
+            type="number"
+            v-model="selectedBook.pageCount"
+            :class="{ 'input-error': errors.PageCount }"
+          />
+          <div v-if="errors.PageCount" class="error-message">
+            {{ errors.PageCount }}
+          </div>
           <label>Язык книги:</label>
-          <input type="text" v-model="selectedBook.language" />
+          <input
+            type="text"
+            v-model="selectedBook.language"
+            :class="{ 'input-error': errors.LanguageBook }"
+          />
+          <div v-if="errors.LanguageBook" class="error-message">
+            {{ errors.LanguageBook }}
+          </div>
           <label>Статус:</label>
           <select v-model="selectedBook.statusBook">
             <option value="">Без статуса</option>
@@ -264,5 +355,19 @@ img {
 .button.cancel:hover,
 .remove-author:hover {
   background-color: darkred;
+}
+
+.error-message {
+  color: crimson;
+  font-size: 14px;
+}
+
+.input-error {
+  border: 2px solid darkred;
+}
+
+.message {
+  color: grey;
+  text-align: center;
 }
 </style>

@@ -34,11 +34,13 @@ const handleClick = () => {
         approved: review.statusReview === 'Одобрено',
         rejected: review.statusReview === 'Отказано',
         pending: review.statusReview === 'На рассмотрении',
+        violation: review.statusReview === 'Обнаружено нарушение',
       }"
     >
       <span v-if="review.statusReview === 'Одобрено'">✓</span>
       <span v-else-if="review.statusReview === 'Отказано'">×</span>
       <span v-else-if="review.statusReview === 'На рассмотрении'">🕐</span>
+      <span v-else-if="review.statusReview === 'Обнаружено нарушение'">⚠</span>
       {{ review.statusReview }}
     </div>
     <img :src="review.imageURL" />
@@ -84,6 +86,10 @@ const handleClick = () => {
 
 .pending {
   background-color: grey;
+}
+
+.violation {
+  background-color: gold;
 }
 
 .review-card img {

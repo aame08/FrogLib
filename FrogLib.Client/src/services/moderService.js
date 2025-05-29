@@ -22,6 +22,9 @@ apiClient.interceptors.request.use(
 );
 
 export default {
+  getForbiddenWords() {
+    return apiClient.get('/forbidden-words').then((response) => response.data);
+  },
   getModerReviews() {
     return apiClient.get('/reviews').then((response) => response.data);
   },
@@ -44,6 +47,9 @@ export default {
     return apiClient
       .get(`/comments/${typeEntity}/${idEntity}`)
       .then((response) => response.data);
+  },
+  updateStatusComment(idComment) {
+    return apiClient.post(`/update-status-comment/${idComment}`);
   },
   deleteComment(idComment, violationDTO) {
     return apiClient.post(`/delete-comment/${idComment}`, violationDTO);

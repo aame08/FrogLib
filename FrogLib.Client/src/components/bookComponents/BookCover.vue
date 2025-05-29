@@ -91,6 +91,7 @@ const handleSelectChange = async () => {
       userList.value = null;
       selectedList.value = '';
       console.log('Книга удалена из списка');
+      emit('refresh-book-data');
     } catch (error) {
       console.error('Ошибка при удалении:', error);
     }

@@ -30,7 +30,14 @@ const handleSortClick = () => {
       <th>Действие</th>
     </thead>
     <tbody>
-      <tr v-for="user in users" :key="user.idUser">
+      <tr
+        v-for="user in users"
+        :key="user.idUser"
+        :class="{
+          'lot-violations': user.countViolations >= 10,
+          'average-violations': user.countViolations >= 5,
+        }"
+      >
         <td>{{ user.idUser }}</td>
         <td>{{ user.nameUser }}</td>
         <td>{{ user.loginUser }}</td>

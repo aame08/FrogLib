@@ -33,6 +33,22 @@
   },
   {
     "ContainingType": "FrogLib.Server.Controllers.AdminController",
+    "Method": "AddForbiddenWord",
+    "RelativePath": "api/Admin/admin/add-forbidden-word/{newWord}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newWord",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FrogLib.Server.Controllers.AdminController",
     "Method": "GetAdminBooksAsync",
     "RelativePath": "api/Admin/admin/all-books",
     "HttpMethod": "GET",
@@ -142,6 +158,22 @@
   },
   {
     "ContainingType": "FrogLib.Server.Controllers.AdminController",
+    "Method": "DeleteForbiddenWord",
+    "RelativePath": "api/Admin/admin/delete-forbidden-word/{index}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "index",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FrogLib.Server.Controllers.AdminController",
     "Method": "EditAuthorAsync",
     "RelativePath": "api/Admin/admin/edit-author/{idAuthor}",
     "HttpMethod": "PUT",
@@ -205,6 +237,26 @@
   },
   {
     "ContainingType": "FrogLib.Server.Controllers.AdminController",
+    "Method": "GetForbiddenWords",
+    "RelativePath": "api/Admin/admin/forbidden-words",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FrogLib.Server.Controllers.AdminController",
     "Method": "SearchBooksAsync",
     "RelativePath": "api/Admin/admin/search",
     "HttpMethod": "GET",
@@ -230,6 +282,27 @@
       {
         "Name": "idUser",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FrogLib.Server.Controllers.AdminController",
+    "Method": "UpdateForbiddenWord",
+    "RelativePath": "api/Admin/admin/update-forbidden-word/{index}/{newValue}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "index",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "newValue",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -724,6 +797,16 @@
   },
   {
     "ContainingType": "FrogLib.Server.Controllers.ModerController",
+    "Method": "GetForbiddenWords",
+    "RelativePath": "api/Moder/moder/forbidden-words",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FrogLib.Server.Controllers.ModerController",
     "Method": "GetModerReviewsAsync",
     "RelativePath": "api/Moder/moder/reviews",
     "HttpMethod": "GET",
@@ -769,6 +852,22 @@
       {
         "Name": "status",
         "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FrogLib.Server.Controllers.ModerController",
+    "Method": "UpdateStatusCommentAsync",
+    "RelativePath": "api/Moder/moder/update-status-comment/{idComment}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idComment",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

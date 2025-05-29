@@ -22,7 +22,13 @@ const handleView = (review) => {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="review in reviews" :key="review.idReview">
+      <tr
+        v-for="review in reviews"
+        :key="review.idReview"
+        :class="{
+          'violation-row': review.statusReview === 'Обнаружено нарушение',
+        }"
+      >
         <td>{{ review.idReview }}</td>
         <td>{{ review.author.name }}</td>
         <td>{{ review.book.title }}</td>

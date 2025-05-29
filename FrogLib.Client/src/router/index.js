@@ -58,6 +58,10 @@ const routes = [
         path: 'users',
         component: () => import('@/views/adminPages/AdminUsers.vue'),
       },
+      {
+        path: 'filter-words',
+        component: () => import('@/views/adminPages/AdminFilterWords.vue'),
+      },
     ],
   },
   {
@@ -134,7 +138,7 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-router.afterEach(async (to, from) => {
+router.beforeEach(async (to, from) => {
   if (!to.meta.trackView) {
     return;
   }

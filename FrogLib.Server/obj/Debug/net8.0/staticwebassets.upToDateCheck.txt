@@ -6,3 +6,4 @@ wwwroot\images\f9c343c1-6ed0-4918-a87d-e82a2fac82c4.jpeg
 wwwroot\images\me.jpeg
 wwwroot\images\my condition.jpeg
 wwwroot\images\saad.jpeg
+wwwroot\Resources\forbidden-words.json

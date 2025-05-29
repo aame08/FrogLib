@@ -1,7 +1,6 @@
 ﻿using FrogLib.Server.DTOs;
 using FrogLib.Server.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace FrogLib.Server.Services
 {

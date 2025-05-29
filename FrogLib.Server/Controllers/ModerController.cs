@@ -3,14 +3,33 @@ using FrogLib.Server.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace FrogLib.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ModerController(FroglibContext context) : BaseController
+    public class ModerController(FroglibContext context, IWebHostEnvironment env) : BaseController
     {
         private readonly FroglibContext _context = context;
+        private readonly IWebHostEnvironment _env = env;
+
+        [Authorize(Roles = "Модератор")]
+        [HttpGet("moder/forbidden-words")]
+        public async Task<ActionResult> GetForbiddenWordsAsync()
+        {
+            try
+            {
+                var filePath = Path.Combine(_env.WebRootPath, "Resources", "forbidden-words.json");
+                if (!System.IO.File.Exists(filePath)) { return NotFound("Файл не найден."); }
+
+                var json = System.IO.File.ReadAllText(filePath);
+                var forbiddenWords = JsonSerializer.Deserialize<List<string>>(json);
+
+                return Ok(forbiddenWords);
+            }
+            catch (Exception ex) { return HandleException(ex); }
+        }
 
         [Authorize(Roles = "Модератор")]
         [HttpGet("moder/reviews")]
@@ -19,14 +38,17 @@ namespace FrogLib.Server.Controllers
             try
             {
                 var reviews = await _context.Reviews
-                    .Where(r => r.StatusReview == "На рассмотрении")
+                    .Where(r => r.StatusReview == "На рассмотрении" || r.StatusReview == "Обнаружено нарушение")
                     .Include(r => r.IdBookNavigation)
                     .Include(r => r.IdUserNavigation)
+                    .OrderByDescending(r => r.StatusReview == "Обнаружено нарушение")
+                    .ThenBy(r => r.IdReview)
                     .Select(review => new
                     {
                         IdReview = review.IdReview,
                         TitleReview = review.TitleReview,
                         TextReview = review.TextReview,
+                        StatusReview = review.StatusReview,
                         Author = new
                         {
                             Id = review.IdUserNavigation.IdUser,
@@ -59,14 +81,17 @@ namespace FrogLib.Server.Controllers
             try
             {
                 var collections = await _context.Collections
-                    .Where(c => c.StatusCollection == "На рассмотрении")
+                    .Where(c => c.StatusCollection == "На рассмотрении" || c.StatusCollection == "Обнаружено нарушение")
                     .Include(c => c.IdUserNavigation)
                     .Include(c => c.IdBooks)
+                    .OrderByDescending(c => c.StatusCollection == "Обнаружено нарушение")
+                    .ThenBy(c => c.IdCollection)
                     .Select(collection => new
                     {
                         IdCollection = collection.IdCollection,
                         TitleCollection = collection.TitleCollection,
                         TextCollection = collection.DescriptionCollection,
+                        StatusCollection = collection.StatusCollection,
                         Author = new
                         {
                             Id = collection.IdUserNavigation.IdUser,
@@ -138,6 +163,15 @@ namespace FrogLib.Server.Controllers
                     return Conflict("Недостаточно данных.");
                 }
 
+                var user = await _context.Users
+                    .Include(v => v.Violations)
+                    .FirstOrDefaultAsync(u => u.IdUser == model.IdUser);
+
+                if (user != null && user.Violations.Count >= 10)
+                {
+                    user.StatusUser = "Заблокирован";
+                }
+
                 var newViolation = new Violation
                 {
                     IdViolation = _context.Violations.Any() ? _context.Violations.Max(v => v.IdViolation) + 1 : 1,
@@ -173,7 +207,8 @@ namespace FrogLib.Server.Controllers
                             g.Key.TypeEntity == "Подборка" ?
                             _context.Collections.Where(col => col.IdCollection == g.Key.IdEntity).Select(col => col.TitleCollection).FirstOrDefault() :
                             "Неизвестный тип",
-                        CommentCount = g.Count()
+                        NewCommentCount = g.Count(c => c.StatusComment == "Новое" || c.StatusComment == "Обнаружено нарушение"),
+                        TotalCommentCount = g.Count()
                     })
                     .ToListAsync();
 
@@ -213,12 +248,33 @@ namespace FrogLib.Server.Controllers
                 AuthorId = comment.IdUserNavigation.IdUser,
                 Date = comment.DateComment,
                 Content = comment.TextComment,
+                Status = comment.StatusComment,
                 IsReply = comment.ParentCommentId != null,
                 Replies = allComments
                     .Where(r => r.ParentCommentId == comment.IdComment)
                     .Select(r => MapComment(r, allComments))
                     .ToList()
             };
+        }
+
+        [Authorize(Roles = "Модератор")]
+        [HttpPost("moder/update-status-comment/{idComment}")]
+        public async Task<ActionResult> UpdateStatusCommentAsync(int idComment)
+        {
+            try
+            {
+                var comment = await _context.Comments
+                    .FirstOrDefaultAsync(c => c.IdComment == idComment);
+
+                if (comment == null) { return NotFound("Комментарий не найден."); }
+
+                comment.StatusComment = "Просмотрено";
+
+                await _context.SaveChangesAsync();
+
+                return Ok("Статус комментария обновлен.");
+            }
+            catch (Exception ex) { return HandleException(ex); }
         }
 
         [Authorize(Roles = "Модератор")]
@@ -237,6 +293,15 @@ namespace FrogLib.Server.Controllers
                 if (string.IsNullOrEmpty(model.CategoryViolation) || string.IsNullOrEmpty(model.DescriptionViolation))
                 {
                     return Conflict("Недостаточно данных.");
+                }
+
+                var user = await _context.Users
+                    .Include(v => v.Violations)
+                    .FirstOrDefaultAsync(u => u.IdUser == model.IdUser);
+
+                if (user != null && user.Violations.Count >= 10)
+                {
+                    user.StatusUser = "Заблокирован";
                 }
 
                 var newViolation = new Violation
@@ -330,7 +395,7 @@ namespace FrogLib.Server.Controllers
             try
             {
                 var user = await _context.Users.
-                    FirstOrDefaultAsync(u=>u.IdUser == idUser);
+                    FirstOrDefaultAsync(u => u.IdUser == idUser);
 
                 if (user == null) { return NotFound("Пользователь не найден."); }
 

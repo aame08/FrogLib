@@ -126,7 +126,8 @@ h1 {
 }
 
 .aside-left {
-  width: 450px;
+  /* width: 550px; */
+  width: 35%;
   padding: 5px;
   height: fit-content;
   background-color: white;

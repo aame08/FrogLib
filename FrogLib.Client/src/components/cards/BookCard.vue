@@ -11,7 +11,7 @@ const props = defineProps({
   <router-link :to="`/books/${id}`" class="book-card">
     <div class="rating">☆ {{ averageRating.toFixed(1) }}</div>
     <img :src="imageURL" :alt="title" class="book-image" />
-    <div class="book-title">{{ title }}</div>
+    <!-- <div class="book-title">{{ title }}</div> -->
   </router-link>
 </template>
 

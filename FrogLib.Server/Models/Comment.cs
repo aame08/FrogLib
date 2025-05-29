@@ -16,6 +16,8 @@ public partial class Comment
 
     public int? ParentCommentId { get; set; }
 
+    public string StatusComment { get; set; } = null!;
+
     public virtual User IdUserNavigation { get; set; } = null!;
 
     public virtual ICollection<Comment> InverseParentComment { get; set; } = new List<Comment>();

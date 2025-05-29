@@ -60,6 +60,7 @@ const goToSettings = () => {
     @close="closeModal"
     @openRegister="openRegisterModal"
     @openPasswordRecovery="openPasswordRecoveryModal"
+    @refresh-data="$emit('refresh-data')"
   />
   <PasswordRecovery :isVisible="showPasswordModal" @close="closeModal" />
   <RegisterModal :isVisible="showRegisterModal" @close="closeModal" />
@@ -84,6 +85,9 @@ const goToSettings = () => {
           >Подборки</RouterLink
         >
         <RouterLink to="/admin/users" class="nav-link">Пользователи</RouterLink>
+        <RouterLink to="/admin/filter-words" class="nav-link"
+          >Фильтр слов</RouterLink
+        >
       </template>
       <template v-else-if="userRole === 'Модератор'">
         <RouterLink to="/moder/management" class="nav-link"
@@ -173,7 +177,8 @@ const goToSettings = () => {
   align-items: center;
 }
 
-.nav-button, .nav-link {
+.nav-button,
+.nav-link {
   border: none;
   background: none;
   font-size: 16px;
@@ -181,7 +186,8 @@ const goToSettings = () => {
   padding: 10px 10px;
 }
 
-.nav-button:hover, .nav-link:hover {
+.nav-button:hover,
+.nav-link:hover {
   border-bottom: 2px solid darkgreen;
   font-weight: bold;
   box-sizing: border-box;

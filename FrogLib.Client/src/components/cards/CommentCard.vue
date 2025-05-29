@@ -14,6 +14,7 @@ const props = defineProps({
   authorURL: { type: String, required: true },
   date: { type: String, required: true },
   content: { type: String, required: true },
+  status: { type: String, required: true },
   isReply: { type: Boolean, required: true },
   replies: { type: Array, required: true },
 });
@@ -30,6 +31,9 @@ const typeEntity = route.meta.entityType;
 const idEntity = route.params.id;
 const showReplyInput = ref(false);
 const replyText = ref('');
+const showHiddenContent = ref(false);
+
+const hasViolation = computed(() => props.status === 'Обнаружено нарушение');
 
 const formattedDate = () => {
   return dayjs(props.date).isValid()
@@ -39,6 +43,10 @@ const formattedDate = () => {
 
 const toggleReplyInput = () => {
   showReplyInput.value = !showReplyInput.value;
+};
+
+const toggleHiddenContent = () => {
+  showHiddenContent.value = !showHiddenContent.value;
 };
 
 const submitReply = async () => {
@@ -65,7 +73,15 @@ const submitReply = async () => {
 </script>
 
 <template>
-  <div :class="['comment', { 'reply-comment': isReply }]">
+  <div
+    :class="[
+      'comment',
+      {
+        'reply-comment': isReply,
+        'violation-comment': hasViolation && !showHiddenContent,
+      },
+    ]"
+  >
     <div style="display: flex; gap: 15px">
       <img
         v-if="authorURL"
@@ -78,12 +94,30 @@ const submitReply = async () => {
           <div class="comment-author">{{ author }}</div>
           <div class="comment-date">{{ formattedDate() }}</div>
         </div>
-        <div class="comment-content">
+        <div class="comment-content" v-if="!hasViolation || showHiddenContent">
           {{ content }}
+          <p v-if="hasViolation"></p>
+          <button
+            v-if="hasViolation"
+            class="show-content-button"
+            @click="toggleHiddenContent"
+          >
+            Скрыть комментарий
+          </button>
+        </div>
+        <div
+          class="violation-message"
+          v-if="hasViolation && !showHiddenContent"
+        >
+          Данный комментарий был скрыт из-за нарушения правил.
+          <p></p>
+          <button class="show-content-button" @click="toggleHiddenContent">
+            Показать комментарий
+          </button>
         </div>
       </div>
     </div>
-    <div class="comment-footer">
+    <div class="comment-footer" v-if="!hasViolation">
       <button
         class="button-reply"
         :disabled="!isAuthenticated"
@@ -114,6 +148,7 @@ const submitReply = async () => {
         :authorURL="reply.authorURL"
         :date="reply.date"
         :content="reply.content"
+        :status="reply.status"
         :isReply="true"
         :replies="reply.replies"
         @refresh-data="$emit('refresh-data')"
@@ -131,6 +166,29 @@ const submitReply = async () => {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.violation-comment {
+  background-color: lightgrey;
+  border-color: grey;
+  color: grey;
+}
+
+.violation-message {
+  color: grey;
+}
+
+.show-content-button {
+  background: none;
+  border: none;
+  color: forestgreen;
+  font-size: 14px;
+  padding: 0;
+}
+
+.show-content-button:hover {
+  text-decoration: underline;
+  text-decoration-color: darkgreen;
 }
 
 .reply-comment {

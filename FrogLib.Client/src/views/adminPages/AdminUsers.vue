@@ -33,7 +33,7 @@ const closeAddForm = () => {
 
 <template>
   <div v-if="!showAddForm">
-    <h1>Управление пользователя</h1>
+    <h1>Управление пользователями</h1>
     <div class="add-button">
       <button @click="openAddForm">Добавить сотрудника</button>
     </div>
