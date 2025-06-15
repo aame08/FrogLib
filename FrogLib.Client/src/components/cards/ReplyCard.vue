@@ -1,9 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import dayjs from 'dayjs';
-import 'dayjs/locale/ru';
-dayjs.locale('ru');
+import { formattedDate } from '@/utils/dateUtils';
 
 const props = defineProps({
   id: { type: Number, required: true },
@@ -16,12 +14,6 @@ const props = defineProps({
 
 const store = useStore();
 const isAuthenticated = computed(() => store.getters['auth/isAuthenticated']);
-
-const formattedDate = () => {
-  return dayjs(props.date).isValid()
-    ? dayjs(props.date).format('DD MMMM YYYY')
-    : 'Неверный формат даты';
-};
 </script>
 
 <template>
@@ -36,7 +28,7 @@ const formattedDate = () => {
       <div class="comment-container">
         <div class="comment-header">
           <div class="comment-author">{{ author }}</div>
-          <div class="comment-date">{{ formattedDate() }}</div>
+          <div class="comment-date">{{ formattedDate(props.date) }}</div>
         </div>
         <div class="comment-content">{{ content }}</div>
       </div>

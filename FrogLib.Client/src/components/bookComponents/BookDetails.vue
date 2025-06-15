@@ -7,7 +7,6 @@ import BookRatingModal from '../modals/BookRatingModal.vue';
 
 const props = defineProps({
   id: { type: Number, required: true },
-  isbN10: { type: Number, required: true },
   isbN13: { type: Number, required: true },
   description: { type: String, required: true },
   yearPublication: { type: Number, required: true },
@@ -58,7 +57,7 @@ const handleRatingSubmit = async (newRating) => {
     );
     userRating.value = newRating;
     console.log('Рейтинг обновлен:', newRating);
-    emit('refresh-book-data')
+    emit('refresh-book-data');
   } catch (error) {
     console.error('Ошибка при обновлении рейтинга:', error);
   }
@@ -69,7 +68,7 @@ const handleRatingDelete = async () => {
     await userActivityService.deleteBookRating(idUser.value, props.id);
     userRating.value = 0;
     console.log('Рейтинг удален.');
-    emit('refresh-book-data')
+    emit('refresh-book-data');
   } catch (error) {
     console.error('Ошибка при удалении рейтинга:', error);
   }
@@ -83,59 +82,63 @@ watch(isAuthenticated, (newValue) => {
 </script>
 
 <template>
-  <BookRatingModal
-    :isVisible="showBookRatingModal"
-    :initialRating="userRating"
-    @close="closeModal"
-    @submit="handleRatingSubmit"
-    @delete="handleRatingDelete"
-  />
-
-  <div class="views-rating">
-    <div class="book-rating">
-      <div>
-        ☆ <span>{{ averageRating.toFixed(2) }}</span>
+  <div style="padding: 10px">
+    <BookRatingModal
+      :isVisible="showBookRatingModal"
+      :initialRating="userRating"
+      @close="closeModal"
+      @submit="handleRatingSubmit"
+      @delete="handleRatingDelete"
+    />
+    <div class="views-rating">
+      <div class="book-rating">
+        <div>
+          ☆ <span>{{ averageRating.toFixed(2) }}</span>
+        </div>
+        <button
+          v-if="isAuthenticated && userRating > 0"
+          @click="openBookRatingModal"
+        >
+          Ваша оценка: {{ userRating }}
+        </button>
+        <button
+          v-else
+          @click="openBookRatingModal"
+          :disabled="!isAuthenticated"
+        >
+          ☆ Оценить
+        </button>
       </div>
-      <button
-        v-if="isAuthenticated && userRating > 0"
-        @click="openBookRatingModal"
-      >
-        Ваша оценка: {{ userRating }}
-      </button>
-      <button v-else @click="openBookRatingModal" :disabled="!isAuthenticated">☆ Оценить</button>
+      <div>
+        👁 <span>{{ countView }}</span>
+      </div>
     </div>
-    <div>
-      👁 <span>{{ countView }}</span>
-    </div>
-  </div>
 
-  <div class="description-container">
-    <div class="header">Описание книги</div>
-    <div class="book-description">{{ description }}</div>
-  </div>
+    <div class="description-container">
+      <div class="header">Описание книги</div>
+      <div class="book-description">{{ description }}</div>
+    </div>
 
-  <div class="book-details">
-    <div class="header">Информация об издании</div>
-    <div>
-      ISBN-10: <span>{{ isbN10 }}</span>
-    </div>
-    <div>
-      ISBN-13: <span>{{ isbN13 }}</span>
-    </div>
-    <div>
-      Издатель: <span>{{ publisher }}</span>
-    </div>
-    <div>
-      Год издания: <span>{{ yearPublication }}</span>
-    </div>
-    <div>
-      Категория: <span>{{ category }}</span>
-    </div>
-    <div>
-      Количество страниц: <span>{{ pageCount }}</span>
-    </div>
-    <div>
-      Язык книги: <span>{{ languageBook }}</span>
+    <div class="book-details">
+      <div class="header">Информация об издании</div>
+      <div>
+        ISBN-13: <span>{{ isbN13 }}</span>
+      </div>
+      <div>
+        Издатель: <span>{{ publisher }}</span>
+      </div>
+      <div>
+        Год издания: <span>{{ yearPublication }}</span>
+      </div>
+      <div>
+        Категория: <span>{{ category }}</span>
+      </div>
+      <div>
+        Количество страниц: <span>{{ pageCount }}</span>
+      </div>
+      <div>
+        Язык книги: <span>{{ languageBook }}</span>
+      </div>
     </div>
   </div>
 </template>

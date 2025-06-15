@@ -1,6 +1,7 @@
 <script setup>
-import { computed, ref, watch } from 'vue';
+import { computed, watch } from 'vue';
 import moderService from '@/services/moderService';
+import useModeration from '@/composables/useModeration';
 
 const props = defineProps({
   selectedReview: { type: Object, required: true },
@@ -9,63 +10,9 @@ const props = defineProps({
 
 const emit = defineEmits(['refresh-data']);
 
-const categories = [
-  'Спам',
-  'Оскорбления',
-  'Мошенничество',
-  'Призывы к насилию',
-  'Другое',
-];
-
-const localReview = ref({ ...props.selectedReview });
-const showViolationsForm = ref(false);
-const categoryViolation = ref('Спам');
-const textViolation = ref('');
-const forbiddenWords = ref([]);
-const message = ref('');
-
-const getForbiddenWords = async () => {
+const updateStatusFn = async (idReview, status) => {
   try {
-    const response = await moderService.getForbiddenWords();
-    forbiddenWords.value = Array.from(response);
-  } catch (error) {
-    console.error('Ошибка при загрузке запрещенных слов:', error);
-  }
-};
-getForbiddenWords();
-
-const highlightForbiddenWords = (text) => {
-  if (!text || !forbiddenWords.value.length) return text;
-
-  let result = text;
-
-  forbiddenWords.value.forEach((word) => {
-    const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(
-      `(^|\\s|[.,!?;:()\\[\\]{}"'])(${escapedWord})(?=$|\\s|[.,!?;:()\\[\\]{}"'])`,
-      'gi'
-    );
-    result = result.replace(
-      regex,
-      (match, p1, p2) => `${p1}<span class="forbidden-word">${p2}</span>`
-    );
-  });
-
-  console.log('Подсвеченный текст:', result);
-  return result;
-};
-
-const highlightedText = computed(() => {
-  return highlightForbiddenWords(localReview.value.textReview);
-});
-
-const highlightedTitle = computed(() => {
-  return highlightForbiddenWords(localReview.value.titleReview);
-});
-
-const updateReviewStatus = async (status) => {
-  try {
-    await moderService.updateReviewStatus(localReview.value.idReview, status);
+    await moderService.updateReviewStatus(idReview, status);
     console.log('Статус изменен.');
     props.closeForm();
     emit('refresh-data');
@@ -74,33 +21,30 @@ const updateReviewStatus = async (status) => {
   }
 };
 
-const submitViolation = async () => {
-  try {
-    message.value = '';
+const {
+  localData,
+  showViolationsForm,
+  categoryViolation,
+  textViolation,
+  forbiddenWords,
+  message,
+  categories,
+  getForbiddenWords,
+  highlightForbiddenWords,
+  submitViolation,
+} = useModeration(props.selectedReview, updateStatusFn, 'Рецензия', 'idReview');
 
-    if (textViolation.value === '') {
-      message.value = 'Описание нарушения не может быть пустым.';
-      return;
-    }
+const highlightedText = computed(() => {
+  return highlightForbiddenWords(localData.value.textReview);
+});
 
-    const violationData = {
-      idUser: localReview.value.author.id,
-      categoryViolation: categoryViolation.value,
-      descriptionViolation: textViolation.value,
-    };
+const highlightedTitle = computed(() => {
+  return highlightForbiddenWords(localData.value.titleReview);
+});
 
-    await moderService.updateReviewStatus(
-      localReview.value.idReview,
-      'Отказано'
-    );
-    await moderService.addViolation(violationData);
-    console.log('Нарушение отправлено.');
-    props.closeForm();
-    emit('refresh-data');
-  } catch (error) {
-    console.error('Ошибка при отправке нарушения:', error);
-  }
-};
+getForbiddenWords();
+
+const idReview = computed(() => localData.value?.idReview);
 
 watch(showViolationsForm, (newVal) => {
   if (!newVal) {
@@ -117,12 +61,12 @@ watch(showViolationsForm, (newVal) => {
     <div class="review-container">
       <div class="inner-container">
         <p>Рецензия на книгу:</p>
-        <img :src="localReview.book.imageURL" />
-        <span>{{ localReview.book.title }}</span>
+        <img :src="localData.book.imageURL" />
+        <span>{{ localData.book.title }}</span>
       </div>
       <div class="inner-container">
         <p>Автор:</p>
-        <span>{{ localReview.author.name }}</span>
+        <span>{{ localData.author.name }}</span>
       </div>
       <div class="inner-container">
         <p>Заголовок:</p>
@@ -134,17 +78,20 @@ watch(showViolationsForm, (newVal) => {
       </div>
       <div class="inner-container">
         <p>Оценка пользователя:</p>
-        <span>{{ localReview.userRating }}</span>
+        <span>{{ localData.userRating }}</span>
       </div>
       <div class="buttons-form" v-if="!showViolationsForm">
-        <button class="button red" @click="closeForm">Отмена</button>
+        <button class="button red" @click="props.closeForm">Отмена</button>
         <button class="button red" @click="showViolationsForm = true">
           Отклонить с нарушением
         </button>
-        <button class="button red" @click="updateReviewStatus('Отказано')">
+        <button
+          class="button red"
+          @click="updateStatusFn(idReview, 'Отказано')"
+        >
           Отклонить
         </button>
-        <button class="button" @click="updateReviewStatus('Одобрено')">
+        <button class="button" @click="updateStatusFn(idReview, 'Одобрено')">
           Принять
         </button>
       </div>

@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 dayjs.locale('ru');
+import { truncateText } from '@/utils/truncateText';
 
 const props = defineProps({
   review: { type: Object, required: true },
@@ -14,10 +15,7 @@ const formatDate = (dateString) => {
 };
 
 const truncatedDescription = (textReview) => {
-  const maxLength = 100;
-  return textReview.length > maxLength
-    ? textReview.slice(0, maxLength) + '...'
-    : textReview;
+  return truncateText(textReview, 100);
 };
 
 const handleClick = () => {

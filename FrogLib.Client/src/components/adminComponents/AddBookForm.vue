@@ -17,6 +17,9 @@ const message = ref('');
 const errors = ref({});
 
 const handleBookSelect = (book) => {
+  message.value = '';
+  errors.value = {};
+
   selectedBook.value = book;
 
   authors.value = book.authors.map((author) => {
@@ -44,6 +47,7 @@ const removeAuthor = (index) => {
 };
 
 const submitBook = async () => {
+  message.value = '';
   errors.value = {};
   if (!selectedBook.value) {
     return;
@@ -51,7 +55,6 @@ const submitBook = async () => {
 
   try {
     const bookData = {
-      isbn10: selectedBook.value.isbn10 || '',
       isbn13: selectedBook.value.isbn13 || '',
       publisherName: selectedBook.value.publisher || '',
       categoryName: selectedBook.value.categories?.[0] || '',
@@ -80,7 +83,6 @@ const submitBook = async () => {
         const apiErrors = error.response.data.errors;
 
         errors.value = {
-          ISBN10: apiErrors.ISBN10?.[0],
           ISBN13: apiErrors.ISBN13?.[0],
           Publisher: apiErrors.Publisher?.[0],
           Category: apiErrors.Category?.[0],
@@ -112,15 +114,6 @@ const submitBook = async () => {
           <div v-if="message" class="message">{{ message }}</div>
           <label>Обложка:</label>
           <img :src="selectedBook.imageUrl" :alt="selectedBook.title" />
-          <label>ISBN-10:</label>
-          <input
-            type="number"
-            v-model="selectedBook.isbn10"
-            :class="{ 'input-error': errors.ISBN10 }"
-          />
-          <div v-if="errors.ISBN10" class="error-message">
-            {{ errors.ISBN10 }}
-          </div>
           <label>ISBN-13:</label>
           <input
             type="number"

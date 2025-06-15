@@ -12,6 +12,17 @@ const email = ref('');
 const message = ref('');
 const errors = ref({});
 
+const clearFields = () => {
+  email.value = '';
+  message.value = '';
+  errors.value = {};
+};
+
+const handleClose = () => {
+  clearFields();
+  emit('close');
+};
+
 const handleResetPassword = async () => {
   errors.value = {};
 
@@ -42,9 +53,14 @@ const handleResetPassword = async () => {
 </script>
 
 <template>
-  <div class="modal-overlay" v-if="isVisible">
+  <div
+    class="modal-overlay"
+    v-if="isVisible"
+    @keyup.esc="handleClose"
+    tabindex="0"
+  >
     <div class="modal-content">
-      <button class="button-close" @click="$emit('close')">✕</button>
+      <button class="button-close" @click="handleClose">✕</button>
       <div class="modal-header">
         <img src="/frog.ico" alt="FrogLib" style="height: 80px" />
         <div>FrogLib</div>

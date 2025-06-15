@@ -111,8 +111,6 @@ public partial class FroglibContext : DbContext
 
             entity.HasIndex(e => e.IdPublisher, "id_publisher");
 
-            entity.HasIndex(e => e.Isbn10, "isbn_10").IsUnique();
-
             entity.HasIndex(e => e.Isbn13, "isbn_13").IsUnique();
 
             entity.Property(e => e.IdBook).HasColumnName("id_book");
@@ -125,9 +123,6 @@ public partial class FroglibContext : DbContext
             entity.Property(e => e.ImageUrl)
                 .HasColumnType("text")
                 .HasColumnName("image_url");
-            entity.Property(e => e.Isbn10)
-                .HasMaxLength(13)
-                .HasColumnName("isbn_10");
             entity.Property(e => e.Isbn13)
                 .HasMaxLength(13)
                 .HasColumnName("isbn_13");

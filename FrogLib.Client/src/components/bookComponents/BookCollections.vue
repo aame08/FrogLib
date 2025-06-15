@@ -35,6 +35,7 @@ const props = defineProps({
 <style scoped>
 h3 {
   text-align: end;
+  margin-right: 5px;
 }
 
 .collections-container {

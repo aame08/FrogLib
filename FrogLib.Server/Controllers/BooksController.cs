@@ -20,7 +20,7 @@ namespace FrogLib.Server.Controllers
             try
             {
                 var books = await _context.Books
-                    .Include(b=>b.IdCategoryNavigation)
+                    .Include(b => b.IdCategoryNavigation)
                     .ToListAsync();
 
                 var allBooks = books.Select(book => new BookDTO
@@ -230,7 +230,6 @@ namespace FrogLib.Server.Controllers
                 return Ok(new
                 {
                     ID = book.IdBook,
-                    ISBN10 = book.Isbn10,
                     ISBN13 = book.Isbn13,
                     ImageURL = book.ImageUrl,
                     Title = book.TitleBook,

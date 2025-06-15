@@ -210,6 +210,7 @@ namespace FrogLib.Server.Controllers
                         NewCommentCount = g.Count(c => c.StatusComment == "Новое" || c.StatusComment == "Обнаружено нарушение"),
                         TotalCommentCount = g.Count()
                     })
+                    .OrderByDescending(x => x.NewCommentCount)
                     .ToListAsync();
 
                 return Ok(entitiesWithComments);

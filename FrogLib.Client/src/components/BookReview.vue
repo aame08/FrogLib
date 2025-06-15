@@ -2,6 +2,7 @@
 import { ref, computed, watchEffect } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import { useFormatting } from '@/composables/useFormatting';
 import userActivityService from '@/services/userActivityService';
 
 const props = defineProps({
@@ -25,11 +26,10 @@ const idUser = computed(() => user.value?.idUser || null);
 
 const titleReview = ref('');
 const textReview = ref('');
-const isBold = ref(false);
-const isItalic = ref(false);
-const isUnderline = ref(false);
 const selectedRating = ref(0);
 const errors = ref({});
+const { toggleFormatting, isBold, isItalic, isUnderline } =
+  useFormatting(textReview);
 
 const loadUserRating = async () => {
   if (isAuthenticated.value && idUser.value) {
@@ -49,50 +49,6 @@ const loadUserRating = async () => {
 
 const setRating = (rating) => {
   selectedRating.value = rating;
-};
-
-const toggleFormatting = (type) => {
-  const textarea = document.querySelector('textarea');
-  const start = textarea.selectionStart;
-
-  let newText = textReview.value;
-
-  switch (type) {
-    case 'bold':
-      newText = isBold.value
-        ? `${textReview.value.slice(0, start)}</b>${textReview.value.slice(
-            start
-          )}`
-        : `${textReview.value.slice(0, start)}<b>${textReview.value.slice(
-            start
-          )}`;
-      isBold.value = !isBold.value;
-      break;
-    case 'italic':
-      newText = isItalic.value
-        ? `${textReview.value.slice(0, start)}</i>${textReview.value.slice(
-            start
-          )}`
-        : `${textReview.value.slice(0, start)}<i>${textReview.value.slice(
-            start
-          )}`;
-      isItalic.value = !isItalic.value;
-      break;
-    case 'underline':
-      newText = isUnderline.value
-        ? `${textReview.value.slice(0, start)}</u>${textReview.value.slice(
-            start
-          )}`
-        : `${textReview.value.slice(0, start)}<u>${textReview.value.slice(
-            start
-          )}`;
-      isUnderline.value = !isUnderline.value;
-      break;
-  }
-
-  textReview.value = newText;
-  textarea.focus();
-  textarea.setSelectionRange(start + 3, start + 3);
 };
 
 const saveReview = async () => {

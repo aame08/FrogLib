@@ -1,8 +1,7 @@
 <script setup>
 import { computed } from 'vue';
-import dayjs from 'dayjs';
-import 'dayjs/locale/ru';
-dayjs.locale('ru');
+import { formattedDate } from '@/utils/dateUtils';
+import { truncateText } from '@/utils/truncateText';
 
 const props = defineProps({
   id: { type: Number, required: true },
@@ -16,20 +15,8 @@ const props = defineProps({
   userURL: { type: String, required: true },
 });
 
-const formattedDate = computed(() => {
-  return dayjs(props.createdDate).isValid()
-    ? dayjs(props.createdDate).format('DD MMMM YYYY')
-    : 'Неверный формат даты';
-});
-
 const truncatedDescription = computed(() => {
-  const maxLength = 150;
-  if (!props.content || props.content.trim() === '') {
-    return 'Нет описания.';
-  }
-  return props.content.length > maxLength
-    ? props.content.slice(0, maxLength) + '...'
-    : props.content;
+  return truncateText(props.content, 150);
 });
 </script>
 
@@ -46,7 +33,7 @@ const truncatedDescription = computed(() => {
         <img class="user-image" v-else src="@/assets/user_photo.png" />
         <div>{{ userName }}</div>
       </div>
-      <div class="review-date">{{ formattedDate }}</div>
+      <div class="review-date">{{ formattedDate(props.createdDate) }}</div>
     </div>
     <div class="card-info">
       <div>♡ {{ rating.toFixed(0) }} %</div>

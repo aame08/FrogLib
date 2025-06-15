@@ -30,7 +30,7 @@ namespace FrogLib.Server.Controllers
                     Title = r.TitleReview,
                     Content = r.TextReview,
                     ImageURL = r.IdBookNavigation.ImageUrl,
-                    Rating = _service.GetRatingAsync(r.IdReview).Result,
+                    Rating = _service.GetRatingAsync(r.IdReview).Result.PositivePercent,
                     CountView = _service.GetCountViewAsync(r.IdReview).Result,
                     CreatedDate = r.CreatedDate,
                     UserName = r.IdUserNavigation.NameUser,
@@ -61,7 +61,7 @@ namespace FrogLib.Server.Controllers
                     Title = r.TitleReview,
                     Content = r.TextReview,
                     ImageURL = r.IdBookNavigation.ImageUrl,
-                    Rating = _service.GetRatingAsync(r.IdReview).Result,
+                    Rating = _service.GetRatingAsync(r.IdReview).Result.PositivePercent,
                     CountView = _service.GetCountViewAsync(r.IdReview).Result,
                     UserName = r.IdUserNavigation.NameUser,
                     UserURL = r.IdUserNavigation.ProfileImageUrl
@@ -92,7 +92,7 @@ namespace FrogLib.Server.Controllers
 
                 var author = review.IdUserNavigation.IdUser;
 
-                var rating = await _service.GetRatingAsync(review.IdReview);
+                var ratingInfo = await _service.GetRatingAsync(review.IdReview);
 
                 var countView = await _service.GetCountViewAsync(review.IdReview);
 
@@ -107,7 +107,9 @@ namespace FrogLib.Server.Controllers
                     ID = review.IdReview,
                     Title = review.TitleReview,
                     Content = review.TextReview,
-                    Rating = rating,
+                    Rating = ratingInfo.PositivePercent,
+                    Likes = ratingInfo.Likes,
+                    Dislikes = ratingInfo.Dislikes,
                     CountView = countView,
                     CreatedDate = review.CreatedDate,
                     UserId = review.IdUserNavigation.IdUser,

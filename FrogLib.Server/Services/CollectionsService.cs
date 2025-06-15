@@ -6,7 +6,7 @@ namespace FrogLib.Server.Services
 {
     public interface ICollectionsService
     {
-        Task<double> GetRatingAsync(int idCollection);
+        Task<RatingInfo> GetRatingAsync(int idCollection);
         Task<int> GetCountViewAsync(int idCollection);
         Task<int> GetCountCommentsAsync(int idCollection);
         Task<List<CommentDTO>> GetCommentsForCollectionAsync(int idCollection);

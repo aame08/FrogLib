@@ -10,6 +10,8 @@ const props = defineProps({
   content: { type: String, required: true },
   countView: { type: Number, required: true },
   rating: { type: Number, required: true },
+  likes: { type: Number, required: true },
+  dislikes: { type: Number, required: true },
 });
 
 const emit = defineEmits(['refresh-review-data']);
@@ -85,6 +87,7 @@ watch(isAuthenticated, (newValue) => {
         @click="updateRating(1)"
         title="Рецензия понравилась"
       >
+        <div class="rating-text">{{ likes.toFixed(0) }}</div>
         🖒
       </button>
       {{ rating.toFixed(0) }}%
@@ -95,6 +98,7 @@ watch(isAuthenticated, (newValue) => {
         title="Рецензия не понравилась"
       >
         🖓
+        <div class="rating-text">{{ dislikes.toFixed(0) }}</div>
       </button>
     </div>
   </div>
@@ -142,6 +146,9 @@ watch(isAuthenticated, (newValue) => {
 }
 
 .reaction-button {
+  display: flex;
+  align-items: center;
+  gap: 1px;
   font-size: 26px;
   color: black;
   border: none;
@@ -169,5 +176,9 @@ watch(isAuthenticated, (newValue) => {
 
 .dislike.active {
   color: darkred;
+}
+
+.rating-text {
+  font-size: 16px;
 }
 </style>

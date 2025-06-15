@@ -58,7 +58,7 @@ namespace FrogLib.Server.Services
                     Title = r.TitleReview,
                     Content = r.TextReview,
                     ImageURL = r.IdBookNavigation.ImageUrl,
-                    Rating = rating,
+                    Rating = rating.PositivePercent,
                     CountView = countView,
                     CreatedDate = r.CreatedDate,
                     UserName = r.IdUserNavigation.NameUser,
@@ -92,7 +92,7 @@ namespace FrogLib.Server.Services
                     Id = c.IdCollection,
                     Title = c.TitleCollection,
                     Description = c.DescriptionCollection,
-                    Rating = rating,
+                    Rating = rating.PositivePercent,
                     CountBooks = c.IdBooks.Count,
                     Books = c.IdBooks
                         .Take(3)

@@ -4,8 +4,6 @@ public partial class Book
 {
     public int IdBook { get; set; }
 
-    public string Isbn10 { get; set; } = null!;
-
     public string Isbn13 { get; set; } = null!;
 
     public int IdPublisher { get; set; }

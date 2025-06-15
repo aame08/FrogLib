@@ -31,7 +31,6 @@ namespace FrogLib.Server.Controllers
                     .Select(book => new AdminBookDTO
                     {
                         Id = book.IdBook,
-                        Isbn10 = book.Isbn10,
                         Isbn13 = book.Isbn13,
                         PublisherName = book.IdPublisherNavigation.NamePublisher,
                         CategoryName = book.IdCategoryNavigation.NameCategory,
@@ -108,8 +107,7 @@ namespace FrogLib.Server.Controllers
                                         string type = identifier["type"]?.ToString();
                                         string id = identifier["identifier"]?.ToString();
 
-                                        if (type == "ISBN_10") book.Isbn10 = id;
-                                        else if (type == "ISBN_13") book.Isbn13 = id;
+                                        if (type == "ISBN_13") book.Isbn13 = id;
                                     }
                                 }
 
@@ -138,12 +136,8 @@ namespace FrogLib.Server.Controllers
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(book.Isbn10) || _context.Books.Any(b => b.Isbn10 == book.Isbn10))
-                {
-                    ModelState.AddModelError("ISBN10", "Книга с данным ISBN-10 уже добавлена в систему.");
-                }
 
-                if (string.IsNullOrWhiteSpace(book.Isbn13) || _context.Books.Any(b => b.Isbn10 == book.Isbn13))
+                if (string.IsNullOrWhiteSpace(book.Isbn13) || _context.Books.Any(b => b.Isbn13 == book.Isbn13))
                 {
                     ModelState.AddModelError("ISBN13", "Книга с данным ISBN-13 уже добавлена в систему.");
                 }
@@ -211,7 +205,6 @@ namespace FrogLib.Server.Controllers
                 var newBook = new Book
                 {
                     IdBook = _context.Books.Any() ? _context.Books.Max(b => b.IdBook) + 1 : 1,
-                    Isbn10 = book.Isbn10,
                     Isbn13 = book.Isbn13,
                     IdPublisher = publisher.IdPublisher,
                     IdCategory = category.IdCategory,
@@ -469,7 +462,7 @@ namespace FrogLib.Server.Controllers
             try
             {
                 var staff = await _context.Users
-                    .Where(u => (u.NameRole == "Администратор" || u.NameRole == "Модератор")
+                    .Where(u => (u.NameRole != "Пользователь")
                         && u.IdUser != idUser && u.StatusUser == "Активен")
                     .Select(user => new
                     {

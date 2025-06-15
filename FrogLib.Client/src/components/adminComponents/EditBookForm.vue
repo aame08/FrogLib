@@ -44,7 +44,6 @@ const submitEdit = async () => {
   try {
     const bookData = {
       id: localBook.value.id,
-      isbn10: localBook.value.isbn10 || '',
       isbn13: localBook.value.isbn13 || '',
       publisherName: localBook.value.publisherName || '',
       categoryName: localBook.value.categoryName || '',
@@ -100,8 +99,6 @@ const submitEdit = async () => {
         <div v-if="message" class="message">{{ message }}</div>
         <label>Обложка:</label>
         <img :src="localBook.imageUrl" :alt="localBook.title" />
-        <label>ISBN-10:</label>
-        <input type="number" v-model="localBook.isbn10" readonly />
         <label>ISBN-13:</label>
         <input type="number" v-model="localBook.isbn13" readonly />
         <label>Издатель:</label>

@@ -6,7 +6,7 @@ namespace FrogLib.Server.Services
 {
     public interface IReviewsService
     {
-        Task<double> GetRatingAsync(int idReview);
+        Task<RatingInfo> GetRatingAsync(int idReview);
         Task<int> GetCountViewAsync(int idReview);
         Task<int> GetCountCommentsAsync(int idReview);
         Task<int> GetBookRatingAsync(int idBook, int idUser);

@@ -636,18 +636,6 @@
         }
       }
     },
-    "/api/Auth/verify-token": {
-      "get": {
-        "tags": [
-          "Auth"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Auth/refresh-token": {
       "post": {
         "tags": [
@@ -2563,10 +2551,6 @@
       "AddBookDTO": {
         "type": "object",
         "properties": {
-          "isbn10": {
-            "type": "string",
-            "nullable": true
-          },
           "isbn13": {
             "type": "string",
             "nullable": true
@@ -2649,10 +2633,6 @@
           "id": {
             "type": "integer",
             "format": "int32"
-          },
-          "isbn10": {
-            "type": "string",
-            "nullable": true
           },
           "isbn13": {
             "type": "string",
@@ -2757,10 +2737,6 @@
           "idBook": {
             "type": "integer",
             "format": "int32"
-          },
-          "isbn10": {
-            "type": "string",
-            "nullable": true
           },
           "isbn13": {
             "type": "string",

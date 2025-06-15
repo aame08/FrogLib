@@ -7,7 +7,6 @@
         public string Publisher { get; set; }
         public int? YearPublication { get; set; }
         public string Description { get; set; }
-        public string Isbn10 { get; set; }
         public string Isbn13 { get; set; }
         public int? PageCount { get; set; }
         public string Language { get; set; }

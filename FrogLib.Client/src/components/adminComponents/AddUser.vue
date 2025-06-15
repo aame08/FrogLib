@@ -8,14 +8,12 @@ const props = defineProps({
 
 const emit = defineEmits(['refresh-data']);
 
-const roles = ['Администратор', 'Модератор'];
-
 const formData = ref({
   name: '',
   email: '',
   password: '',
   confirmPassword: '',
-  role: roles[0],
+  role: 'Модератор',
 });
 const errors = ref({});
 
@@ -86,7 +84,7 @@ const handleSubmit = async () => {
 
 <template>
   <main>
-    <h1>Добавление пользователя</h1>
+    <h1>Добавление модератора</h1>
     <div class="form">
       <label>Имя:</label>
       <input
@@ -125,11 +123,12 @@ const handleSubmit = async () => {
         {{ errors.confirmPassword }}
       </div>
       <label>Роль:</label>
-      <select v-model="formData.role">
+      <div>Модератор</div>
+      <!-- <select v-model="formData.role">
         <option v-for="role in roles" :key="role" :value="role">
           {{ role }}
         </option>
-      </select>
+      </select> -->
       <div v-if="errors.role" class="error-message">{{ errors.role }}</div>
       <div class="form-buttons">
         <button class="cancel" @click="closeForm">Отмена</button>

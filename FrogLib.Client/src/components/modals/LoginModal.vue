@@ -36,6 +36,18 @@ const openRegister = () => {
   emit('openRegister');
 };
 
+const clearFields = () => {
+  email.value = '';
+  password.value = '';
+  message.value = '';
+  errors.value = {};
+};
+
+const handleClose = () => {
+  clearFields();
+  emit('close');
+};
+
 const login = async () => {
   errors.value = {};
 
@@ -71,7 +83,6 @@ const login = async () => {
 
     email.value = '';
     password.value = '';
-    // message.value = '';
 
     if (userRole === 'Пользователь') {
       const idUser = response.data.user.idUser;
@@ -118,9 +129,14 @@ const login = async () => {
 </script>
 
 <template>
-  <div class="modal-overlay" v-if="isVisible">
+  <div
+    class="modal-overlay"
+    v-if="isVisible"
+    @keyup.esc="handleClose"
+    tabindex="0"
+  >
     <div class="modal-content">
-      <button class="button-close" @click="$emit('close')">✕</button>
+      <button class="button-close" @click="handleClose">✕</button>
       <div class="modal-header">
         <img src="/frog.ico" alt="FrogLib" style="height: 80px" />
         <div>FrogLib</div>
@@ -128,7 +144,7 @@ const login = async () => {
       <div class="modal-container">
         <div class="text-container">
           <div>С возвращением!</div>
-          <div>Войдите в систему, чтобы получить все функции форума.</div>
+          <div>Войдите в систему, чтобы получить все функции платформы.</div>
         </div>
         <div v-if="message" class="message">{{ message }}</div>
         <form class="input-container">

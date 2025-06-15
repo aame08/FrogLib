@@ -24,7 +24,6 @@ const handleEdit = (book) => {
   <table>
     <thead>
       <tr>
-        <th>ISBN-10</th>
         <th>ISBN-13</th>
         <th>Название</th>
         <th>Автор(ы)</th>
@@ -35,7 +34,6 @@ const handleEdit = (book) => {
     </thead>
     <tbody>
       <tr v-for="book in books" :key="book.id">
-        <td>{{ book.isbn10 }}</td>
         <td>{{ book.isbn13 }}</td>
         <td>{{ book.titleBook }}</td>
         <td>{{ formatAuthors(book.authors) }}</td>

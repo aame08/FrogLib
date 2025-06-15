@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\\u042F\\source\\repos\\TestBookApi\\",
+  "WorkspaceRootPath": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\TestBookApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A5773959-FF2D-49A1-9EF2-08AC07458453}|TestBookApi\\TestBookApi.csproj|c:\\users\\\u044F\\source\\repos\\testbookapi\\testbookapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A5773959-FF2D-49A1-9EF2-08AC07458453}|TestBookApi\\TestBookApi.csproj|c:\\users\\\u044F\\source\\repos\\froglib\\testbookapi\\testbookapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5773959-FF2D-49A1-9EF2-08AC07458453}|TestBookApi\\TestBookApi.csproj|solutionrelative:testbookapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -48,11 +48,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\\u042F\\source\\repos\\TestBookApi\\TestBookApi\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\TestBookApi\\TestBookApi\\Program.cs",
               "RelativeDocumentMoniker": "TestBookApi\\Program.cs",
-              "ToolTip": "C:\\Users\\\u042F\\source\\repos\\TestBookApi\\TestBookApi\\Program.cs",
+              "ToolTip": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\TestBookApi\\TestBookApi\\Program.cs",
               "RelativeToolTip": "TestBookApi\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIkAAABAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-15T07:21:52.934Z",
               "EditorCaption": ""

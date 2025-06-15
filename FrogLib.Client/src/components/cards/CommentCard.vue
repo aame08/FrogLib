@@ -2,10 +2,7 @@
 import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-import dayjs from 'dayjs';
-import 'dayjs/locale/ru';
-dayjs.locale('ru');
-
+import { formattedDate } from '@/utils/dateUtils';
 import userActivityService from '@/services/userActivityService';
 
 const props = defineProps({
@@ -34,12 +31,6 @@ const replyText = ref('');
 const showHiddenContent = ref(false);
 
 const hasViolation = computed(() => props.status === 'Обнаружено нарушение');
-
-const formattedDate = () => {
-  return dayjs(props.date).isValid()
-    ? dayjs(props.date).format('DD MMMM YYYY')
-    : 'Неверный формат даты';
-};
 
 const toggleReplyInput = () => {
   showReplyInput.value = !showReplyInput.value;
@@ -92,7 +83,7 @@ const submitReply = async () => {
       <div class="comment-container">
         <div class="comment-header">
           <div class="comment-author">{{ author }}</div>
-          <div class="comment-date">{{ formattedDate() }}</div>
+          <div class="comment-date">{{ formattedDate(props.date) }}</div>
         </div>
         <div class="comment-content" v-if="!hasViolation || showHiddenContent">
           {{ content }}

@@ -1,9 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import dayjs from 'dayjs';
-import 'dayjs/locale/ru';
-dayjs.locale('ru');
+import { formattedDate } from '@/utils/dateUtils';
 
 import userPhotoPlaceholder from '@/assets/user_photo.png';
 
@@ -26,12 +24,6 @@ const handleEditClick = () => {
   emit('edit-review');
 };
 
-const formattedDate = () => {
-  return dayjs(props.createdDate).isValid()
-    ? dayjs(props.createdDate).format('DD MMMM YYYY')
-    : 'Неверный формат даты';
-};
-
 const profileImageSrc = computed(() =>
   props.userURL
     ? `https://localhost:7157${props.userURL}`
@@ -45,7 +37,13 @@ const profileImageSrc = computed(() =>
       class="upper-container"
       v-if="isAuthenticated && props.userId === idUser"
     >
-      <button @click="handleEditClick" title="Редактировать">🖋</button>
+      <button
+        @click="handleEditClick"
+        title="Редактировать"
+        style="color: white"
+      >
+        🖋
+      </button>
     </div>
     <h1 class="review-title">{{ title }}</h1>
     <div class="lower-container">
@@ -55,7 +53,7 @@ const profileImageSrc = computed(() =>
           Автор: <span>{{ userName }}</span>
         </div>
         <div>
-          Дата создания: <span>{{ formattedDate() }}</span>
+          Дата создания: <span>{{ formattedDate(props.createdDate) }}</span>
         </div>
       </div>
     </div>

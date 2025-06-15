@@ -3,40 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\\u044F\\source\\repos\\froglib\\froglib.server\\services\\contentmoderationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\services\\contentmoderationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\\u044F\\source\\repos\\froglib\\froglib.server\\wwwroot\\resources\\forbidden-words.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\wwwroot\\resources\\forbidden-words.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\\u044F\\source\\repos\\froglib\\froglib.server\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\\u044F\\source\\repos\\froglib\\froglib.server\\controllers\\collectionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\controllers\\collectionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\\u044F\\source\\repos\\froglib\\froglib.server\\controllers\\reviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\controllers\\reviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\\u044F\\source\\repos\\froglib\\froglib.server\\controllers\\collectionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\controllers\\collectionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\\u044F\\source\\repos\\froglib\\froglib.server\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\\u044F\\source\\repos\\froglib\\froglib.server\\controllers\\modercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\controllers\\modercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\\u044F\\source\\repos\\froglib\\froglib.server\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\\u044F\\source\\repos\\froglib\\froglib.server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\\u044F\\source\\repos\\froglib\\froglib.server\\controllers\\useractivitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\controllers\\useractivitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\\u044F\\source\\repos\\froglib\\froglib.server\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\\u044F\\source\\repos\\froglib\\froglib.server\\wwwroot\\resources\\forbidden-words.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\wwwroot\\resources\\forbidden-words.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,63 +38,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "forbidden-words.json",
               "DocumentMoniker": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\wwwroot\\Resources\\forbidden-words.json",
               "RelativeDocumentMoniker": "FrogLib.Server\\wwwroot\\Resources\\forbidden-words.json",
               "ToolTip": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\wwwroot\\Resources\\forbidden-words.json",
               "RelativeToolTip": "FrogLib.Server\\wwwroot\\Resources\\forbidden-words.json",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACQAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-05-24T15:25:29.348Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "FrogLib.Server\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Controllers\\AuthController.cs",
               "RelativeToolTip": "FrogLib.Server\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAK0AAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKQAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-16T06:44:47.607Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "AdminController.cs",
               "DocumentMoniker": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "FrogLib.Server\\Controllers\\AdminController.cs",
               "ToolTip": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Controllers\\AdminController.cs",
               "RelativeToolTip": "FrogLib.Server\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAFUCAAAAAAAAAAAuwH4CAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcDAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-01T14:00:31.579Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "ModerController.cs",
               "DocumentMoniker": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Controllers\\ModerController.cs",
               "RelativeDocumentMoniker": "FrogLib.Server\\Controllers\\ModerController.cs",
               "ToolTip": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Controllers\\ModerController.cs",
               "RelativeToolTip": "FrogLib.Server\\Controllers\\ModerController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4BAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAH0BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-09T09:46:45.626Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -112,51 +100,35 @@
               "RelativeDocumentMoniker": "FrogLib.Server\\Controllers\\BooksController.cs",
               "ToolTip": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Controllers\\BooksController.cs",
               "RelativeToolTip": "FrogLib.Server\\Controllers\\BooksController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-12T09:09:00.94Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "ReviewsController.cs",
               "DocumentMoniker": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Controllers\\ReviewsController.cs",
               "RelativeDocumentMoniker": "FrogLib.Server\\Controllers\\ReviewsController.cs",
               "ToolTip": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Controllers\\ReviewsController.cs",
               "RelativeToolTip": "FrogLib.Server\\Controllers\\ReviewsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGYAAABHAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-03T13:49:39.612Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "CollectionsController.cs",
               "DocumentMoniker": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Controllers\\CollectionsController.cs",
               "RelativeDocumentMoniker": "FrogLib.Server\\Controllers\\CollectionsController.cs",
               "ToolTip": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Controllers\\CollectionsController.cs",
               "RelativeToolTip": "FrogLib.Server\\Controllers\\CollectionsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAI4AAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-03T13:59:48.139Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UserActivityController.cs",
-              "DocumentMoniker": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Controllers\\UserActivityController.cs",
-              "RelativeDocumentMoniker": "FrogLib.Server\\Controllers\\UserActivityController.cs",
-              "ToolTip": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Controllers\\UserActivityController.cs",
-              "RelativeToolTip": "FrogLib.Server\\Controllers\\UserActivityController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-16T09:35:56.292Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -187,19 +159,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ContentModerationService.cs",
-              "DocumentMoniker": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Services\\ContentModerationService.cs",
-              "RelativeDocumentMoniker": "FrogLib.Server\\Services\\ContentModerationService.cs",
-              "ToolTip": "C:\\Users\\\u042F\\source\\repos\\FrogLib\\FrogLib.Server\\Services\\ContentModerationService.cs",
-              "RelativeToolTip": "FrogLib.Server\\Services\\ContentModerationService.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBsAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T09:57:10.971Z",
-              "EditorCaption": ""
             }
           ]
         },

@@ -30,7 +30,7 @@ namespace FrogLib.Server.Controllers
                     Id = c.IdCollection,
                     Title = c.TitleCollection,
                     Description = c.DescriptionCollection,
-                    Rating = _service.GetRatingAsync(c.IdCollection).Result,
+                    Rating = _service.GetRatingAsync(c.IdCollection).Result.PositivePercent,
                     CountBooks = c.IdBooks.Count,
                     Books = c.IdBooks
                         .Take(3)
@@ -80,7 +80,7 @@ namespace FrogLib.Server.Controllers
                         Id = c.IdCollection,
                         Title = c.TitleCollection,
                         Description = c.DescriptionCollection,
-                        Rating = rating,
+                        Rating = rating.PositivePercent,
                         CountBooks = c.IdBooks.Count,
                         Books = c.IdBooks
                             .Take(3)
@@ -126,7 +126,7 @@ namespace FrogLib.Server.Controllers
 
                 if (collection == null) { return NotFound("Подборка не найдена."); }
 
-                var rating = await _service.GetRatingAsync(collection.IdCollection);
+                var ratingInfo = await _service.GetRatingAsync(collection.IdCollection);
 
                 var countView = await _service.GetCountViewAsync(collection.IdCollection);
 
@@ -139,7 +139,9 @@ namespace FrogLib.Server.Controllers
                     ID = collection.IdCollection,
                     Title = collection.TitleCollection,
                     Description = collection.DescriptionCollection,
-                    Rating = rating,
+                    Rating = ratingInfo.PositivePercent,
+                    Likes = ratingInfo.Likes,
+                    Dislikes = ratingInfo.Dislikes,
                     CountBooks = collection.IdBooks.Count,
                     CountView = countView,
                     CountLiked = collection.Likedcollections.Count,

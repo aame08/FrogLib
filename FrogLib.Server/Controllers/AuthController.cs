@@ -166,13 +166,6 @@ namespace FrogLib.Server.Controllers
             catch (Exception ex) { return HandleException(ex); }
         }
 
-        //[Authorize]
-        //[HttpGet("verify-token")]
-        //public ActionResult VerifyToken()
-        //{
-        //    return Ok("Токен валидный.");
-        //}
-
         public class RefreshTokenRequest
         {
             public string RefreshToken { get; set; }

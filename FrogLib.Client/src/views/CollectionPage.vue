@@ -59,6 +59,8 @@ const closeCollectionForm = () => {
         :userId="collection.userId"
         :countView="collection.countView"
         :rating="collection.rating"
+        :likes="collection.likes"
+        :dislikes="collection.dislikes"
         :countLiked="collection.countLiked"
         @refresh-collection-data="getCollectionData"
       />

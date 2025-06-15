@@ -56,6 +56,8 @@ const closeReviewForm = () => {
         :content="review.content"
         :countView="review.countView"
         :rating="review.rating"
+        :likes="review.likes"
+        :dislikes="review.dislikes"
         @refresh-review-data="getReviewData"
       />
     </div>

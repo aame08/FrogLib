@@ -75,7 +75,6 @@ const closeCollectionForm = () => {
       <div class="info-section" v-if="activeSection === 'info'">
         <BookDetails
           :id="book.id"
-          :isbN10="book.isbN10"
           :isbN13="book.isbN13"
           :description="book.description"
           :yearPublication="book.yearPublication"

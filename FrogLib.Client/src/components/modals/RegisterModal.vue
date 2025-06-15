@@ -24,6 +24,21 @@ const handleFileChange = (event) => {
   }
 };
 
+const clearFields = () => {
+  username.value = '';
+  email.value = '';
+  password.value = '';
+  confirmPassword.value = '';
+  profilePicture.value = null;
+  message.value = '';
+  errors.value = {};
+};
+
+const handleClose = () => {
+  clearFields();
+  emit('close');
+};
+
 const registerUser = async () => {
   errors.value = {};
 
@@ -102,9 +117,14 @@ const registerUser = async () => {
 </script>
 
 <template>
-  <div class="modal-overlay" v-if="isVisible">
+  <div
+    class="modal-overlay"
+    v-if="isVisible"
+    @keyup.esc="handleClose"
+    tabindex="0"
+  >
     <div class="modal-content">
-      <button class="button-close" @click="$emit('close')">✕</button>
+      <button class="button-close" @click="handleClose">✕</button>
       <div class="modal-header">
         <img src="/frog.ico" alt="FrogLib" style="height: 80px" />
         <div>FrogLib</div>
@@ -112,7 +132,7 @@ const registerUser = async () => {
       <div class="modal-container">
         <div class="text-container">
           <div>Добро пожаловать!</div>
-          <div>Зарегистрируйтесь, чтобы получить все функции форума.</div>
+          <div>Зарегистрируйтесь, чтобы получить все функции платформы.</div>
         </div>
         <div v-if="message" class="message">{{ message }}</div>
         <form class="input-container">

@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue';
+import { truncateText } from '@/utils/truncateText';
 
 const props = defineProps({
   id: { type: Number, required: true },
@@ -14,13 +15,7 @@ const props = defineProps({
 });
 
 const truncatedDescription = computed(() => {
-  const maxLength = 100;
-  if (!props.description || props.description.trim() === '') {
-    return 'Нет описания.';
-  }
-  return props.description.length > maxLength
-    ? props.description.slice(0, maxLength) + '...'
-    : props.description;
+  return truncateText(props.description, 100);
 });
 </script>
 

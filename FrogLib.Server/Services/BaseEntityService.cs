@@ -9,16 +9,31 @@ namespace FrogLib.Server.Services
         private readonly FroglibContext _context = context;
         private readonly string _typeObject = typeObject;
 
-        public async Task<double> GetRatingAsync(int idEntity)
+        public async Task<RatingInfo> GetRatingAsync(int idEntity)
         {
             var totalRatings = await _context.Entityratings
                 .CountAsync(er => er.TypeEntity == _typeObject && er.IdEntity == idEntity);
-            if (totalRatings == 0) { return 0; }
+            if (totalRatings == 0)
+            {
+                return new RatingInfo
+                {
+                    PositivePercent = 0,
+                    Likes = 0,
+                    Dislikes = 0
+                };
+            }
 
-            var positiveRatings = await _context.Entityratings
+            var likes = await _context.Entityratings
                 .CountAsync(er => er.TypeEntity == _typeObject && er.IdEntity == idEntity && er.Rating == 1);
 
-            return (positiveRatings * 100.0) / totalRatings;
+            var dislikes = totalRatings - likes;
+
+            return new RatingInfo
+            {
+                PositivePercent = (likes * 100.0) / totalRatings,
+                Likes = likes,
+                Dislikes = dislikes
+            };
         }
 
         public async Task<int> GetCountViewAsync(int idEntity)

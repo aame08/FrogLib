@@ -16,6 +16,7 @@ const form = ref({
   confirmPassword: '',
   profileImage: null,
 });
+
 const deleteCurrentImage = ref(false);
 const message = ref('');
 const errors = ref({});
