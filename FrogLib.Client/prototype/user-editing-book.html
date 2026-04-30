@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    body {
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .content {
+      height: 250px;
+      width: 550px;
+      background-color: whitesmoke;
+      display: flex;
+      flex-direction: column;
+      border-radius: 25px;
+      position: relative;
+      padding: 0 50px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .button-close {
+      height: 20px;
+      width: 20px;
+      align-self: flex-end;
+      background: none;
+      border: none;
+      color: black;
+      font-size: 18px;
+      margin-top: 5px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      gap: 15px;
+      width: 100%;
+    }
+    .evaluation-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .user-evaluation {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+    }
+    .evaluations {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    .star-button {
+      background: none;
+      border: none;
+      font-size: 18px;
+    }
+
+    select {
+      border-color: forestgreen;
+      height: 35px;
+      font-size: 16px;
+      border-radius: 5px;
+      width: 100%;
+    }
+    select:focus {
+      border-color: forestgreen;
+      outline: none;
+    }
+
+    .transparent-button {
+      font-size: 14px;
+      display: flex;
+      background: none;
+      border: none;
+      color: black;
+      font-size: 16px;
+      align-items: center;
+    }
+    .transparent-button:hover {
+      border: 2px solid forestgreen;
+      border-radius: 5px;
+    }
+    a:hover {
+      color: forestgreen;
+    }
+
+    .buttons {
+      align-self: flex-end;
+      margin-top: 10px;
+      display: flex;
+      gap: 5px;
+    }
+  </style>
+  <body>
+    <div class="content">
+      <button class="button-close"><a href="account.html">✕</a></button>
+
+      <div class="container">
+        <div
+          style="
+            text-align: center;
+            border-bottom: 2px solid forestgreen;
+            font-size: 20px;
+            font-weight: bold;
+          "
+        >
+          Редактирование книги
+        </div>
+        <div class="evaluation-container">
+          <div class="user-evaluation">
+            <div>
+              Моя оценка: <span style="font-weight: bold">Отсутствует</span>
+            </div>
+          </div>
+          <div class="evaluations">
+            <button class="star-button">★</button>
+            <button class="star-button">☆</button>
+            <button class="star-button">☆</button>
+            <button class="star-button">☆</button>
+            <button class="star-button">☆</button>
+          </div>
+        </div>
+        <div class="user-list">
+          <div>Список</div>
+          <select name="sort" id="sort">
+            <option value="popular" selected>Читаю</option>
+            <option value="news">В планах</option>
+            <option value="news">Брошено</option>
+            <option value="news">Прочитано</option>
+            <option value="news">Любимые</option>
+          </select>
+        </div>
+
+        <div class="buttons">
+          <button class="transparent-button">Удалить</button>
+          <button class="transparent-button">Сохранить</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

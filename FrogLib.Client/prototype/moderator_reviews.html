@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    main {
+      margin-top: 70px;
+      padding: 20px;
+      background-color: whitesmoke;
+      border-radius: 5px;
+    }
+
+    h1 {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .reviews-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .reviews-table th,
+    .reviews-table td {
+      border: 1px solid forestgreen;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .reviews-table th {
+      background-color: forestgreen;
+      color: white;
+    }
+
+    .reviews-table tr:hover {
+      background-color: white;
+    }
+    .action-button {
+      padding: 5px 10px;
+      background-color: forestgreen;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .action-button a {
+      color: white;
+      font-size: 14px;
+    }
+    .action-button:hover {
+      background-color: darkgreen;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button">
+          <a href="moderator_reviews.html">Рецензии</a>
+        </button>
+        <button class="nav-button">
+          <a href="moderator_comments.html">Комментарии</a>
+        </button>
+        <button class="nav-button">
+          <a href="moderator_users.html">Пользователи</a>
+        </button>
+      </div>
+      <div class="account">
+        <button class="button-account">
+          <a href="moderator_account.html"
+            ><img
+              style="height: 30px; width: 30px"
+              src="resources/photo-user.jpeg"
+              alt=""
+          /></a>
+        </button>
+        <button class="nav-button">
+          <a href="index.html">Выход</a>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <h1>Управление рецензиями</h1>
+
+      <table class="reviews-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Имя пользователя</th>
+            <th>Название книги</th>
+            <th>Заголовок рецензии</th>
+            <th>Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>amee</td>
+            <td>Благословение небожителей. Том 1</td>
+            <td>Эпическое начало фэнтези-саги</td>
+            <td style="text-align: center">
+              <button class="action-button">
+                <a href="moderator_review.html">Просмотр</a>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>amee</td>
+            <td>Благословение небожителей. Том 1</td>
+            <td>Эпическое начало фэнтези-саги</td>
+            <td style="text-align: center">
+              <button class="action-button">
+                <a href="moderator_review.html">Просмотр</a>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>

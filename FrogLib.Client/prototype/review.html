@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    main {
+      margin-top: 70px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .review-container {
+      background-color: whitesmoke;
+      display: flex;
+      flex-direction: column;
+      border-radius: 5px;
+      padding: 5px;
+    }
+    h4 {
+      width: 170px;
+    }
+    .book-cover {
+      align-self: center;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: forestgreen;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .book-cover img {
+      height: 350px;
+    }
+    .review-name,
+    .review-description,
+    .review-evaluation {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .star-button {
+      background: none;
+      border: none;
+      font-size: 18px;
+    }
+    .review-text {
+      width: 80%;
+    }
+    .review-text textarea {
+      width: 100%;
+      height: 100px;
+      border-color: forestgreen;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .text-formatting {
+      display: flex;
+      gap: 5px;
+    }
+    .text-formatting button {
+      background: none;
+      border: none;
+      font-size: 16px;
+    }
+    .text-formatting button:hover {
+      border-radius: 5px;
+      border: 1px solid forestgreen;
+    }
+    input {
+      width: 80%;
+      height: 35px;
+      border-color: forestgreen;
+      border-radius: 5px;
+    }
+    input:focus,
+    textarea:focus {
+      border-color: darkgreen;
+      outline: none;
+    }
+
+    .buttons-group {
+      margin-top: 25px;
+      align-self: center;
+      display: flex;
+      gap: 15px;
+    }
+    .buttons-group button {
+      height: 40px;
+      font-size: 16px;
+      border-color: forestgreen;
+      border-radius: 5px;
+      background: white;
+    }
+    .buttons-group button:hover {
+      font-weight: bold;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="index.html">Главная</a></button>
+        <button class="nav-button"><a href="books.html">Книги</a></button>
+        <button class="nav-button">
+          <a href="collections.html">Подборки</a>
+        </button>
+        <button class="nav-button"><a href="reviews.html">Рецензии</a></button>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="login.html">Вход</a></button>
+        <button class="nav-button">
+          <a href="register.html">Регистрация</a>
+        </button>
+      </div>
+      <!-- <div class="account">
+            <button class="button-account">
+                <a href="account.html"><img style="height: 30px; width: 30px;" src="resources/photo-user.jpeg" alt=""></a>
+            </button>
+            <button class="nav-button">
+                <a href="index.html">Выход</a>
+            </button>
+        </div> -->
+    </header>
+
+    <main>
+      <div class="review-container">
+        <h1
+          style="
+            text-align: center;
+            text-decoration: underline;
+            text-decoration-color: forestgreen;
+          "
+        >
+          Рецензия на книгу
+        </h1>
+        <div class="book-cover">
+          <img
+            src="https://books.google.com/books/content?id=P_sCEQAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+            alt=""
+          />
+          <div>
+            <h1 class="book-title">
+              <a href="book-info.html">Благословение небожителей. Том 1</a>
+            </h1>
+            <div class="book-author">Мосян Тунсю</div>
+            <div class="rating">☆ 5.0</div>
+          </div>
+        </div>
+        <div class="review-name">
+          <h4>Заголовок рецензии:</h4>
+          <input type="text" placeholder="Введите заголовок рецензии" />
+        </div>
+        <div class="review-evaluation">
+          <h4>Оценка книги:</h4>
+          <div class="evaluations">
+            <button class="star-button">★</button>
+            <button class="star-button">☆</button>
+            <button class="star-button">☆</button>
+            <button class="star-button">☆</button>
+            <button class="star-button">☆</button>
+          </div>
+        </div>
+        <div class="review-description">
+          <h4>Текст рецензии:</h4>
+          <div class="review-text">
+            <textarea style="resize: vertical"></textarea>
+            <div class="text-formatting">
+              <button>𝐁</button>
+              <button>𝑩</button>
+              <button>𝑩̲</button>
+            </div>
+          </div>
+        </div>
+        <div class="buttons-group">
+          <button><a href="">Отмена</a></button>
+          <button><a href="">Сохранить</a></button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

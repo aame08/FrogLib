@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Добавить пользователя - FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    main {
+      margin-top: 70px;
+      padding: 20px;
+      background-color: whitesmoke;
+      border-radius: 5px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 24px;
+      text-decoration: underline;
+      text-decoration-color: forestgreen;
+      text-align: center;
+    }
+
+    .forma {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input,
+    select {
+      padding: 10px;
+      border-color: whitesmoke;
+      border-radius: 5px;
+      font-size: 14px;
+      height: auto;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    input:focus,
+    select:focus {
+      border-color: darkgreen;
+      outline: none;
+    }
+    a {
+      color: white;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: forestgreen;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    button:hover {
+      background-color: darkgreen;
+    }
+
+    button.cancel {
+      background-color: crimson;
+    }
+
+    button.cancel:hover {
+      background-color: darkred;
+    }
+
+    .form-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button">
+          <a href="admin_users.html">Пользователи</a>
+        </button>
+        <button class="nav-button"><a href="admin_books.html">Книги</a></button>
+      </div>
+      <div class="account">
+        <button class="button-account">
+          <a href="admin_account.html"
+            ><img
+              style="height: 30px; width: 30px"
+              src="resources/photo-user.jpeg"
+              alt=""
+          /></a>
+        </button>
+        <button class="nav-button">
+          <a href="index.html">Выход</a>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <h1>Добавить пользователя</h1>
+      <div class="forma">
+        <label for="name">Имя:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Введите имя пользователя"
+          required
+        />
+
+        <label for="email">Эл. почта:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Введите email пользователя"
+          required
+        />
+
+        <label for="password">Пароль:</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="*****"
+        />
+
+        <label for="password-confirm">Подтверждение пароля:</label>
+        <input
+          type="password"
+          name="password-confirm"
+          id="password-confirm"
+          placeholder="*****"
+        />
+
+        <label for="role">Роль:</label>
+        <select id="role" name="role" required>
+          <option value="moderator">Модератор</option>
+          <option value="admin">Администратор</option>
+        </select>
+
+        <div class="form-buttons">
+          <button type="submit">Сохранить</button>
+          <button type="button" class="cancel">
+            <a href="admin_users.html">Отмена</a>
+          </button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

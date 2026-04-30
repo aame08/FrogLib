@@ -1,0 +1,55 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vikak\\source\\repos\\FrogLib\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\vikak\\source\\repos\\froglib\\froglib.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|c:\\users\\vikak\\source\\repos\\froglib\\froglib.server\\wwwroot\\resources\\forbidden-words.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{80D2D161-6C52-437A-9A79-ECCC0CCA48A7}|FrogLib.Server\\FrogLib.Server.csproj|solutionrelative:froglib.server\\wwwroot\\resources\\forbidden-words.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "forbidden-words.json",
+              "DocumentMoniker": "C:\\Users\\vikak\\source\\repos\\FrogLib\\FrogLib.Server\\wwwroot\\Resources\\forbidden-words.json",
+              "RelativeDocumentMoniker": "FrogLib.Server\\wwwroot\\Resources\\forbidden-words.json",
+              "ToolTip": "C:\\Users\\vikak\\source\\repos\\FrogLib\\FrogLib.Server\\wwwroot\\Resources\\forbidden-words.json",
+              "RelativeToolTip": "FrogLib.Server\\wwwroot\\Resources\\forbidden-words.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-24T15:25:29.348Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\vikak\\source\\repos\\FrogLib\\FrogLib.Server\\appsettings.json",
+              "RelativeDocumentMoniker": "FrogLib.Server\\appsettings.json",
+              "ToolTip": "C:\\Users\\vikak\\source\\repos\\FrogLib\\FrogLib.Server\\appsettings.json",
+              "RelativeToolTip": "FrogLib.Server\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-30T11:02:16.687Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

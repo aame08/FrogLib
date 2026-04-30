@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    body {
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .content {
+      height: 500px;
+      width: 700px;
+      background-color: whitesmoke;
+      display: flex;
+      flex-direction: column;
+      border-radius: 25px;
+      position: relative;
+      padding: 0 50px;
+      box-sizing: border-box;
+      overflow-y: scroll;
+    }
+
+    .button-close {
+      height: 20px;
+      width: 20px;
+      align-self: flex-end;
+      background: none;
+      border: none;
+      color: black;
+      font-size: 18px;
+      margin-top: 5px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      gap: 15px;
+      width: 100%;
+    }
+
+    .search-container {
+      align-self: center;
+      display: flex;
+      width: 100%;
+    }
+    .search-container input {
+      border: 2px solid forestgreen;
+      height: 25px;
+      border-radius: 0 0 0 5px;
+      flex: 1;
+    }
+    .search-container input:focus {
+      border: 2px solid green;
+      border-radius: 0 0 0 5px;
+      outline: none;
+    }
+    .search-container button {
+      background-color: forestgreen;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      border-radius: 0 5px 0 0;
+    }
+
+    #bookSelectionList {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: space-between;
+    }
+
+    .book-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: calc(20% - 15px);
+      box-sizing: border-box;
+    }
+    .book-card img {
+      height: 150px;
+      object-fit: contain;
+    }
+    .book-card label {
+      max-width: 150px;
+    }
+
+    .buttons {
+      align-self: flex-end;
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    .transparent-button {
+      font-size: 14px;
+      display: flex;
+      background: none;
+      border: none;
+      color: black;
+      font-size: 16px;
+      align-items: center;
+    }
+    .transparent-button:hover {
+      border: 2px solid forestgreen;
+      border-radius: 5px;
+    }
+  </style>
+  <body>
+    <div class="content">
+      <button class="button-close"><a href="collection.html">✕</a></button>
+
+      <div class="container">
+        <div
+          style="
+            text-align: center;
+            border-bottom: 2px solid forestgreen;
+            font-size: 20px;
+            font-weight: bold;
+          "
+        >
+          Выберите книги
+        </div>
+        <div class="search-container">
+          <input type="text" placeholder="Поиск книг" />
+          <button>
+            <img src="resources/search-icon.png" alt="" />
+          </button>
+        </div>
+        <ul id="bookSelectionList">
+          <div class="book-card">
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt=""
+            />
+            <label>
+              <input type="checkbox" />
+              <span>Лисья нора</span>
+            </label>
+          </div>
+          <div class="book-card">
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt=""
+            />
+            <label>
+              <input type="checkbox" />
+              <span>Лисья нора</span>
+            </label>
+          </div>
+          <div class="book-card">
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt=""
+            />
+            <label>
+              <input type="checkbox" />
+              <span>Лисья нора</span>
+            </label>
+          </div>
+          <div class="book-card">
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt=""
+            />
+            <label>
+              <input type="checkbox" />
+              <span>Лисья нора</span>
+            </label>
+          </div>
+          <div class="book-card">
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt=""
+            />
+            <label>
+              <input type="checkbox" />
+              <span>Лисья нора</span>
+            </label>
+          </div>
+          <div class="book-card">
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt=""
+            />
+            <label>
+              <input type="checkbox" />
+              <span>Лисья нора</span>
+            </label>
+          </div>
+          <div class="book-card">
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt=""
+            />
+            <label>
+              <input type="checkbox" />
+              <span>Лисья нора</span>
+            </label>
+          </div>
+          <div class="book-card">
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt=""
+            />
+            <label>
+              <input type="checkbox" />
+              <span>Лисья нора</span>
+            </label>
+          </div>
+          <div class="book-card">
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt=""
+            />
+            <label>
+              <input type="checkbox" />
+              <span>Лисья нора</span>
+            </label>
+          </div>
+        </ul>
+      </div>
+      <div class="buttons">
+        <button class="transparent-button">Отмена</button>
+        <button class="transparent-button">Сохранить</button>
+      </div>
+    </div>
+  </body>
+</html>

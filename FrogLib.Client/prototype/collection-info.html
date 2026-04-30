@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    main {
+      margin-top: 70px;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .collection-container {
+      display: flex;
+      flex-direction: column;
+      background-color: whitesmoke;
+      border-radius: 5px;
+      gap: 10px;
+    }
+
+    .collection-header {
+      background-color: forestgreen;
+      border-radius: 5px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+    }
+    .collection-title {
+      margin-top: 0;
+      font-size: 36px;
+    }
+    .count-books {
+      margin-top: -25px;
+      font-size: 20px;
+    }
+    .photo-user {
+      object-fit: contain;
+      height: 100px;
+    }
+
+    .collection-info {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .books-section {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid forestgreen;
+    }
+    .book-card {
+      flex: 1 1 calc(20% - 15px);
+      box-sizing: border-box;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      max-width: 300px;
+    }
+    .book-card img {
+      height: 325px;
+      object-fit: contain;
+    }
+    .button-name {
+      background: none;
+      border: none;
+      margin-top: 5px;
+      font-size: 16px;
+      display: flex;
+      text-wrap: wrap;
+    }
+    .button-name a:hover {
+      font-weight: bold;
+    }
+
+    .comments-container {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 5px;
+    }
+    .new-comment {
+      background-color: white;
+      border-radius: 5px;
+      border-bottom: 1px solid forestgreen;
+      padding: 5px;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .new-comment textarea {
+      width: 100%;
+      border-color: forestgreen;
+    }
+    .new-comment textarea:focus {
+      accent-color: forestgreen;
+      outline: none;
+    }
+    .new-comment button {
+      height: 30px;
+      border-radius: 5px;
+      border: none;
+      background-color: forestgreen;
+      color: white;
+      font-size: 16px;
+    }
+    .comment {
+      background-color: white;
+      border-radius: 5px;
+      border: 1px solid lightgrey;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .comment img {
+      object-fit: contain;
+      height: 50px;
+    }
+
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .comment-author {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .comment-date {
+      font-style: italic;
+      color: grey;
+    }
+
+    .comment-content {
+      font-size: 14px;
+    }
+
+    .comment-footer {
+      margin-top: 5px;
+    }
+
+    .button-reply {
+      background: none;
+      border: none;
+      color: forestgreen;
+      font-size: 14px;
+    }
+
+    .button-reply:hover {
+      text-decoration: underline;
+    }
+
+    .replies {
+      margin-left: 20px;
+      border-left: 2px solid #ddd;
+      padding-left: 10px;
+      margin-top: 10px;
+    }
+
+    .reply-comment {
+      margin-top: 10px;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="index.html">Главная</a></button>
+        <button class="nav-button"><a href="books.html">Книги</a></button>
+        <button class="nav-button">
+          <a href="collections.html">Подборки</a>
+        </button>
+        <button class="nav-button"><a href="reviews.html">Рецензии</a></button>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="login.html">Вход</a></button>
+        <button class="nav-button">
+          <a href="register.html">Регистрация</a>
+        </button>
+      </div>
+      <!-- <div class="account">
+            <button class="button-account">
+                <a href="account.html"><img style="height: 30px; width: 30px;" src="resources/photo-user.jpeg" alt=""></a>
+            </button>
+            <button class="nav-button">
+                <a href="index.html">Выход</a>
+            </button>
+        </div> -->
+    </header>
+
+    <main>
+      <div class="collection-container">
+        <div class="collection-header">
+          <div style="display: flex; justify-content: space-between">
+            <div>👁 <span>300</span></div>
+            <a href="collection.html" style="font-size: 18px">🖋</a>
+          </div>
+          <h1 class="collection-title">Название подборки</h1>
+          <div class="count-books">Количество книг: <span>52</span></div>
+          <div
+            style="
+              margin-top: 10px;
+              display: flex;
+              align-items: center;
+              gap: 5px;
+            "
+          >
+            <img
+              class="photo-user"
+              src="resources/photo-user.jpeg"
+              alt="photo-user"
+            />
+            <div style="display: flex; flex-direction: column">
+              <div class="collection-author">Автор: <span>amee</span></div>
+              <div>Дата создания: <span>08.12.2022</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="collection-info">
+          Описание подборки:
+          <span style="font-weight: normal"
+            >Здесь собранны самые лучшие книги (по моему мнению).</span
+          >
+        </div>
+
+        <div class="books-section">
+          <div class="book-card">
+            <div class="rating">☆ 5.0</div>
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book-image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Лисья нора</a>
+            </button>
+          </div>
+          <div class="book-card">
+            <div class="rating">☆ 5.0</div>
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book-image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Лисья нора</a>
+            </button>
+          </div>
+          <div class="book-card">
+            <div class="rating">☆ 5.0</div>
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book-image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Лисья нора</a>
+            </button>
+          </div>
+          <div class="book-card">
+            <div class="rating">☆ 5.0</div>
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book-image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Лисья нора</a>
+            </button>
+          </div>
+          <div class="book-card">
+            <div class="rating">☆ 5.0</div>
+            <img
+              src="https://books.google.com:443/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book-image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Лисья нора</a>
+            </button>
+          </div>
+        </div>
+
+        <div class="comments-container">
+          <h2>Комментарии</h2>
+          <div class="new-comment">
+            <textarea
+              placeholder="Ваш комментарий...."
+              style="resize: vertical"
+            ></textarea>
+            <button>Отправить</button>
+          </div>
+          <div class="comment">
+            <div style="display: flex; gap: 15px">
+              <img src="resources/photo-user.jpeg" alt="photo-user" />
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  width: 100%;
+                  gap: 10px;
+                "
+              >
+                <div class="comment-header">
+                  <div class="comment-author">amee</div>
+                  <div class="comment-date">7:29 08.12.2022</div>
+                </div>
+                <div class="comment-content">
+                  Очень понравилась данная подборка. Такое разнообразие книг еще
+                  никогда не видела. Продолжайте в том же духе!
+                </div>
+              </div>
+            </div>
+            <div class="comment-footer">
+              <button class="button-reply">Ответить</button>
+            </div>
+          </div>
+          <div class="comment">
+            <div style="display: flex; gap: 15px">
+              <img src="resources/photo-user.jpeg" alt="photo-user" />
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  width: 100%;
+                  gap: 10px;
+                "
+              >
+                <div class="comment-header">
+                  <div class="comment-author">amee</div>
+                  <div class="comment-date">7:29 08.12.2022</div>
+                </div>
+                <div class="comment-content">
+                  Очень понравилась данная подборка. Такое разнообразие книг еще
+                  никогда не видела. Продолжайте в том же духе!
+                </div>
+              </div>
+            </div>
+            <div class="comment-footer">
+              <button class="button-reply">Ответить</button>
+            </div>
+            <div class="replies">
+              <div class="comment reply-comment">
+                <div style="display: flex; gap: 15px">
+                  <img src="resources/photo-user.jpeg" alt="photo-user" />
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      width: 100%;
+                      gap: 10px;
+                    "
+                  >
+                    <div class="comment-header">
+                      <div class="comment-author">amee</div>
+                      <div class="comment-date">7:29 08.12.2022</div>
+                    </div>
+                    <div class="comment-content">Спасибо, спасибо.</div>
+                  </div>
+                </div>
+                <div class="comment-footer">
+                  <button class="button-reply">Ответить</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div>© 2025 FrogLib.</div>
+    </footer>
+  </body>
+</html>

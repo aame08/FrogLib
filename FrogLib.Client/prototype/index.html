@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrogLib</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="resources/frog.png" />
+  </head>
+  <style>
+    .main-banner {
+      display: flex;
+      background-color: whitesmoke;
+      margin-top: 70px;
+      border: 1px solid forestgreen;
+      border-radius: 5px;
+      padding: 5px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .main-banner-text {
+      flex-grow: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 550px;
+      margin-left: 20px;
+    }
+    .main-banner-img {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .transparent-button {
+      font-size: 12px;
+      border: none;
+      border-radius: 5px;
+      background-color: forestgreen;
+    }
+    .transparent-button:hover {
+      background-color: forestgreen;
+      opacity: 0.5;
+    }
+
+    .books-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .nav-buttons {
+      background: none;
+      border-radius: 50%;
+      border: none;
+      width: 30px;
+      height: 30px;
+    }
+    .nav-buttons:hover {
+      border: 2px solid forestgreen;
+    }
+    .prev-button {
+      left: 10px;
+    }
+    .next-button {
+      right: 10px;
+    }
+    .books-slider {
+      display: flex;
+      overflow: hidden;
+      padding: 5px;
+      gap: 10px;
+      width: 100%;
+    }
+    .book-card {
+      background-color: whitesmoke;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      min-width: 20%;
+    }
+    .book-card img {
+      height: 350px;
+      object-fit: contain;
+    }
+    .book-card:hover {
+      border: 1px solid forestgreen;
+    }
+    .raiting {
+      width: 80px;
+      height: 25px;
+      background-color: forestgreen;
+      color: whitesmoke;
+      text-align: center;
+    }
+    .button-name {
+      background: none;
+      border: none;
+      margin-top: 5px;
+      font-size: 16px;
+      display: flex;
+      text-wrap: wrap;
+    }
+    .button-name a:hover {
+      font-weight: bold;
+    }
+
+    .features-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    .inner-container {
+      display: flex;
+      gap: 10px;
+      justify-content: space-evenly;
+    }
+    .features-card {
+      background-color: whitesmoke;
+      border-radius: 10px;
+      border: 2px solid forestgreen;
+      padding: 20px;
+      text-align: center;
+      width: 200px;
+    }
+    .features-card img {
+      height: 100px;
+      width: 100px;
+    }
+    .features-card h2 {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .features-card p {
+      font-size: 14px;
+      color: grey;
+    }
+
+    .review-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .reviews-slider {
+      display: flex;
+      overflow: hidden;
+      padding: 5px;
+      gap: 15px;
+      width: 100%;
+    }
+    .review-card {
+      background-color: whitesmoke;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      max-height: 500px;
+      display: flex;
+      flex-direction: column;
+      padding: 5px;
+    }
+    .review-card img {
+      height: 200px;
+      object-fit: contain;
+    }
+    .review-card div {
+      font-size: 18px;
+      font-weight: bold;
+      max-width: 300px;
+    }
+    .review-card p {
+      color: grey;
+      max-width: 300px;
+    }
+    .review-card a:hover {
+      font-weight: bold;
+    }
+    .review-card:hover {
+      border: 2px solid forestgreen;
+    }
+
+    .collections-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .collection-card {
+      background-color: whitesmoke;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 5px;
+      display: flex;
+      max-height: 250px;
+      gap: 5px;
+    }
+    .collection-card:hover {
+      border: 2px solid forestgreen;
+    }
+    .collection-card img {
+      object-fit: contain;
+      max-width: 250px;
+      max-height: 250px;
+      margin: 5px;
+    }
+    .text-container {
+      flex-grow: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .container-header {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px;
+    }
+    .collection-name {
+      font-size: 24px;
+      font-weight: bold;
+      background: none;
+      border: none;
+    }
+    .collection-name a:hover {
+      color: forestgreen;
+    }
+    .container-footer {
+      display: flex;
+      gap: 15px;
+    }
+    .info-collection {
+      display: flex;
+      align-items: center;
+    }
+    .info-collection img {
+      height: 25px;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="name-site">
+        <img src="resources/frog.png" style="height: 30px" alt="logo" />
+        <p>FrogLib</p>
+      </div>
+      <div class="buttons">
+        <button class="nav-button"><a href="index.html">Главная</a></button>
+        <button class="nav-button"><a href="books.html">Книги</a></button>
+        <button class="nav-button">
+          <a href="collections.html">Подборки</a>
+        </button>
+        <button class="nav-button"><a href="reviews.html">Рецензии</a></button>
+      </div>
+      <!-- <div class="buttons">
+            <button class="nav-button"><a href="login.html">Вход</a></button>
+            <button class="nav-button"><a href="register.html">Регистрация</a></button>
+        </div> -->
+      <div class="account">
+        <button class="button-account">
+          <a href="moderator_account.html"
+            ><img
+              style="height: 30px; width: 30px"
+              src="resources/photo-user.jpeg"
+              alt=""
+          /></a>
+        </button>
+        <button class="nav-button">
+          <a href="index.html">Выход</a>
+        </button>
+      </div>
+    </header>
+
+    <div class="main-banner">
+      <div class="main-banner-text">
+        <h1>Книги - наши тихие собеседники в час одиночества.</h1>
+        <p style="border-top: 3px solid forestgreen">
+          Они напоминают, что даже в самых темных страницах жизни можно найти
+          светлые слова и мысли. Они дают нам укрытие, когда реальность
+          становится невыносимой.
+        </p>
+      </div>
+      <div class="main-banner-img">
+        <img
+          src="resources/book.png"
+          alt="book"
+          style="height: 450px; width: 450px"
+        />
+      </div>
+    </div>
+
+    <section>
+      <div class="section-title">
+        <h2>Книжные новинки</h2>
+      </div>
+      <div class="books-container">
+        <button class="nav-buttons prev-button">←</button>
+        <div class="books-slider">
+          <div class="book-card">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://covers.openlibrary.org/b/id/14587287-L.jpg"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Агент времени</a>
+            </button>
+          </div>
+          <div class="book-card">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://books.google.com:443/books/content?id=P_sCEQAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Благословение небожителей</a>
+            </button>
+          </div>
+          <div class="book-card">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://books.google.com/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Лисья нора</a>
+            </button>
+          </div>
+          <div class="book-card">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://books.google.com/books/content?id=xtm1EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Путь домохозяина</a>
+            </button>
+          </div>
+          <div class="book-card">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://books.google.com/books/content?id=xtm1EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Путь домохозяина</a>
+            </button>
+          </div>
+        </div>
+        <button class="nav-buttons next-button">→</button>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>Бестселлеры</h2>
+      </div>
+      <div class="books-container">
+        <button class="nav-buttons prev-button">←</button>
+        <div class="books-slider">
+          <div class="book-card">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://covers.openlibrary.org/b/id/14587287-L.jpg"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Агент времени</a>
+            </button>
+          </div>
+          <div class="book-card">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://books.google.com:443/books/content?id=P_sCEQAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Благословение небожителей</a>
+            </button>
+          </div>
+          <div class="book-card">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://books.google.com/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Лисья нора</a>
+            </button>
+          </div>
+          <div class="book-card">
+            <div class="raiting">☆ 5.0</div>
+            <img
+              src="https://books.google.com/books/content?id=xtm1EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="book image"
+            />
+            <button class="button-name">
+              <a href="book-info.html">Путь домохозяина</a>
+            </button>
+          </div>
+        </div>
+        <button class="nav-buttons next-button">→</button>
+      </div>
+    </section>
+
+    <section class="features-container">
+      <h1
+        style="text-decoration: underline; text-decoration-color: forestgreen"
+      >
+        Почему именно мы?
+      </h1>
+      <div class="inner-container">
+        <div class="features-card">
+          <img src="resources/search.png" alt="Поиск книг" />
+          <h2>Поиск книг</h2>
+          <p>Наш удобный поиск поможет вам найти именно то, что вы ищете.</p>
+        </div>
+        <div class="features-card">
+          <img src="resources/collection.png" alt="Создание подборок" />
+          <h2>Создание подборок</h2>
+          <p>
+            Создавайте свои собственные подборки книг и просматривайте другие.
+          </p>
+        </div>
+        <div class="features-card">
+          <img src="resources/recommend.png" alt="Получение рекомендаций" />
+          <h2>Получение рекомендаций</h2>
+          <p>
+            Получайте персонализированные рекомендации книг на основе ваших
+            предпочтений.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>Популярные рецензии</h2>
+        <button class="transparent-button">
+          <a href="reviews.html" style="color: whitesmoke">ВСЕ</a>
+        </button>
+      </div>
+      <div class="review-container">
+        <button class="nav-buttons prev-button">←</button>
+        <div class="reviews-slider">
+          <div class="review-card">
+            <div>☆ 5.0</div>
+            <img
+              src="https://books.google.com/books/content?id=kMW_EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="review"
+            />
+            <div>Название рецензии</div>
+            <p>Очень интересное описание, которое потрясет всех...</p>
+            <a href="review-info.html">Читать полностью</a>
+          </div>
+          <div class="review-card">
+            <div>☆ 5.0</div>
+            <img
+              src="https://books.google.com/books/content?id=xtm1EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="review"
+            />
+            <div>Название рецензии</div>
+            <p>Очень интересное описание, которое потрясет всех...</p>
+            <a href="review-info.html">Читать полностью</a>
+          </div>
+          <div class="review-card">
+            <div>☆ 5.0</div>
+            <img
+              src="https://books.google.com:443/books/content?id=P_sCEQAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+              alt="review"
+            />
+            <div>Название рецензии</div>
+            <p>Очень интересное описание, которое потрясет всех...</p>
+            <a href="review-info.html">Читать полностью</a>
+          </div>
+          <div class="review-card">
+            <div>☆ 5.0</div>
+            <img
+              src="https://covers.openlibrary.org/b/id/14587287-L.jpg"
+              alt="review"
+            />
+            <div>Название рецензии</div>
+            <p>Очень интересное описание, которое потрясет всех...</p>
+            <a href="review-info.html">Читать полностью</a>
+          </div>
+        </div>
+        <button class="nav-buttons next-button">→</button>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>Популярные подборки</h2>
+        <button class="transparent-button">
+          <a href="collections.html" style="color: whitesmoke">ВСЕ</a>
+        </button>
+      </div>
+      <div class="collections-container">
+        <div class="collection-card">
+          <img src="resources/image_collection.png" alt="Подборка 1" />
+          <div class="text-container">
+            <div class="container-header">
+              <div>amee</div>
+              <div>👁300</div>
+            </div>
+            <div class="container-content">
+              <div style="margin-left: 5px; color: grey">08.12.2022</div>
+              <button class="collection-name">
+                <a href="collection-info.html">Название подборки 1</a>
+              </button>
+              <div style="margin-left: 5px">52 книг</div>
+              <p style="margin-left: 5px; color: grey">Описание подборки</p>
+            </div>
+            <div class="container-footer">
+              <div class="info-collection">
+                <img src="resources/comment.png" alt="comment" />
+                <div>2</div>
+              </div>
+              <div class="info-collection">
+                <img src="resources/favorite.png" alt="rating" />
+                <div>228</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="collection-card">
+          <img src="resources/image_collection.png" alt="Подборка 1" />
+          <div class="text-container">
+            <div class="container-header">
+              <div>amee</div>
+              <div>👁300</div>
+            </div>
+            <div class="container-content">
+              <div style="margin-left: 5px; color: grey">08.12.2022</div>
+              <button class="collection-name">
+                <a href="collection-info.html">Название подборки 2</a>
+              </button>
+              <div style="margin-left: 5px">52 книг</div>
+              <p style="margin-left: 5px; color: grey">Описание подборки</p>
+            </div>
+            <div class="container-footer">
+              <div class="info-collection">
+                <img src="resources/comment.png" alt="comment" />
+                <div>2</div>
+              </div>
+              <div class="info-collection">
+                <img src="resources/favorite.png" alt="rating" />
+                <div>228</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="collection-card">
+          <img src="resources/image_collection.png" alt="Подборка 1" />
+          <div class="text-container">
+            <div class="container-header">
+              <div>amee</div>
+              <div>👁300</div>
+            </div>
+            <div class="container-content">
+              <div style="margin-left: 5px; color: grey">08.12.2022</div>
+              <button class="collection-name">
+                <a href="collection-info.html">Название подборки 3</a>
+              </button>
+              <div style="margin-left: 5px">52 книг</div>
+              <p style="margin-left: 5px; color: grey">Описание подборки</p>
+            </div>
+            <div class="container-footer">
+              <div class="info-collection">
+                <img src="resources/comment.png" alt="comment" />
+                <div>2</div>
+              </div>
+              <div class="info-collection">
+                <img src="resources/favorite.png" alt="rating" />
+                <div>228</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© 2025 FrogLib.</div>
+    </footer>
+  </body>
+</html>
